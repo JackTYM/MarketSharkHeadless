@@ -104,12 +104,17 @@ install(DIRECTORY mclib/include DESTINATION ${CMAKE_INSTALL_PREFIX}/)
 configure_file(mclib.pc.in mclib.pc @ONLY)
 install(FILES ${CMAKE_BINARY_DIR}/mclib.pc DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/pkgconfig)
 
+# Include the libwebsockets headers
+include_directories(${CMAKE_SOURCE_DIR}/external/IXWebSocket/ixwebsocket)
+
 add_executable(client
 	client/BlockPlacer.cpp
 	client/Logger.cpp
 	client/main.cpp
 	client/SneakEnforcer.cpp
 	client/TextureGrabber.cpp
+		client/auth/Auth.cpp
+		client/Server.cpp
 )
 
-target_link_libraries(client PRIVATE mclib)
+target_link_libraries(client PRIVATE mclib ixwebsocket)

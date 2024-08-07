@@ -43,11 +43,11 @@ protected:
     core::Connection* m_Connection;
 
 public:
-    Packet() noexcept 
-        : m_Id(0xFF), 
-          m_ProtocolState(protocol::State::Play), 
-          m_Connection(nullptr), 
-          m_ProtocolVersion(protocol::Version::Minecraft_1_11_2) 
+    Packet() noexcept
+        : m_Id(0xFF),
+          m_ProtocolState(protocol::State::Play),
+          m_Connection(nullptr),
+          m_ProtocolVersion(protocol::Version::Minecraft_1_11_2)
     {
     }
 
@@ -362,7 +362,7 @@ public:
     bool MCLIB_API Deserialize(DataBuffer& data, std::size_t packetLength);
     void MCLIB_API Dispatch(PacketHandler* handler);
 
-    
+
 };
 
 class BlockBreakAnimationPacket : public InboundPacket { // 0x08
@@ -1759,7 +1759,7 @@ private:
     s16 m_ActionNumber;
     std::vector<Entry> m_ReturnEntries;
     std::vector<Entry> m_PrepareEntries;
-    
+
 public:
     MCLIB_API PrepareCraftingGridPacket(u8 windowId, s16 actionNumber, const std::vector<Entry>& returnEntries, const std::vector<Entry>& prepareEntries);
     DataBuffer MCLIB_API Serialize() const;
@@ -1822,10 +1822,11 @@ private:
     ChatMode m_ChatMode;
     bool m_ChatColors;
     u8 m_SkinFlags;
-    MainHand m_MainHand;
+    //MainHand m_MainHand;
 
 public:
-    MCLIB_API ClientSettingsPacket(const std::wstring& locale, u8 viewDistance, ChatMode chatMode, bool chatColors, u8 skinFlags, MainHand hand);
+    //MCLIB_API ClientSettingsPacket(const std::wstring& locale, u8 viewDistance, ChatMode chatMode, bool chatColors, u8 skinFlags, MainHand hand);
+    MCLIB_API ClientSettingsPacket(const std::wstring& locale, u8 viewDistance, ChatMode chatMode, bool chatColors, u8 skinFlags);
     DataBuffer MCLIB_API Serialize() const;
 };
 

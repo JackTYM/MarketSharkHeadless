@@ -70,7 +70,7 @@ void Client::UpdateThread() {
 }
 
 bool Client::Login(const std::string& host, unsigned short port,
-    const std::string& user, const std::string& password, UpdateMethod method)
+                   const std::string& user, const std::string& uuid, const std::string& access_token, UpdateMethod method)
 {
     if (m_UpdateThread.joinable()) {
         m_Connected = false;
@@ -82,7 +82,7 @@ bool Client::Login(const std::string& host, unsigned short port,
     if (!m_Connection.Connect(host, port))
         throw std::runtime_error("Could not connect to server");
 
-    if (!m_Connection.Login(user, password))
+    if (!m_Connection.Login(user, uuid, access_token))
         return false;
 
     if (method == UpdateMethod::Threaded) {

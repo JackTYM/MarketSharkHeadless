@@ -15,6 +15,7 @@ enum class State {
 };
 
 enum class Version {
+    Minecraft_1_8_9 = 47,
     Minecraft_1_10_2 = 210,
     Minecraft_1_11_0 = 315,
     Minecraft_1_11_2 = 316,
@@ -143,6 +144,12 @@ enum ProtocolPlay {
     Advancements,
     UnlockRecipes,
     CraftRecipeResponse,
+
+    // 1.8
+    MapChunkBulk,
+    UpdateSign,
+    SetCompression,
+    UpdateEntityNBT
 };
 
 } // ns play

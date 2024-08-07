@@ -41,7 +41,10 @@ Yggdrasil& Yggdrasil::operator=(const Yggdrasil& other) {
     return *this;
 }
 
-bool Yggdrasil::JoinServer(const std::wstring& serverId, const std::string& sharedSecret, const std::string& publicKey) {
+bool Yggdrasil::JoinServer(const std::wstring& serverId, const std::string& sharedSecret, const std::string& publicKey, const std::string& access_token, const std::string& uuid) {
+    m_AccessToken = access_token;
+    m_ProfileId = uuid;
+    std::cout << "Joining Server" << std::endl;
     SHA_CTX shaCtx;
     SHA1_Init(&shaCtx);
 
@@ -63,6 +66,8 @@ bool Yggdrasil::JoinServer(const std::string& serverHash) {
         throw YggdrasilException("Error trying to join a server before authenticating.");
 
     json data;
+
+    std::cout << "Sending Access Token with UUID - " << m_ProfileId << std::endl;
 
     data["accessToken"] = m_AccessToken;
     data["selectedProfile"] = m_ProfileId;

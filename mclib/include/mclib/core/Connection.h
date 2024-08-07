@@ -19,6 +19,9 @@
 #include <queue>
 #include <future>
 #include <memory>
+#include <iostream>
+#include <iomanip>
+#include <cxxabi.h>
 
 namespace mc {
 namespace core {
@@ -39,6 +42,8 @@ private:
     std::unique_ptr<CompressionStrategy> m_Compressor;
     std::unique_ptr<network::Socket> m_Socket;
     std::unique_ptr<util::Yggdrasil> m_Yggdrasil;
+    std::string m_AccessToken;
+    std::string m_Uuid;
     ClientSettings m_ClientSettings;
     std::string m_Server;
     std::string m_Email;
@@ -88,7 +93,7 @@ public:
     void MCLIB_API CreatePacket();
 
     void MCLIB_API Ping();
-    bool MCLIB_API Login(const std::string& username, const std::string& password);
+    bool MCLIB_API Login(const std::string& username, const std::string& uuid, const std::string& access_token);
     bool MCLIB_API Login(const std::string& username, AuthToken token);
 
     template <typename T>
@@ -100,6 +105,14 @@ public:
         DataBuffer compressed = m_Compressor->Compress(packetBuffer);
         DataBuffer encrypted = m_Encrypter->Encrypt(compressed);
 
+        int status;
+        char* demangled_name = abi::__cxa_demangle(typeid(packet).name(), 0, 0, &status);
+
+        if (status == 0) {
+            std::cout << "Sending Packet - " << demangled_name <<  std::endl;
+        } else {
+            std::cout << "Sending Packet - " << typeid(packet).name() << std::endl;
+        }
         m_Socket->Send(encrypted);
     }
 

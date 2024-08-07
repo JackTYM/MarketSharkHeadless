@@ -377,17 +377,28 @@ bool PlayerController::ClearPath(Vector3d target) {
 void PlayerController::SetMoveSpeed(double speed) { m_MoveSpeed = speed; }
 
 void PlayerController::OnClientSpawn(core::PlayerPtr player) {
+    return;
+    std::cout << "Client Spawn1" << std::endl;
     m_Yaw = player->GetEntity()->GetYaw();
+    std::cout << "Client Spawn2" << std::endl;
     m_Pitch = player->GetEntity()->GetPitch();
+    std::cout << "Client Spawn3" << std::endl;
     m_Position = player->GetEntity()->GetPosition();
+    std::cout << "Client Spawn4" << std::endl;
     m_LoadedIn = true;
+    std::cout << "Client Spawn5" << std::endl;
     m_TargetPos = m_Position;
+    std::cout << "Client Spawn6" << std::endl;
     auto entity = player->GetEntity();
+    std::cout << "Client Spawn7" << std::endl;
     if (entity) {
         EntityId eid = entity->GetEntityId();
+        std::cout << "Client Spawn8" << std::endl;
 
         m_EntityId = eid;
+        std::cout << "Client Spawn9" << std::endl;
     }
+    std::cout << "Client Spawn10" << std::endl;
 }
 
 void PlayerController::Dig(Vector3d target) {

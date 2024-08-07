@@ -1439,6 +1439,7 @@ bool PlayerPositionAndLookPacket::Deserialize(DataBuffer& data, std::size_t pack
 }
 
 void PlayerPositionAndLookPacket::Dispatch(PacketHandler* handler) {
+    std::cout << "Dispatch Player Pos Look" << std::endl;
     handler->HandlePacket(this);
 }
 
@@ -2263,6 +2264,7 @@ DisconnectPacket::DisconnectPacket() {
 }
 
 bool DisconnectPacket::Deserialize(DataBuffer& data, std::size_t packetLength) {
+        std::cout << "Disconnected !" << std::endl;
     // Update the protocol state so the login and play versions of this are handled correctly.
     if (m_Connection)
         m_ProtocolState = m_Connection->GetProtocolState();
@@ -2549,9 +2551,9 @@ DataBuffer ClientStatusPacket::Serialize() const {
     return buffer;
 }
 
-ClientSettingsPacket::ClientSettingsPacket(const std::wstring& locale, u8 viewDistance, ChatMode chatMode, bool chatColors, u8 skinFlags, MainHand hand)
+ClientSettingsPacket::ClientSettingsPacket(const std::wstring& locale, u8 viewDistance, ChatMode chatMode, bool chatColors, u8 skinFlags)
     : m_Locale(locale), m_ViewDistance(viewDistance), m_ChatMode(chatMode),
-    m_ChatColors(chatColors), m_SkinFlags(skinFlags), m_MainHand(hand)
+    m_ChatColors(chatColors), m_SkinFlags(skinFlags)
 {
     
 }
@@ -2560,7 +2562,7 @@ DataBuffer ClientSettingsPacket::Serialize() const {
     MCString locale(m_Locale);
     DataBuffer buffer;
     VarInt chatMode((int)m_ChatMode);
-    VarInt hand((int)m_MainHand);
+    //VarInt hand((int)m_MainHand);
 
     buffer << m_Id;
     buffer << locale;
@@ -2568,7 +2570,7 @@ DataBuffer ClientSettingsPacket::Serialize() const {
     buffer << chatMode;
     buffer << m_ChatColors;
     buffer << m_SkinFlags;
-    buffer << hand;
+    //buffer << hand;
 
     return buffer;
 }

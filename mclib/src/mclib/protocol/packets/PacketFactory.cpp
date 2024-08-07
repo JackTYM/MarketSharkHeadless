@@ -4,6 +4,8 @@
 
 #include <exception>
 #include <string>
+#include <iostream>
+#include <iomanip>
 
 namespace mc {
 namespace protocol {
@@ -18,6 +20,16 @@ Packet* PacketFactory::CreatePacket(Protocol& protocol, protocol::State state, D
     InboundPacket* packet = protocol.CreateInboundPacket(state, vid.GetInt());
 
     if (packet) {
+
+        int status;
+        char* demangled_name = abi::__cxa_demangle(typeid(*packet).name(), 0, 0, &status);
+
+        if (status == 0) {
+            std::cout << "Sending Packet - " << demangled_name <<  std::endl;
+        } else {
+            std::cout << "Sending Packet - " << typeid(*packet).name() << std::endl;
+        }
+
         packet->SetConnection(connection);
         packet->Deserialize(data, length);
     } else {

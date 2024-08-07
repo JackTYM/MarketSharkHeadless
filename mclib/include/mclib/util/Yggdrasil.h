@@ -90,7 +90,7 @@ public:
      * @return true if it successfully posted the session to the server.
      * @throws YggdrasilException if it can't connect to the server, or if it receives an error from the server.
      */
-    bool MCLIB_API JoinServer(const std::wstring& serverId, const std::string& sharedSecret, const std::string& publicKey);
+    bool MCLIB_API JoinServer(const std::wstring& serverId, const std::string& sharedSecret, const std::string& publicKey, const std::string& access_token, const std::string& uuid);
 
     /**
      * Posts a new session to the session server.

@@ -12,6 +12,7 @@
 #include <future>
 #include <thread>
 #include <memory>
+#include <iostream>
 
 namespace mc {
 namespace core {
@@ -97,20 +98,9 @@ void Connection::AuthenticateClient(const std::wstring& serverId, const std::str
     bool success = true;
     std::string error = "";
 
-    if (!m_Yggdrasil->IsAuthenticated()) {
-        try {
-            if (!m_Yggdrasil->Authenticate(m_Username, m_Password)) {
-                error = "Failed to authenticate";
-                success = false;
-            }
-        } catch (const util::YggdrasilException& e) {
-            error = e.what();
-            success = false;
-        }
-    }
 
     try {
-        if (!m_Yggdrasil->JoinServer(serverId, sharedSecret, pubkey)) {
+        if (!m_Yggdrasil->JoinServer(serverId, sharedSecret, pubkey, m_AccessToken, m_Uuid)) {
             success = false;
             error = "Failed to join server through Yggdrasil.";
         }
@@ -143,10 +133,10 @@ void Connection::SendSettingsPacket() {
         m_ClientSettings.GetViewDistance(), 
         m_ClientSettings.GetChatMode(), 
         m_ClientSettings.GetChatColors(), 
-        m_ClientSettings.GetSkinParts(), 
-        m_ClientSettings.GetMainHand()
+        m_ClientSettings.GetSkinParts()
     );
 
+    std::cout << "Client Settings Skin Parts " << m_ClientSettings.GetSkinParts() << std::endl;
     SendPacket(&clientSettings);
 
     m_SentSettings = true;
@@ -275,7 +265,7 @@ void Connection::CreatePacket() {
     }
 }
 
-bool Connection::Login(const std::string& username, const std::string& password) {
+bool Connection::Login(const std::string& username, const std::string& uuid, const std::string& access_token) {
     static const std::string fml("\0FML\0", 5);
 
     if (m_Socket->GetStatus() != network::Socket::Status::Connected) return false;
@@ -285,17 +275,13 @@ bool Connection::Login(const std::string& username, const std::string& password)
     SendPacket(&handshake);
     m_ProtocolState = protocol::State::Login;
 
-    m_Email = username;
+    m_Username = username;
 
-    if (username.find("@") != std::string::npos) {
-        m_Yggdrasil->Authenticate(username, password);
+    m_AccessToken = access_token;
+    m_Uuid = uuid;
+    m_Yggdrasil = std::move(mc::core::AuthToken(access_token, "", uuid).GetYggdrasil());
 
-        m_Username = m_Yggdrasil->GetPlayerName();
-    } else {
-        m_Username = username;
-    }
-
-    m_Password = password;
+    //m_Password = password;
 
     protocol::packets::out::LoginStartPacket loginStart(m_Username);
     SendPacket(&loginStart);

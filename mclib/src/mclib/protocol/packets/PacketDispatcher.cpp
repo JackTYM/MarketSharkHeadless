@@ -4,6 +4,8 @@
 
 #include <algorithm>
 #include <unordered_map>
+#include <iostream>
+#include <iomanip>
 
 namespace mc {
 namespace protocol {
@@ -53,10 +55,11 @@ void PacketDispatcher::Dispatch(Packet* packet) {
 
     auto state = packet->GetProtocolState();
     s64 id = GetDispatcherId(packet);
-    
+
     PacketType type(state, id);
     for (PacketHandler* handler : m_Handlers[type])
         packet->Dispatch(handler);
+
 }
 
 } // ns packets
