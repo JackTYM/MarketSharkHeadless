@@ -13,8 +13,12 @@ AutoBuy::AutoBuy(mc::protocol::packets::PacketDispatcher* dispatcher)
 }
 
 void AutoBuy::HandlePacket(mc::protocol::packets::in::SetSlotPacket *packet) {
-    mc::nbt::TagCompound& root = const_cast<mc::nbt::TagCompound&>(packet->GetSlot().GetNBT().GetRoot());
-    root.printTags();
+
+    if (packet->GetSlot().GetNBT().HasData()) {
+        const mc::nbt::TagCompound root = packet->GetSlot().GetNBT().GetRoot();
+
+        if (root.GetName())
+    }
 
     /*mc::nbt::TagCompound* display = packet->GetSlot().GetNBT().GetTag<mc::nbt::TagCompound>(L"display");
     if (display.)
