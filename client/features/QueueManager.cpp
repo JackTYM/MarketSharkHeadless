@@ -1,68 +1,47 @@
 #include "QueueManager.h"
-#include <iostream>
-#include <chrono>
 
-std::queue<std::function<void()>> QueueManager::queue;
-std::string QueueManager::currentAction;
-std::thread QueueManager::finishFailsafe;
-std::mutex QueueManager::mutex;
-std::condition_variable QueueManager::cv;
+std::queue<QueueManager::Action> QueueManager::actionQueue;
+QueueManager::Action QueueManager::currentAction = {"", nullptr};
 
-std::thread DelayUtils::delayAction(int delay, std::function<void()> callback) {
-    return std::thread([delay, callback]() {
-        std::this_thread::sleep_for(std::chrono::milliseconds(delay));
-        callback();
-    });
-}
-
-void QueueManager::finishAction(const std::string& action) {
-    std::lock_guard<std::mutex> lock(mutex);
-    if (currentAction == action) {
-        finishAction();
+void QueueManager::addTaskToEnd(const std::string& actionName, const std::function<void()>& task) {
+    actionQueue.push({actionName, task});
+    if (currentAction.task == nullptr) {
+        startNextAction();
     }
 }
 
-void QueueManager::finishAction() {
-    std::lock_guard<std::mutex> lock(mutex);
-    std::cout << "Finished " + currentAction << std::endl;
-    currentAction.clear();
-    if (finishFailsafe.joinable()) {
-        finishFailsafe.join();
+void QueueManager::addTaskToStart(const std::string& actionName, const std::function<void()>& task) {
+    std::queue<Action> newQueue;
+    newQueue.push({actionName, task});
+    while (!actionQueue.empty()) {
+        newQueue.push(actionQueue.front());
+        actionQueue.pop();
     }
-    if (!queue.empty()) {
-        auto r = queue.front();
-        queue.pop();
-        currentAction = "Runnable"; // Example placeholder
-        r();
-        std::cout << "1 Started " + currentAction << std::endl;
-
-        finishFailsafe = DelayUtils::delayAction(1000, []() { finishAction(currentAction); });
+    actionQueue = std::move(newQueue);
+    if (currentAction.task == nullptr) {
+        startNextAction();
     }
 }
 
-void QueueManager::addToQueue(std::function<void()> action) {
-    std::lock_guard<std::mutex> lock(mutex);
-    std::cout << "Added Runnable" << std::endl;
-    queue.push(action);
-    startNext();
+bool QueueManager::endCurrentTask(const std::string& actionName) {
+    if (currentAction.name == actionName) {
+        currentAction = {"", nullptr};
+        startNextAction();
+        return true;
+    }
+    return false;
 }
 
-void QueueManager::addToStartOfQueue(std::function<void()> action) {
-    std::lock_guard<std::mutex> lock(mutex);
-    std::cout << "Added Runnable" << std::endl;
-    queue.emplace(action);
-    startNext();
+std::string QueueManager::getCurrentActionName() {
+    return currentAction.name;
 }
 
-void QueueManager::startNext() {
-    std::lock_guard<std::mutex> lock(mutex);
-    if (currentAction.empty() && !queue.empty()) {
-        auto r = queue.front();
-        queue.pop();
-        currentAction = "Runnable"; // Example placeholder
-        r();
-        std::cout << "2 Started " + currentAction << std::endl;
-
-        finishFailsafe = DelayUtils::delayAction(1000, []() { finishAction(currentAction); });
+void QueueManager::startNextAction() {
+    if (!actionQueue.empty()) {
+        currentAction = actionQueue.front();
+        actionQueue.pop();
+        if (currentAction.task) {
+            currentAction.task();
+        }
     }
 }

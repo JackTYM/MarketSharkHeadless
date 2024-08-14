@@ -18,6 +18,13 @@
 #include "models/FlipData.h"
 #include "RawCommand.h"
 
+#include <mclib/core/Connection.h>
+
+#include "../features/AutoOpen.h"
+#include "../Server.h"
+#include "../FlipItem.h"
+#include "../Objects.h"
+
 class CoflNet {
 public:
     static void setupWebsocket();

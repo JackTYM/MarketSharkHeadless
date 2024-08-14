@@ -21,14 +21,15 @@ public:
     int Target;
     SoundData Sound;
     std::string Render;
+    std::string Finder;
 
     FlipData() {}
 
-    FlipData(const std::vector<ChatMessageData>& messages, const std::string& id, int worth, const SoundData& sound, const std::string& render)
-            : Messages(messages), Id(id), Worth(worth), Sound(sound), Render(render) {}
+    FlipData(const std::vector<ChatMessageData>& messages, const std::string& id, int worth, const SoundData& sound, const std::string& render, const std::string& finder)
+            : Messages(messages), Id(id), Worth(worth), Sound(sound), Render(render), Finder(finder) {}
 
     friend void to_json(json& j, const FlipData& f) {
-        j = json{{"messages", f.Messages}, {"id", f.Id}, {"worth", f.Worth}, {"sound", f.Sound}, {"render", f.Render}};
+        j = json{{"messages", f.Messages}, {"id", f.Id}, {"worth", f.Worth}, {"sound", f.Sound}, {"render", f.Render}, {"finder", f.Finder}};
     }
 
     friend void from_json(const json& j, FlipData& f) {
@@ -62,6 +63,12 @@ public:
             j.at("render").get_to(f.Render);
         } else {
             f.Render = "";
+        }
+
+        if (j.find("finder") != j.end() && !j.at("finder").is_null()) {
+            j.at("finder").get_to(f.Finder);
+        } else {
+            f.Finder = "";
         }
     }
 };

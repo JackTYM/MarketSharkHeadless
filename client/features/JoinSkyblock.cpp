@@ -4,8 +4,8 @@
 
 #include "JoinSkyblock.h"
 
-JoinSkyblock::JoinSkyblock(mc::protocol::packets::PacketDispatcher *dispatcher, mc::core::Connection *connection)
-        : mc::protocol::packets::PacketHandler(dispatcher), m_Connection(connection)
+JoinSkyblock::JoinSkyblock(mc::protocol::packets::PacketDispatcher *dispatcher)
+        : mc::protocol::packets::PacketHandler(dispatcher)
 {
 
     dispatcher->RegisterHandler(mc::protocol::State::Play, mc::protocol::play::PlayerPositionAndLook, this);
@@ -21,7 +21,7 @@ void JoinSkyblock::SendIs() {
         std::cout << "Joining Island!" << std::endl;
 
         mc::protocol::packets::out::ChatPacket packet("/is");
-        m_Connection->SendPacket(&packet);
+        Objects::m_Connection->SendPacket(&packet);
 
         CoflNet::setupWebsocket();
     }
@@ -35,7 +35,7 @@ void JoinSkyblock::SendSkyblock() {
         std::cout << "Joining Skyblock!" << std::endl;
 
         mc::protocol::packets::out::ChatPacket packet("/skyblock");
-        m_Connection->SendPacket(&packet);
+        Objects::m_Connection->SendPacket(&packet);
 
         SendIs();
     }

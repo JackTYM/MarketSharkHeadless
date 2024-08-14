@@ -5,22 +5,17 @@
 #include "CoflNet.h"
 
 static std::string session_id = "";
-static ix::WebSocket webSocket;
-
-static bool debug = false;
 
 using json = nlohmann::json;
 
 std::map<CommandType, std::string> CommandTypeHelper::data;
 
 void CoflNet::setupWebsocket() {
-    std::string username = "JackLovesMen";
-
     CommandTypeHelper::initialize();
-    webSocket.setUrl("wss://sky.coflnet.com/modsocket?version=1.5.6-Alpha&player=" + username + "&SId=" +
-                     GetCoflSession(username).id);
+    Objects::coflWebSocket.setUrl("wss://sky.coflnet.com/modsocket?version=1.5.6-Alpha&player=" + Objects::currentUsername + "&SId=" +
+                     GetCoflSession(Objects::currentUsername).id);
 
-    webSocket.setOnMessageCallback([](const ix::WebSocketMessagePtr &msg) {
+    Objects::coflWebSocket.setOnMessageCallback([](const ix::WebSocketMessagePtr &msg) {
         switch (msg->type) {
             case ix::WebSocketMessageType::Open:
                 break;
@@ -31,7 +26,7 @@ void CoflNet::setupWebsocket() {
                 std::cout << "Error!" << std::endl;
                 break;
             case ix::WebSocketMessageType::Message:
-                if (debug) {
+                if (Objects::debug) {
                     std::cout << "Received: " << msg->str << std::endl;
                 }
 
@@ -42,7 +37,7 @@ void CoflNet::setupWebsocket() {
 
                 JsonStringCommand cmd(type, data);
 
-                if (debug) {
+                if (Objects::debug) {
                     std::cout << "Cofl Handling Command=" << cmd.toString() << std::endl;
                 }
 
@@ -64,7 +59,10 @@ void CoflNet::setupWebsocket() {
                             cmd["Type"] = rc.getType();
                             cmd["Data"] = rc.getData();
 
-                            webSocket.send(cmd.dump());
+                            Objects::coflWebSocket.send(cmd.dump());
+                        } else {
+                            mc::protocol::packets::out::ChatPacket packet(msg);
+                            Objects::m_Connection->SendPacket(&packet);
                         }
                         break;
                     }
@@ -85,15 +83,26 @@ void CoflNet::setupWebsocket() {
                                 cmd["Type"] = rc.getType();
                                 cmd["Data"] = rc.getData();
 
-                                webSocket.send(cmd.dump());
+                                Objects::coflWebSocket.send(cmd.dump());
                             }
                         }
                         std::cout << std::endl;
                         break;
-                    case CommandType::Flip:
-                        std::cout << "New Flip! Target - " << cmd.GetAs<FlipData>().getData().Target << std::endl;
-                        std::cout << cmd.GetAs<FlipData>().getData().Messages[0].OnClick << std::endl;
+                    case CommandType::Flip: {
+                        FlipData flip = cmd.GetAs<FlipData>().getData();
+                        FlipItem item = FlipItem();
+                        item.auctionId = flip.Id;
+                        item.coflWorth = flip.Target;
+                        //item.uuid = flip.auctionData.uuid;
+                        //item.sellerUuid = flip.auctionData.sellerUuid;
+                        //item.skyblockId = flip.auctionData.skyblockId;
+                        item.finder = flip.Finder;
+                        item.bed = false;
+
+                        std::cout << "New Flip! Target - " << flip.Target << std::endl;
+                        AutoOpen::OpenAuction(item);
                         break;
+                    }
                     case CommandType::set:
                     case CommandType::TokenLogin:
                     case CommandType::Clicked:
@@ -133,7 +142,7 @@ void CoflNet::setupWebsocket() {
 
                         std::cout << cmd.dump() << std::endl;
 
-                        webSocket.send(cmd.dump());
+                        Objects::coflWebSocket.send(cmd.dump());
                         break;
                 }
 
@@ -141,5 +150,5 @@ void CoflNet::setupWebsocket() {
         }
     });
 
-    webSocket.start();
+    Objects::coflWebSocket.start();
 }

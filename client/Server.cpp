@@ -18,15 +18,11 @@
 
 #include "features/JoinSkyblock.h"
 #include "features/ChatLogger.h"
-
-std::string Server::currentUsername = "Sandal61";
-std::string Server::currentUUID = "";
-std::string Server::currentSSID = "";
-std::string Server::serverAddress = "mc.hypixel.net";
-u16 Server::port = 25565;
+#include "features/AutoBuy.h"
+#include "features/Failsafes.h"
 
 void Server::connectToServer() {
-    mc::util::VersionFetcher versionFetcher(serverAddress, port);
+    mc::util::VersionFetcher versionFetcher(Objects::serverAddress, Objects::port);
 
     auto version = versionFetcher.GetVersion();
 
@@ -43,8 +39,12 @@ void Server::connectToServer() {
             .SetMainHand(mc::MainHand::Right)
             .SetViewDistance(16);
 
-    JoinSkyblock joinSkyblock(&versionFetcher.GetDispatcher(), client.GetConnection());
-    ChatLogger chatLogger(&versionFetcher.GetDispatcher(), client.GetConnection());
+    Objects::m_Connection = client.GetConnection();
+
+    JoinSkyblock joinSkyblock(&versionFetcher.GetDispatcher());
+    ChatLogger chatLogger(&versionFetcher.GetDispatcher());
+    AutoBuy autoBuy(&versionFetcher.GetDispatcher());
+    Failsafes failsafes(&versionFetcher.GetDispatcher());
 
     example::Logger logger(&client, &versionFetcher.GetDispatcher());
 
@@ -52,7 +52,7 @@ void Server::connectToServer() {
         std::cout << "Logging in." << std::endl;
 
         mc::core::AuthToken token;
-        client.Login(serverAddress, port, currentUsername, currentUUID, currentSSID, mc::core::UpdateMethod::Block);
+        client.Login(Objects::serverAddress, Objects::port, Objects::currentUsername, Objects::currentUUID, Objects::currentSSID, mc::core::UpdateMethod::Block);
     } catch (std::exception& e) {
         std::wcout << e.what() << std::endl;
         return;

@@ -5,17 +5,11 @@
 #ifndef MCLIB_SERVER_H
 #define MCLIB_SERVER_H
 
+#include <mclib/core/Connection.h>
 
 class Server {
 public:
     static void connectToServer();
-
-    static std::string currentUsername;
-    static std::string currentUUID;
-    static std::string currentSSID;
-
-    static std::string serverAddress;
-    static uint16_t port;
 };
 
 

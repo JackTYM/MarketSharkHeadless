@@ -1,9 +1,9 @@
 //
-// Created by root on 8/11/24.
+// Created by jack on 8/13/24.
 //
 
-#ifndef MCLIB_CHATLOGGER_H
-#define MCLIB_CHATLOGGER_H
+#ifndef MCLIB_FAILSAFES_H
+#define MCLIB_FAILSAFES_H
 
 #include "mclib/util/Utility.h"
 #include <mclib/protocol/packets/PacketHandler.h>
@@ -13,12 +13,12 @@
 #include <iostream>
 #include "../Objects.h"
 
-class ChatLogger : public mc::protocol::packets::PacketHandler {
+class Failsafes : public mc::protocol::packets::PacketHandler {
 public:
-    MCLIB_API ChatLogger(mc::protocol::packets::PacketDispatcher* dispatcher);
+    MCLIB_API Failsafes(mc::protocol::packets::PacketDispatcher* dispatcher);
 
     MCLIB_API void HandlePacket(mc::protocol::packets::in::ChatPacket* packet);
 };
 
 
-#endif //MCLIB_CHATLOGGER_H
+#endif //MCLIB_FAILSAFES_H

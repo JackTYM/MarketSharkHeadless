@@ -5,33 +5,27 @@
 #ifndef MCLIB_QUEUEMANAGER_H
 #define MCLIB_QUEUEMANAGER_H
 
-#include <string>
 #include <queue>
+#include <string>
 #include <functional>
-#include <thread>
-#include <mutex>
-#include <condition_variable>
-
-class DelayUtils {
-public:
-    static std::thread delayAction(int delay, std::function<void()> callback);
-};
 
 class QueueManager {
 public:
-    static void finishAction(const std::string& action);
-    static void finishAction();
-    static void addToQueue(std::function<void()> action);
-    static void addToStartOfQueue(std::function<void()> action);
+    static void addTaskToEnd(const std::string& actionName, const std::function<void()>& task);
+    static void addTaskToStart(const std::string& actionName, const std::function<void()>& task);
+    static bool endCurrentTask(const std::string& actionName);
+    static std::string getCurrentActionName();
 
 private:
-    static void startNext();
+    struct Action {
+        std::string name;
+        std::function<void()> task;
+    };
 
-    static std::queue<std::function<void()>> queue;
-    static std::string currentAction;
-    static std::thread finishFailsafe;
-    static std::mutex mutex;
-    static std::condition_variable cv;
+    static std::queue<Action> actionQueue;
+    static Action currentAction;
+
+    static void startNextAction();
 };
 
 #endif //MCLIB_QUEUEMANAGER_H

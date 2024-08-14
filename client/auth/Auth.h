@@ -6,6 +6,8 @@
 #define MCLIB_AUTH_H
 #include <string>
 
+#include "../Objects.h"
+
 class Auth {
 public:
     static void setupWebsocket();

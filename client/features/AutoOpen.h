@@ -7,14 +7,14 @@
 
 #include <mclib/core/Connection.h>
 #include "QueueManager.h"
+#include "AutoBuy.h"
+
+#include "../FlipItem.h"
+#include "../Objects.h"
 
 class AutoOpen {
-private:
-    static mc::core::Connection* m_Connection;
 public:
-    MCLIB_API AutoOpen(mc::core::Connection* connection);
-
-    static void OpenAuction(std::string message);
+    static void OpenAuction(FlipItem item);
 };
 
 

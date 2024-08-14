@@ -16,13 +16,13 @@
 #include <chrono>
 
 #include "../cofl/CoflNet.h"
+#include "../Objects.h"
 
 class JoinSkyblock : public mc::protocol::packets::PacketHandler {
 private:
-    mc::core::Connection* m_Connection;
     bool connected = false;
 public:
-    MCLIB_API JoinSkyblock(mc::protocol::packets::PacketDispatcher* dispatcher, mc::core::Connection* connection);
+    MCLIB_API JoinSkyblock(mc::protocol::packets::PacketDispatcher* dispatcher);
 
     MCLIB_API void HandlePacket(mc::protocol::packets::in::LoginSuccessPacket* packet);
     MCLIB_API void HandlePacket(mc::protocol::packets::in::DisconnectPacket* packet);

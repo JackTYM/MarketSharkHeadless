@@ -180,6 +180,9 @@ public:
 
     friend MCLIB_API DataBuffer& operator<<(DataBuffer& out, const TagCompound& tag);
     friend MCLIB_API DataBuffer& operator<<(DataBuffer& out, const Tag& tag);
+
+    void printTags();
+    const void printTagsC();
 };
 
 class TagByte : public Tag {

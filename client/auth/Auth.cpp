@@ -8,14 +8,13 @@
 #include <mclib/common/Json.h>
 
 static std::string session_id = "";
-static ix::WebSocket webSocket;
 
 using json = nlohmann::json;
 
 void Auth::setupWebsocket() {
-    webSocket.setUrl("wss://cofl.jacktym.dev");
+    Objects::msWebSocket.setUrl("wss://cofl.jacktym.dev");
 
-    webSocket.setOnMessageCallback([](const ix::WebSocketMessagePtr &msg) {
+    Objects::msWebSocket.setOnMessageCallback([](const ix::WebSocketMessagePtr &msg) {
         switch (msg->type) {
             case ix::WebSocketMessageType::Open:
                 std::cout << "Session ID " << session_id << std::endl;
@@ -58,13 +57,13 @@ void Auth::setupWebsocket() {
                 } else if (type == "IncorrectSession") {
                     std::cout << "Incorrect Session!" << std::endl;
                     session_id = "";
-                    webSocket.close();
+                    Objects::msWebSocket.close();
                     setupWebsocket();
                 } else if (type == "UpdateSession") {
                     std::cout << "Updating Session!" << std::endl;
-                    Server::currentUsername = parsed_json["username"];
-                    Server::currentUUID = parsed_json["uuid"];
-                    Server::currentSSID = parsed_json["ssid"];
+                    Objects::currentUsername = parsed_json["username"];
+                    Objects::currentUUID = parsed_json["uuid"];
+                    Objects::currentSSID = parsed_json["ssid"];
 
                     std::cout << "Connecting to Server!" << std::endl;
                     Server::connectToServer();
@@ -74,15 +73,15 @@ void Auth::setupWebsocket() {
         }
     });
 
-    webSocket.start();
-    //webSocket.send("Hello, WebSocket!");
+    Objects::msWebSocket.start();
+    //Objects::msWebSocket.send("Hello, WebSocket!");
 
     while (true) {
 
     }
     // Let the WebSocket run for a while
     //std::this_thread::sleep_for(std::chrono::seconds(30));
-    //webSocket.stop();
+    //Objects::msWebSocket.stop();
 }
 
 void Auth::sendToWebsocket(const std::string &type, const std::string message) {
@@ -106,7 +105,7 @@ void Auth::sendNoLog(const std::string &type, const std::string message) {
     jsonObject["message"] = message;
 
     jsonObject["key"] = "b73bb1c6-aa42-453e-aa0b-ea22f8cb70dd";
-    jsonObject["username"] = Server::currentUsername;
+    jsonObject["username"] = Objects::currentUsername;
     jsonObject["hwid"] = "";
     jsonObject["version"] = "MEGALODON";
     jsonObject["modVersion"] = "1.0.0";
@@ -117,5 +116,5 @@ void Auth::sendNoLog(const std::string &type, const std::string message) {
 
     std::string jsonString = jsonObject.dump();
 
-    webSocket.send(jsonString);
+    Objects::msWebSocket.send(jsonString);
 }

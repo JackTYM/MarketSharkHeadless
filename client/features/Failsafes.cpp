@@ -1,16 +1,16 @@
 //
-// Created by root on 8/11/24.
+// Created by jack on 8/13/24.
 //
 
-#include "ChatLogger.h"
+#include "Failsafes.h"
 
-ChatLogger::ChatLogger(mc::protocol::packets::PacketDispatcher *dispatcher)
+Failsafes::Failsafes(mc::protocol::packets::PacketDispatcher *dispatcher)
         : mc::protocol::packets::PacketHandler(dispatcher) {
 
     dispatcher->RegisterHandler(mc::protocol::State::Play, mc::protocol::play::Chat, this);
 }
 
-void ChatLogger::HandlePacket(mc::protocol::packets::in::ChatPacket *packet) {
+void Failsafes::HandlePacket(mc::protocol::packets::in::ChatPacket *packet) {
     if (packet->GetChatPosition() == mc::protocol::packets::in::ChatPacket::ChatPosition::ChatBox) {
         const nlohmann::json &root = packet->GetChatData();
 
@@ -25,7 +25,11 @@ void ChatLogger::HandlePacket(mc::protocol::packets::in::ChatPacket *packet) {
         message.erase(std::remove_if(message.begin(), message.end(), [](char c) {
             return c < 32 || c > 126;
         }), message.end());
-        if (message.length() > 0)
-            std::cout << std::string(message.begin(), message.end()) << "\n";
+        if (message.length() > 0) {
+            if (message.contains("You cannot view this auction!")) {
+                std::cout << "No cookie! Closing cofl." << std::endl;
+                Objects::coflWebSocket.stop();
+            }
+        }
     }
 }

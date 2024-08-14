@@ -130,6 +130,14 @@ add_executable(client
 		client/features/AutoOpen.cpp
 		client/features/QueueManager.h
 		client/features/QueueManager.cpp
+		client/features/AutoBuy.cpp
+		client/features/AutoBuy.h
+		client/FlipItem.cpp
+		client/FlipItem.h
+        client/features/Failsafes.cpp
+        client/features/Failsafes.h
+		client/Objects.cpp
+		client/Objects.h
 )
 
 target_link_libraries(client PRIVATE mclib ixwebsocket uuid)

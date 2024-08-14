@@ -4,16 +4,13 @@
 
 #include "AutoOpen.h"
 
-mc::core::Connection* AutoOpen::m_Connection;
-
-AutoOpen::AutoOpen(mc::core::Connection *connection) {
-    m_Connection = connection;
-}
-
-void AutoOpen::OpenAuction(std::string message) {
-    QueueManager::addToStartOfQueue([]() {
-
-    });
-    //mc::protocol::packets::out::ChatPacket packet(message);
-    //m_Connection->SendPacket(&packet);
+void AutoOpen::OpenAuction(FlipItem item) {
+    if (QueueManager::getCurrentActionName().empty()) {
+        QueueManager::addTaskToStart("AutoOpen", [&item]() {
+            Objects::m_Connection->SendPacket(mc::protocol::packets::out::CloseWindowPacket(AutoBuy::openWindow));
+            AutoBuy::autoBuy(item);
+            Objects::m_Connection->SendPacket(mc::protocol::packets::out::ChatPacket("/viewauction " + item.auctionId));
+            std::cout << "Running " << ("/viewauction " + item.auctionId) << std::endl;
+        });
+    }
 }
