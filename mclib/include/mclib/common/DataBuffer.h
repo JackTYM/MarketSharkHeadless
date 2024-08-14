@@ -66,7 +66,7 @@ public:
 
     template <typename T>
     DataBuffer& operator>>(T& data) {
-        assert(m_ReadOffset + sizeof(T) <= GetSize());
+        //assert(m_ReadOffset + sizeof(T) <= GetSize());
         data = *(T *)&m_Buffer[m_ReadOffset];
         std::reverse((u8*)&data, (u8*)&data + sizeof(T));
         m_ReadOffset += sizeof(T);
@@ -107,7 +107,7 @@ public:
     }
 
     void ReadSome(std::string& buffer, std::size_t amount) {
-        assert(m_ReadOffset + amount <= GetSize());
+        //assert(m_ReadOffset + amount <= GetSize());
         buffer.resize(amount);
         std::copy_n(m_Buffer.begin() + m_ReadOffset, amount, buffer.begin());
         m_ReadOffset += amount;

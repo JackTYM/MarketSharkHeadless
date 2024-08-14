@@ -10,12 +10,12 @@ namespace mc {
 
         VersionFetcher::VersionFetcher(const std::string &host, u16 port)
                 : m_Dispatcher(),
-                  m_Version(mc::protocol::Version::Minecraft_1_12_2),
+                  m_Version(mc::protocol::Version::Minecraft_1_8_9),
                   m_Forge(&m_Dispatcher, nullptr),
                   m_Connection(nullptr),
                   m_Host(host),
                   m_Port(port),
-                  m_Found(false) {
+                  m_Found(true) {
 
         }
 

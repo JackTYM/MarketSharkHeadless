@@ -30,8 +30,9 @@ Logger::~Logger() {
 void Logger::HandlePacket(mc::protocol::packets::in::ChatPacket* packet) {
     std::string message = mc::util::ParseChatNode(packet->GetChatData());
 
-    if (!message.empty())
-        std::cout << message << std::endl;
+    // CAN REMOVE?
+    //if (!message.empty())
+        //std::cout << message << std::endl;
 
     if (message.find("!selected") != std::string::npos) {
         mc::inventory::Slot item = m_Client->GetHotbar().GetCurrentItem();
@@ -70,7 +71,7 @@ void Logger::HandlePacket(mc::protocol::packets::in::BlockChangePacket* packet) 
     mc::Vector3i pos = packet->GetPosition();
     s32 blockId = packet->GetBlockId();
 
-    std::cout << "Block changed at " << pos << " to " << blockId << std::endl;
+    //std::cout << "Block changed at " << pos << " to " << blockId << std::endl;
 }
 
 void Logger::HandlePacket(mc::protocol::packets::in::MultiBlockChangePacket* packet) {
@@ -80,7 +81,7 @@ void Logger::HandlePacket(mc::protocol::packets::in::MultiBlockChangePacket* pac
     for (const auto& change : packet->GetBlockChanges()) {
         mc::Vector3i pos(chunkX + change.x, change.y + chunkZ + change.z);
 
-        std::cout << "Block changed at " << pos << " to " << change.blockData << std::endl;
+        //std::cout << "Block changed at " << pos << " to " << change.blockData << std::endl;
     }
 }
 

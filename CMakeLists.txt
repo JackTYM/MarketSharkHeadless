@@ -1,9 +1,12 @@
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.10)
 
 project(mclib)
 
-set(CMAKE_BUILD_TYPE Release)
-set(CMAKE_CXX_STANDARD 14)
+#set(CMAKE_BUILD_TYPE Release)
+set(CMAKE_CXX_STANDARD 23)
+
+set(CMAKE_BUILD_TYPE Debug)
+set(CMAKE_CXX_FLAGS_DEBUG "-g")
 
 add_library(mclib SHARED
 	mclib/src/mclib/block/Banner.cpp
@@ -77,20 +80,22 @@ set_target_properties(mclib PROPERTIES SOVERSION 1)
 find_package(CURL REQUIRED)
 find_package(OpenSSL REQUIRED)
 find_package(ZLIB REQUIRED)
+find_package(Curses REQUIRED)
 
-target_include_directories(mclib 
-	PUBLIC 
+target_include_directories(mclib
+	PUBLIC
 		mclib/include
 	PRIVATE
 		${OPENSSL_INCLUDE_DIR}
 		${CURL_INCLUDE_DIRS}
 		${ZLIB_INCLUDE_DIRS}
+		${CURSES_INCLUDE_DIRS}
 )
 
 if (WIN32)
-target_link_libraries(mclib ${ZLIB_LIBRARIES} ${CURL_LIBRARIES} ${OPENSSL_LIBRARIES} Wldap32.lib Crypt32.lib)
+	target_link_libraries(mclib ${ZLIB_LIBRARIES} ${CURL_LIBRARIES} ${OPENSSL_LIBRARIES} Wldap32.lib Crypt32.lib ${CURSES_LIBRARIES})  # Add ncurses here
 else ()
-target_link_libraries(mclib ${ZLIB_LIBRARIES} ${CURL_LIBRARIES} ${OPENSSL_LIBRARIES})
+	target_link_libraries(mclib ${ZLIB_LIBRARIES} ${CURL_LIBRARIES} ${OPENSSL_LIBRARIES} ${CURSES_LIBRARIES})  # Add ncurses here
 endif ()
 
 include(GNUInstallDirs)
@@ -100,7 +105,7 @@ install(TARGETS mclib
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 install(DIRECTORY mclib/include DESTINATION ${CMAKE_INSTALL_PREFIX}/)
-	
+
 configure_file(mclib.pc.in mclib.pc @ONLY)
 install(FILES ${CMAKE_BINARY_DIR}/mclib.pc DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/pkgconfig)
 
@@ -108,13 +113,23 @@ install(FILES ${CMAKE_BINARY_DIR}/mclib.pc DESTINATION ${CMAKE_INSTALL_DATAROOTD
 include_directories(${CMAKE_SOURCE_DIR}/external/IXWebSocket/ixwebsocket)
 
 add_executable(client
-	client/BlockPlacer.cpp
-	client/Logger.cpp
-	client/main.cpp
-	client/SneakEnforcer.cpp
-	client/TextureGrabber.cpp
-		client/auth/Auth.cpp
+		client/main.cpp
+		client/Logger.cpp
 		client/Server.cpp
+
+		client/auth/Auth.cpp
+
+		client/features/AutoOpen.h
+		client/features/JoinSkyblock.h
+        client/features/JoinSkyblock.cpp
+		client/features/ChatLogger.h
+        client/features/ChatLogger.cpp
+
+		client/cofl/CoflNet.cpp
+        client/cofl/CoflSessionManager.cpp
+		client/features/AutoOpen.cpp
+		client/features/QueueManager.h
+		client/features/QueueManager.cpp
 )
 
-target_link_libraries(client PRIVATE mclib ixwebsocket)
+target_link_libraries(client PRIVATE mclib ixwebsocket uuid)

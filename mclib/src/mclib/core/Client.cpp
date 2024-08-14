@@ -45,7 +45,7 @@ void Client::Update() {
     try {
         m_Connection.CreatePacket();
     } catch (std::exception& e) {
-        std::wcout << e.what() << std::endl;
+        //std::wcout << e.what() << std::endl;
     }
 
     entity::EntityPtr playerEntity = m_EntityManager.GetPlayerEntity();

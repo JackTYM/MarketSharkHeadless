@@ -876,6 +876,7 @@ public:
     }
 
     void HandlePacket(protocol::packets::in::PluginMessagePacket* packet) {
+        std::cout << "Handle packet?" << std::endl;
         console << "Plugin message received on channel " << packet->GetChannel();
         auto value = packet->GetData();
         console << " Value: " << std::wstring(value.begin(), value.end()) << "\n";

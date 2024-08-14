@@ -17,6 +17,9 @@ Packet* PacketFactory::CreatePacket(Protocol& protocol, protocol::State state, D
     VarInt vid;
     data >> vid;
 
+    // DEBUG
+    // std::cout << "Rec - " << std::hex << vid.GetInt() << std::dec << std::endl;
+
     InboundPacket* packet = protocol.CreateInboundPacket(state, vid.GetInt());
 
     if (packet) {
@@ -24,11 +27,12 @@ Packet* PacketFactory::CreatePacket(Protocol& protocol, protocol::State state, D
         int status;
         char* demangled_name = abi::__cxa_demangle(typeid(*packet).name(), 0, 0, &status);
 
-        if (status == 0) {
-            std::cout << "Sending Packet - " << demangled_name <<  std::endl;
+        // DEBUG
+        /*if (status == 0) {
+            std::cout << "Received Packet - " << demangled_name <<  std::endl;
         } else {
-            std::cout << "Sending Packet - " << typeid(*packet).name() << std::endl;
-        }
+            std::cout << "Received Packet - " << typeid(*packet).name() << std::endl;
+        }*/
 
         packet->SetConnection(connection);
         packet->Deserialize(data, length);

@@ -133,10 +133,10 @@ void Connection::SendSettingsPacket() {
         m_ClientSettings.GetViewDistance(), 
         m_ClientSettings.GetChatMode(), 
         m_ClientSettings.GetChatColors(), 
-        m_ClientSettings.GetSkinParts()
+        m_ClientSettings.GetSkinParts(),
+        m_ClientSettings.GetMainHand()
     );
 
-    std::cout << "Client Settings Skin Parts " << m_ClientSettings.GetSkinParts() << std::endl;
     SendPacket(&clientSettings);
 
     m_SentSettings = true;
@@ -241,7 +241,7 @@ void Connection::CreatePacket() {
                 if (packet) {
                     // Only send the settings after the server has accepted the new protocol state.
                     if (!m_SentSettings && packet->GetProtocolState() == protocol::State::Play) {
-                        SendSettingsPacket();
+                        //SendSettingsPacket();
                     }
 
                     this->GetDispatcher()->Dispatch(packet);

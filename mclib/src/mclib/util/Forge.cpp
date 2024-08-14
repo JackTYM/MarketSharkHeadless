@@ -34,6 +34,7 @@ enum class ForgePacket {
     RegistryData,
 
     HandshakeAck = 255,
+    HandshakeAckBackup = -1,
     HandshakeReset = 254
 };
 
@@ -252,6 +253,7 @@ void ForgeHandler::HandleData(const std::string& data) {
         }
         break;
         case ForgePacket::HandshakeAck:
+        case ForgePacket::HandshakeAckBackup:
         {
             HandshakeAckPacket ack;
             ack.Deserialize(DataBuffer(data));

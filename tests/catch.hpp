@@ -10648,7 +10648,7 @@ public:
             case Unit::Nanoseconds:
                 return "ns";
             case Unit::Microseconds:
-                return "µs";
+                return "ï¿½s";
             case Unit::Milliseconds:
                 return "ms";
             case Unit::Seconds:

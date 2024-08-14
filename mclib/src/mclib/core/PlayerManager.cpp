@@ -102,7 +102,7 @@ void PlayerManager::HandlePacket(protocol::packets::in::LoginSuccessPacket* pack
 }
 
 void PlayerManager::HandlePacket(protocol::packets::in::PlayerPositionAndLookPacket* packet) {
-    std::cout << "Handle Packet" << std::endl;
+    //std::cout << "Handle Packet" << std::endl;
     auto player = m_EntityManager->GetPlayerEntity();
 
     auto iter = m_Players.find(m_ClientUUID);
@@ -111,7 +111,7 @@ void PlayerManager::HandlePacket(protocol::packets::in::PlayerPositionAndLookPac
     }
     m_Players[m_ClientUUID]->SetEntity(player);
 
-    std::cout << "Try Client Spawn" << std::endl;
+    //std::cout << "Try Client Spawn" << std::endl;
     NotifyListeners(&PlayerListener::OnClientSpawn, m_Players[m_ClientUUID]);
 }
 

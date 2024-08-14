@@ -1,0 +1,4 @@
+/root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/ninja/linux/x64/ninja -G Ninja -S /root/MarketSharkMCLib -B /root/MarketSharkMCLib/cmake-build-debug
+-- Configuring done (0.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: /root/MarketSharkMCLib/cmake-build-debug

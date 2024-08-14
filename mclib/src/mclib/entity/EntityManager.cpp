@@ -334,6 +334,8 @@ void EntityManager::HandlePacket(protocol::packets::in::EntityHeadLookPacket* pa
 }
 
 void EntityManager::HandlePacket(protocol::packets::in::EntityMetadataPacket* packet) {
+    // CAN IGNORE ?
+    return;
     EntityId eid = packet->GetEntityId();
 
     auto iter = m_Entities.find(eid);

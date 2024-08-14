@@ -25,6 +25,7 @@ public:
     MCLIB_API void OnPingResponse(const json& node) override;
 
     mc::util::ForgeHandler& GetForge() { return m_Forge; }
+    mc::protocol::packets::PacketDispatcher& GetDispatcher() { return m_Dispatcher; }
 };
 
 } // ns util

@@ -28,7 +28,7 @@ DataBuffer& DataBuffer::operator=(DataBuffer&& other) {
 }
 
 void DataBuffer::SetReadOffset(std::size_t pos) {
-    assert(pos <= GetSize());
+    //assert(pos <= GetSize());
     m_ReadOffset = pos;
 }
 

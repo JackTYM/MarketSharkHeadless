@@ -1822,11 +1822,11 @@ private:
     ChatMode m_ChatMode;
     bool m_ChatColors;
     u8 m_SkinFlags;
-    //MainHand m_MainHand;
+    MainHand m_MainHand;
 
 public:
-    //MCLIB_API ClientSettingsPacket(const std::wstring& locale, u8 viewDistance, ChatMode chatMode, bool chatColors, u8 skinFlags, MainHand hand);
-    MCLIB_API ClientSettingsPacket(const std::wstring& locale, u8 viewDistance, ChatMode chatMode, bool chatColors, u8 skinFlags);
+    MCLIB_API ClientSettingsPacket(const std::wstring& locale, u8 viewDistance, ChatMode chatMode, bool chatColors, u8 skinFlags, MainHand hand);
+    //MCLIB_API ClientSettingsPacket(const std::wstring& locale, u8 viewDistance, ChatMode chatMode, bool chatColors, u8 skinFlags);
     DataBuffer MCLIB_API Serialize() const;
 };
 

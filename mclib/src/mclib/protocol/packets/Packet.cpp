@@ -129,6 +129,8 @@ SpawnMobPacket::SpawnMobPacket() : InboundPacket(), m_Metadata(m_ProtocolVersion
 }
 
 bool SpawnMobPacket::Deserialize(DataBuffer& data, std::size_t packetLength) {
+    // CAN IGNORE ?
+    return false;
     VarInt entityId, type;
 
     m_Metadata.SetProtocolVersion(m_ProtocolVersion);
@@ -213,6 +215,8 @@ SpawnPlayerPacket::SpawnPlayerPacket() : InboundPacket(), m_Metadata(m_ProtocolV
 }
 
 bool SpawnPlayerPacket::Deserialize(DataBuffer& data, std::size_t packetLength) {
+    // CAN IGNORE ?
+    return false;
     VarInt eid;
 
     m_Metadata.SetProtocolVersion(m_ProtocolVersion);
@@ -842,6 +846,8 @@ bool PluginMessagePacket::Deserialize(DataBuffer& data, std::size_t packetLength
 
     data.ReadSome(m_Data, data.GetSize() - (data.GetReadOffset() - begin) - 1);
 
+    //std::cout << m_Channel.GetUTF8() << m_Data << m_Data.size() << std::endl;
+
     return true;
 }
 
@@ -1112,6 +1118,7 @@ bool JoinGamePacket::Deserialize(DataBuffer& data, std::size_t packetLength) {
 }
 
 void JoinGamePacket::Dispatch(PacketHandler* handler) {
+    std::cout << "Dispatching thingy" << std::endl;
     handler->HandlePacket(this);
 }
 
@@ -1439,7 +1446,7 @@ bool PlayerPositionAndLookPacket::Deserialize(DataBuffer& data, std::size_t pack
 }
 
 void PlayerPositionAndLookPacket::Dispatch(PacketHandler* handler) {
-    std::cout << "Dispatch Player Pos Look" << std::endl;
+    //std::cout << "Dispatch Player Pos Look" << std::endl;
     handler->HandlePacket(this);
 }
 
@@ -1733,6 +1740,8 @@ EntityMetadataPacket::EntityMetadataPacket() : InboundPacket(), m_Metadata(m_Pro
 }
 
 bool EntityMetadataPacket::Deserialize(DataBuffer& data, std::size_t packetLength) {
+    // CAN IGNORE ?
+    return false;
     VarInt eid;
 
     m_Metadata.SetProtocolVersion(m_ProtocolVersion);
@@ -2551,9 +2560,9 @@ DataBuffer ClientStatusPacket::Serialize() const {
     return buffer;
 }
 
-ClientSettingsPacket::ClientSettingsPacket(const std::wstring& locale, u8 viewDistance, ChatMode chatMode, bool chatColors, u8 skinFlags)
+ClientSettingsPacket::ClientSettingsPacket(const std::wstring& locale, u8 viewDistance, ChatMode chatMode, bool chatColors, u8 skinFlags, MainHand hand)
     : m_Locale(locale), m_ViewDistance(viewDistance), m_ChatMode(chatMode),
-    m_ChatColors(chatColors), m_SkinFlags(skinFlags)
+    m_ChatColors(chatColors), m_SkinFlags(skinFlags), m_MainHand(hand)
 {
     
 }
@@ -2562,7 +2571,7 @@ DataBuffer ClientSettingsPacket::Serialize() const {
     MCString locale(m_Locale);
     DataBuffer buffer;
     VarInt chatMode((int)m_ChatMode);
-    //VarInt hand((int)m_MainHand);
+    VarInt hand((int)m_MainHand);
 
     buffer << m_Id;
     buffer << locale;

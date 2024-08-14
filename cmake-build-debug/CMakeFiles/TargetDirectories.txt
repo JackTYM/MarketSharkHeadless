@@ -1,0 +1,8 @@
+/root/MarketSharkMCLib/cmake-build-debug/CMakeFiles/mclib.dir
+/root/MarketSharkMCLib/cmake-build-debug/CMakeFiles/client.dir
+/root/MarketSharkMCLib/cmake-build-debug/CMakeFiles/edit_cache.dir
+/root/MarketSharkMCLib/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/root/MarketSharkMCLib/cmake-build-debug/CMakeFiles/list_install_components.dir
+/root/MarketSharkMCLib/cmake-build-debug/CMakeFiles/install.dir
+/root/MarketSharkMCLib/cmake-build-debug/CMakeFiles/install/local.dir
+/root/MarketSharkMCLib/cmake-build-debug/CMakeFiles/install/strip.dir
