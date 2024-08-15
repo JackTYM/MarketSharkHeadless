@@ -1,5 +1,6 @@
 #include "Auth.h"
 #include "../Server.h"
+#include "../cofl/RawCommand.h"
 
 #include <ixwebsocket/IXNetSystem.h>
 #include <ixwebsocket/IXWebSocket.h>
@@ -25,13 +26,15 @@ void Auth::setupWebsocket() {
 
                 break;
             case ix::WebSocketMessageType::Close:
-                std::cout << Colors::Black << "Closed!" << Colors::End;
+                std::cout << Colors::Red << "Closed connection to MarketShark!" << Colors::End;
                 break;
             case ix::WebSocketMessageType::Error:
-                std::cout << Colors::Red << "Error!" << Colors::End;
+                std::cout << Colors::Red << "Error in MarketShark!" << Colors::End;
                 break;
             case ix::WebSocketMessageType::Message:
-                std::cout << Colors::Black << "Received: " << msg->str << Colors::End;
+                if (Objects::debug) {
+                    std::cout << Colors::Black << "Received: " << msg->str << Colors::End;
+                }
 
                 json parsed_json = json::parse(msg->str);
 
@@ -66,6 +69,49 @@ void Auth::setupWebsocket() {
 
                     std::cout << Colors::Black << "Connecting to Server!" << Colors::End;
                     Server::connectToServer();
+                } else if (type == "Stats") {
+
+                } else if (type == "Settings") {
+
+                } else if (type == "SendChat") {
+                    std::string msg = parsed_json["message"];
+                    if (msg.starts_with("/cofl ")) {
+                        size_t type_start = msg.find(' ') + 1;
+                        size_t type_end = msg.find(' ', type_start);
+
+                        RawCommand rc(msg.substr(type_start, type_end - type_start), msg.substr(type_end + 1));
+                        json cmd;
+
+                        cmd["Type"] = rc.getType();
+                        cmd["Data"] = rc.getData();
+
+                        Objects::coflWebSocket.send(cmd.dump());
+                    } else {
+                        mc::protocol::packets::out::ChatPacket packet(msg);
+                        Objects::m_Connection->SendPacket(&packet);
+                    }
+                } else if (type == "Chat") {
+
+                } else if (type == "Inventory") {
+
+                } else if (type == "AuctionHouse") {
+
+                } else if (type == "Captcha") {
+
+                } else if (type == "HorizontalCaptcha") {
+
+                } else if (type == "CaptchaSolve") {
+
+                } else if (type == "Pause") {
+
+                } else if (type == "Unpause") {
+
+                } else if (type == "BugLog") {
+
+                }  else if (type == "ConfigSync") {
+
+                } else if (type == "ConfigLoadMissing") {
+
                 }
 
                 break;
