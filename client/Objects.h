@@ -21,6 +21,9 @@ public:
 
     static std::string serverAddress;
     static uint16_t port;
+
+    static int openWindowId;
+    static int actionNumber;
 };
 
 

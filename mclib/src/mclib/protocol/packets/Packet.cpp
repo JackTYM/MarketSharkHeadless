@@ -1118,7 +1118,6 @@ bool JoinGamePacket::Deserialize(DataBuffer& data, std::size_t packetLength) {
 }
 
 void JoinGamePacket::Dispatch(PacketHandler* handler) {
-    std::cout << "Dispatching thingy" << std::endl;
     handler->HandlePacket(this);
 }
 
@@ -2627,6 +2626,8 @@ DataBuffer ClickWindowPacket::Serialize() const {
     buffer << m_WindowId << m_SlotIndex << m_Button << m_Action;
     VarInt mode(m_Mode);
     buffer << mode << m_ClickedItem.Serialize(m_ProtocolVersion);
+
+    DataBuffer clickedItemBuffer = m_ClickedItem.Serialize(m_ProtocolVersion);
     
     return buffer;
 }

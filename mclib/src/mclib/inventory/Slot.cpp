@@ -1,6 +1,8 @@
 #include <mclib/inventory/Slot.h>
 
 #include <mclib/common/DataBuffer.h>
+#include <iostream>
+#include <iomanip>
 
 namespace mc {
 namespace inventory {

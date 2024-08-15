@@ -15,6 +15,7 @@
 
 #include <locale>
 #include <codecvt>
+#include <chrono>
 
 class FlipItem {
 public:
@@ -28,8 +29,8 @@ public:
     long buyPrice;
     long coflWorth;
     long sellPrice;
-    long startTime;
-    long buyTime;
+    std::chrono::time_point<std::chrono::high_resolution_clock> startTime;
+    std::chrono::time_point<std::chrono::high_resolution_clock> buyTime;
     int buySpeed;
     long auctionStart;
     std::string auctionId;

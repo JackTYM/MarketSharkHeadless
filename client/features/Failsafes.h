@@ -13,6 +13,8 @@
 #include <iostream>
 #include "../Objects.h"
 
+#include "QueueManager.h"
+
 class Failsafes : public mc::protocol::packets::PacketHandler {
 public:
     MCLIB_API Failsafes(mc::protocol::packets::PacketDispatcher* dispatcher);

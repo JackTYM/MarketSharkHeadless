@@ -40,8 +40,8 @@ nlohmann::json FlipItem::serialize() const {
     jsonObject["buyPrice"] = this->buyPrice;
     jsonObject["sellPrice"] = this->sellPrice;
     jsonObject["coflWorth"] = this->coflWorth;
-    jsonObject["startTime"] = this->startTime;
-    jsonObject["buyTime"] = this->buyTime;
+    //jsonObject["startTime"] = this->startTime;
+    //jsonObject["buyTime"] = this->buyTime;
     jsonObject["buySpeed"] = this->buySpeed;
     jsonObject["auctionStart"] = this->auctionStart;
     jsonObject["auctionId"] = this->auctionId;

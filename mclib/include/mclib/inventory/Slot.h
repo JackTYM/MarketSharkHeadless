@@ -15,8 +15,8 @@ namespace inventory {
 class Slot {
 private:
     nbt::NBT m_NBT;
-    s32 m_ItemId;
-    s16 m_ItemDamage;
+    short m_ItemId;
+    short m_ItemDamage;
     u8 m_ItemCount;
 
 public:

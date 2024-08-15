@@ -4,6 +4,8 @@
 #include <mclib/common/MCString.h>
 #include <array>
 #include <iostream>
+#include <locale>
+#include <codecvt>
 
 namespace mc {
     namespace nbt {
@@ -109,15 +111,15 @@ namespace mc {
 
             buffer >> length;
 
-            m_Value.clear();
+            m_Value = L"";
 
             if (length > 0) {
                 std::string utf8;
                 buffer.ReadSome(utf8, length);
 
-                m_Value.clear();
-
                 m_Value = utf8to16(utf8);
+
+                std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
             }
         }
 
@@ -333,6 +335,33 @@ namespace mc {
                     tag = std::make_shared<TagIntArray>();
 
                 if (tag) {
+                    /*std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+                    std::string tagType;
+
+                    if (type == TagType::Byte)
+                        tagType = "Byte";
+                    else if (type == TagType::Short)
+                        tagType = "Short";
+                    else if (type == TagType::Int)
+                        tagType = "Int";
+                    else if (type == TagType::Long)
+                        tagType = "Long";
+                    else if (type == TagType::Float)
+                        tagType = "Float";
+                    else if (type == TagType::Double)
+                        tagType = "Double";
+                    else if (type == TagType::ByteArray)
+                        tagType = "ByteArray";
+                    else if (type == TagType::String)
+                        tagType = "String";
+                    else if (type == TagType::List)
+                        tagType = "List";
+                    else if (type == TagType::Compound)
+                        tagType = "Compound";
+                    else if (type == TagType::IntArray)
+                        tagType = "IntArray";
+
+                    std::cout << "Added tag of type " << tagType << " with name " << converter.to_bytes(name.GetValue()) << std::endl;*/
                     m_Tags.push_back(std::make_pair(type, tag));
                     tag->Read(buffer);
                     tag->SetName(name.GetValue());

@@ -50,19 +50,25 @@ typedef std::shared_ptr<Tag> TagPtr;
 
 class TagString : public Tag {
 private:
-    std::wstring m_Value;
+    std::wstring m_Value = L"";
 
     void MCLIB_API Write(DataBuffer& buffer) const;
     void MCLIB_API Read(DataBuffer& buffer);
 
 public:
-    MCLIB_API TagString() : Tag(L"") { }
+    MCLIB_API TagString() : Tag(L""), m_Value(L"") { }
     MCLIB_API TagString(std::wstring name, std::wstring val) : Tag(name), m_Value(val) { }
     MCLIB_API TagString(std::string name, std::string val) : Tag(name), m_Value(val.begin(), val.end()) { }
 
     TagType MCLIB_API GetType() const noexcept;
 
-    std::wstring MCLIB_API GetValue() const noexcept { return m_Value; }
+    std::wstring MCLIB_API GetValue() const noexcept {
+        if (m_Value.empty()) {
+            return L""; // or some default value
+        }
+        return m_Value;
+    }
+
     friend MCLIB_API DataBuffer& operator<<(DataBuffer& out, const Tag& tag);
 };
 

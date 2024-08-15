@@ -6,8 +6,8 @@
 
 void AutoOpen::OpenAuction(FlipItem item) {
     if (QueueManager::getCurrentActionName().empty()) {
-        QueueManager::addTaskToStart("AutoOpen", [&item]() {
-            Objects::m_Connection->SendPacket(mc::protocol::packets::out::CloseWindowPacket(AutoBuy::openWindow));
+        QueueManager::addTaskToStart("AutoBuy", [&item]() {
+            Objects::m_Connection->SendPacket(mc::protocol::packets::out::CloseWindowPacket(Objects::openWindowId));
             AutoBuy::autoBuy(item);
             Objects::m_Connection->SendPacket(mc::protocol::packets::out::ChatPacket("/viewauction " + item.auctionId));
             std::cout << "Running " << ("/viewauction " + item.auctionId) << std::endl;
