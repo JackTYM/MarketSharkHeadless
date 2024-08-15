@@ -27,7 +27,7 @@ void Failsafes::HandlePacket(mc::protocol::packets::in::ChatPacket *packet) {
         }), message.end());
         if (message.length() > 0) {
             if (message.contains("You cannot view this auction!")) {
-                std::cout << "No cookie! Closing cofl." << std::endl;
+                std::cout << "No cookie! Closing cofl." << Colors::End;
                 Objects::coflWebSocket.stop();
             }
         }

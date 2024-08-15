@@ -11,9 +11,10 @@
 #include <mclib/common/internal/json.hpp>
 
 #include <iostream>
-#include "../Objects.h"
+#include "../util/Objects.h"
 
 #include "QueueManager.h"
+#include <Colors.h>
 
 class Failsafes : public mc::protocol::packets::PacketHandler {
 public:

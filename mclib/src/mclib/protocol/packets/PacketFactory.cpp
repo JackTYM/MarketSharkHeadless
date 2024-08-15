@@ -18,7 +18,7 @@ Packet* PacketFactory::CreatePacket(Protocol& protocol, protocol::State state, D
     data >> vid;
 
     // DEBUG
-    // std::cout << "Rec - " << std::hex << vid.GetInt() << std::dec << std::endl;
+    // std::cout << "Rec - " << std::hex << vid.GetInt() << std::dec << Colors::End;
 
     InboundPacket* packet = protocol.CreateInboundPacket(state, vid.GetInt());
 
@@ -29,9 +29,9 @@ Packet* PacketFactory::CreatePacket(Protocol& protocol, protocol::State state, D
 
         // DEBUG
         /*if (status == 0) {
-            std::cout << "Received Packet - " << demangled_name <<  std::endl;
+            std::cout << "Received Packet - " << demangled_name <<  Colors::End;
         } else {
-            std::cout << "Received Packet - " << typeid(*packet).name() << std::endl;
+            std::cout << "Received Packet - " << typeid(*packet).name() << Colors::End;
         }*/
 
         packet->SetConnection(connection);

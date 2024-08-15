@@ -10,8 +10,8 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
-#include <mclib/common/Json.h>
-#include <mclib/inventory/Slot.h>
+#include "mclib/common/Json.h"
+#include "mclib/inventory/Slot.h"
 
 #include <locale>
 #include <codecvt>

@@ -6,7 +6,9 @@
 #define MCLIB_AUTH_H
 #include <string>
 
-#include "../Objects.h"
+#include "../util/Objects.h"
+#include <Colors.h>
+
 
 class Auth {
 public:

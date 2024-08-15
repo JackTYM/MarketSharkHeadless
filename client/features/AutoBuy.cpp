@@ -34,7 +34,7 @@ void AutoBuy::startTimeout() {
 }
 
 void AutoBuy::endTaskIfTimedOut() {
-    std::cout << "Timeout! No window opened within 5 seconds." << std::endl;
+    std::cout << "Timeout! No window opened within 5 seconds." << Colors::End;
     QueueManager::endCurrentTask("AutoBuy");
 }
 
@@ -42,15 +42,21 @@ void AutoBuy::HandlePacket(mc::protocol::packets::in::OpenWindowPacket *packet) 
     isWindowOpened = true;
     Objects::openWindowId = packet->GetWindowId();
     if (packet->GetWindowTitle().contains(L"BIN Auction View")) {
-        std::cout << "Buy Window Opened!" << std::endl;
+        if (Objects::debug) {
+            std::cout << Colors::Black << "Buy Window Opened!" << Colors::End;
+        }
         buyWindowId = packet->GetWindowId();
 
         item.startTime = std::chrono::high_resolution_clock::now();
     } else if (packet->GetWindowTitle().contains(L"Confirm Purchase")) {
-        std::cout << "Confirm Window Opened!" << std::endl;
+        if (Objects::debug) {
+            std::cout << Colors::Black << "Confirm Window Opened!" << Colors::End;
+        }
         confirmWindowId = packet->GetWindowId();
     } else if (packet->GetWindowTitle().contains(L"Auction View")) {
-        std::cout << "Normal Auction Opened. Closing!" << std::endl;
+        if (Objects::debug) {
+            std::cout << Colors::Black << "Normal Auction Opened. Closing!" << Colors::End;
+        }
         Objects::m_Connection->SendPacket(mc::protocol::packets::out::CloseWindowPacket(packet->GetWindowId()));
         Objects::openWindowId = 0;
 
@@ -76,28 +82,35 @@ void AutoBuy::HandlePacket(mc::protocol::packets::in::SetSlotPacket *packet) {
         if (packet->GetWindowId() == buyWindowId) {
             switch (packet->GetSlotIndex()) {
                 case 13: {
-                    std::cout << "Item Name - " << converter.to_bytes(itemName) << std::endl;
+                    if (Objects::debug) {
+                        std::cout << Colors::Black << "Item Name - " << converter.to_bytes(itemName) << Colors::End;
+                    }
                     break;
                 }
                 case 31: {
                     if (itemId == 355) {
-                        std::cout << "Bed! (Closing temp)" << std::endl;
+                        std::cout << Colors::Cyan << "Opened Bed (Closing Temp)" << Colors::End;
                         Objects::m_Connection->SendPacket(
                                 mc::protocol::packets::out::CloseWindowPacket(Objects::openWindowId));
                         Objects::openWindowId = 0;
 
                         QueueManager::endCurrentTask("AutoBuy");
                     } else if (itemId == 371 || (itemName == L"Buy Item Right Now" && itemId != 394)) {
-                        std::cout << "Nugget!" << std::endl;
+                        std::cout << Colors::Cyan << "Opened Nugget" << Colors::End;
 
                         Objects::m_Connection->SendPacket(
                                 mc::protocol::packets::out::ClickWindowPacket(packet->GetWindowId(),
                                                                               packet->GetSlotIndex(), 0,
                                                                               Objects::actionNumber++, 0, slot));
 
-                        std::cout << "Clicked!" << std::endl;
-                    } else {
-                        std::cout << "Lost! Closing Flip" << std::endl;
+                        if (Objects::debug) {
+                            std::cout << Colors::Black << "Clicked!" << Colors::End;
+                        }
+                    } else if (itemId != 288) {
+                        std::cout << Colors::Red << "Lost! Closing Flip" << Colors::End;
+                        if (Objects::debug) {
+                            std::cout << Colors::Black << "Item ID - " << itemId << " Item Name - " << converter.to_bytes(itemName) << Colors::End;
+                        }
                         Objects::m_Connection->SendPacket(
                                 mc::protocol::packets::out::CloseWindowPacket(Objects::openWindowId));
                         Objects::openWindowId = 0;
@@ -115,7 +128,9 @@ void AutoBuy::HandlePacket(mc::protocol::packets::in::SetSlotPacket *packet) {
                                                                           packet->GetSlotIndex(), 0,
                                                                           Objects::actionNumber++, 0, slot));
 
-                    std::cout << "Clicked Confirm!" << std::endl;
+                    if (Objects::debug) {
+                        std::cout << Colors::Black << "Clicked Confirm!" << Colors::End;
+                    }
                 }
             }
         }
@@ -149,7 +164,7 @@ void AutoBuy::HandlePacket(mc::protocol::packets::in::ChatPacket *packet) {
                 Objects::m_Connection->SendPacket(mc::protocol::packets::out::CloseWindowPacket(Objects::openWindowId));
                 Objects::openWindowId = 0;
             } else if (message.contains("You purchased")) {
-                std::cout << "Won Item in " << item.buySpeed << "ms" << std::endl;
+                std::cout << Colors::Yellow << "Won Item in " << Colors::Green << item.buySpeed << "ms" << Colors::End;
 
                 Objects::m_Connection->SendPacket(mc::protocol::packets::out::CloseWindowPacket(Objects::openWindowId));
                 Objects::openWindowId = 0;

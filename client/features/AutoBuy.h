@@ -10,12 +10,13 @@
 #include <mclib/protocol/packets/PacketDispatcher.h>
 #include <mclib/core/Connection.h>
 #include "QueueManager.h"
-#include "../FlipItem.h"
+#include "../util/FlipItem.h"
 
-#include "../Objects.h"
+#include "../util/Objects.h"
 
 #include <thread>
 #include <chrono>
+#include <Colors.h>
 
 class AutoBuy : public mc::protocol::packets::PacketHandler {
 public:

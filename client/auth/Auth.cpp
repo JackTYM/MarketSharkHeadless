@@ -17,7 +17,6 @@ void Auth::setupWebsocket() {
     Objects::msWebSocket.setOnMessageCallback([](const ix::WebSocketMessagePtr &msg) {
         switch (msg->type) {
             case ix::WebSocketMessageType::Open:
-                std::cout << "Session ID " << session_id << std::endl;
                 if (session_id.empty()) {
                     sendToWebsocket("Activating", "");
                 } else {
@@ -26,13 +25,13 @@ void Auth::setupWebsocket() {
 
                 break;
             case ix::WebSocketMessageType::Close:
-                std::cout << "Closed!" << std::endl;
+                std::cout << Colors::Black << "Closed!" << Colors::End;
                 break;
             case ix::WebSocketMessageType::Error:
-                std::cout << "Error!" << std::endl;
+                std::cout << Colors::Red << "Error!" << Colors::End;
                 break;
             case ix::WebSocketMessageType::Message:
-                std::cout << "Received: " << msg->str << std::endl;
+                std::cout << Colors::Black << "Received: " << msg->str << Colors::End;
 
                 json parsed_json = json::parse(msg->str);
 
@@ -47,25 +46,25 @@ void Auth::setupWebsocket() {
 
                 if (type == "Activated") {
                     session_id = parsed_json["session_id"];
-                    std::cout << parsed_json["message"] << std::endl;
+                    std::cout << Colors::Black << parsed_json["message"] << Colors::End;
                     sendToWebsocket("RequestSession", "");
                 } else if (type == "Reconnected") {
-                    std::cout << parsed_json["message"] << std::endl;
+                    std::cout << Colors::Black << parsed_json["message"] << Colors::End;
                     sendToWebsocket("RequestSession", "");
                 } else if (type == "FailedActivation") {
-                    std::cout << parsed_json["message"] << std::endl;
+                    std::cout << Colors::Black << parsed_json["message"] << Colors::End;
                 } else if (type == "IncorrectSession") {
-                    std::cout << "Incorrect Session!" << std::endl;
+                    std::cout << Colors::Black << "Incorrect Session!" << Colors::End;
                     session_id = "";
                     Objects::msWebSocket.close();
                     setupWebsocket();
                 } else if (type == "UpdateSession") {
-                    std::cout << "Updating Session!" << std::endl;
+                    std::cout << Colors::Black << "Updating Session!" << Colors::End;
                     Objects::currentUsername = parsed_json["username"];
                     Objects::currentUUID = parsed_json["uuid"];
                     Objects::currentSSID = parsed_json["ssid"];
 
-                    std::cout << "Connecting to Server!" << std::endl;
+                    std::cout << Colors::Black << "Connecting to Server!" << Colors::End;
                     Server::connectToServer();
                 }
 
@@ -92,7 +91,9 @@ void Auth::sendToWebsocket(const std::string &type, const std::string message) {
 
     std::string jsonString = jsonObject.dump();
 
-    std::cout << "Sending: " << jsonString << std::endl;
+    if (Objects::debug) {
+        std::cout << Colors::Black << "Sending: " << jsonString << Colors::End;
+    }
 
     sendNoLog(type, message);
 }

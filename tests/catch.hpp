@@ -4563,7 +4563,7 @@ public:
             if (first)
                 first = false;
             else
-                os << "\n";
+                os << Colors::End;
             os << line;
         }
         return os;
@@ -4679,7 +4679,7 @@ public:
             if (first)
                 first = false;
             else
-                os << "\n";
+                os << Colors::End;
             os << line;
         }
         return os;
@@ -5463,7 +5463,7 @@ struct Parser : ParserBase {
                 os << "]";
             if (!m_options.empty())
                 os << " options";
-            os << "\n\nwhere options are:" << std::endl;
+            os << "\n\nwhere options are:" << Colors::End;
         }
 
         auto rows = getHelpColumns();
@@ -5477,7 +5477,7 @@ struct Parser : ParserBase {
                 TextFlow::Column(cols.left).width(optWidth).indent(2) +
                 TextFlow::Spacer(4) +
                 TextFlow::Column(cols.right).width(consoleWidth - 7 - optWidth);
-            os << row << std::endl;
+            os << row << Colors::End;
         }
     }
 
@@ -6259,7 +6259,7 @@ bool isDebuggerActive() {
 
     size = sizeof(info);
     if (sysctl(mib, sizeof(mib) / sizeof(*mib), &info, &size, nullptr, 0) != 0) {
-        Catch::cerr() << "\n** Call to sysctl failed - unable to determine if debugger is active **\n" << std::endl;
+        Catch::cerr() << "\n** Call to sysctl failed - unable to determine if debugger is active **\n" << Colors::End;
         return false;
     }
 
@@ -6331,7 +6331,7 @@ void formatReconstructedExpression(std::ostream &os, std::string const& lhs, Str
         rhs.find('\n') == std::string::npos)
         os << lhs << " " << op << " " << rhs;
     else
-        os << lhs << "\n" << op << "\n" << rhs;
+        os << lhs << Colors::End << op << Colors::End << rhs;
 }
 }
 // end catch_decomposer.cpp
@@ -6936,22 +6936,22 @@ std::size_t listTests(Config const& config) {
             : Colour::None;
         Colour colourGuard(colour);
 
-        Catch::cout() << Column(testCaseInfo.name).initialIndent(2).indent(4) << "\n";
+        Catch::cout() << Column(testCaseInfo.name).initialIndent(2).indent(4) << Colors::End;
         if (config.verbosity() >= Verbosity::High) {
-            Catch::cout() << Column(Catch::Detail::stringify(testCaseInfo.lineInfo)).indent(4) << std::endl;
+            Catch::cout() << Column(Catch::Detail::stringify(testCaseInfo.lineInfo)).indent(4) << Colors::End;
             std::string description = testCaseInfo.description;
             if (description.empty())
                 description = "(NO DESCRIPTION)";
-            Catch::cout() << Column(description).indent(4) << std::endl;
+            Catch::cout() << Column(description).indent(4) << Colors::End;
         }
         if (!testCaseInfo.tags.empty())
-            Catch::cout() << Column(testCaseInfo.tagsAsString()).indent(6) << "\n";
+            Catch::cout() << Column(testCaseInfo.tagsAsString()).indent(6) << Colors::End;
     }
 
     if (!config.testSpec().hasFilters())
-        Catch::cout() << pluralise(matchedTestCases.size(), "test case") << '\n' << std::endl;
+        Catch::cout() << pluralise(matchedTestCases.size(), "test case") << '\n' << Colors::End;
     else
-        Catch::cout() << pluralise(matchedTestCases.size(), "matching test case") << '\n' << std::endl;
+        Catch::cout() << pluralise(matchedTestCases.size(), "matching test case") << '\n' << Colors::End;
     return matchedTestCases.size();
 }
 
@@ -6969,7 +6969,7 @@ std::size_t listTestsNamesOnly(Config const& config) {
             Catch::cout() << testCaseInfo.name;
         if (config.verbosity() >= Verbosity::High)
             Catch::cout() << "\t@" << testCaseInfo.lineInfo;
-        Catch::cout() << std::endl;
+        Catch::cout() << Colors::End;
     }
     return matchedTests;
 }
@@ -7017,7 +7017,7 @@ std::size_t listTags(Config const& config) {
             .width(CATCH_CONFIG_CONSOLE_WIDTH - 10);
         Catch::cout() << oss.str() << wrapper << '\n';
     }
-    Catch::cout() << pluralise(tagCounts.size(), "tag") << '\n' << std::endl;
+    Catch::cout() << pluralise(tagCounts.size(), "tag") << '\n' << Colors::End;
     return tagCounts.size();
 }
 
@@ -7037,9 +7037,9 @@ std::size_t listReporters(Config const& /*config*/) {
             .initialIndent(0)
             .indent(2)
             .width(CATCH_CONFIG_CONSOLE_WIDTH - maxNameLen - 8)
-            << "\n";
+            << Colors::End;
     }
-    Catch::cout() << std::endl;
+    Catch::cout() << Colors::End;
     return factories.size();
 }
 
@@ -8234,16 +8234,16 @@ Session::~Session() {
 
 void Session::showHelp() const {
     Catch::cout()
-        << "\nCatch v" << libraryVersion() << "\n"
-        << m_cli << std::endl
-        << "For more detailed usage please see the project docs\n" << std::endl;
+        << "\nCatch v" << libraryVersion() << Colors::End
+        << m_cli << Colors::End
+        << "For more detailed usage please see the project docs\n" << Colors::End;
 }
 void Session::libIdentify() {
     Catch::cout()
         << std::left << std::setw(16) << "description: " << "A Catch test executable\n"
         << std::left << std::setw(16) << "category: " << "testframework\n"
         << std::left << std::setw(16) << "framework: " << "Catch Test\n"
-        << std::left << std::setw(16) << "version: " << libraryVersion() << std::endl;
+        << std::left << std::setw(16) << "version: " << libraryVersion() << Colors::End;
 }
 
 int Session::applyCommandLine(int argc, char* argv[]) {
@@ -8257,7 +8257,7 @@ int Session::applyCommandLine(int argc, char* argv[]) {
             << "\nError(s) in input:\n"
             << Column(result.errorMessage()).indent(2)
             << "\n\n";
-        Catch::cerr() << "Run with -? for usage\n" << std::endl;
+        Catch::cerr() << "Run with -? for usage\n" << Colors::End;
         return MaxExitCode;
     }
 
@@ -8308,12 +8308,12 @@ int Session::run(int argc, wchar_t* const argv[]) {
 #endif
 int Session::run() {
     if ((m_configData.waitForKeypress & WaitForKeypress::BeforeStart) != 0) {
-        Catch::cout() << "...waiting for enter/ return before starting" << std::endl;
+        Catch::cout() << "...waiting for enter/ return before starting" << Colors::End;
         static_cast<void>(std::getchar());
     }
     int exitCode = runInternal();
     if ((m_configData.waitForKeypress & WaitForKeypress::BeforeExit) != 0) {
-        Catch::cout() << "...waiting for enter/ return before exiting, with code: " << exitCode << std::endl;
+        Catch::cout() << "...waiting for enter/ return before exiting, with code: " << exitCode << Colors::End;
         static_cast<void>(std::getchar());
     }
     return exitCode;
@@ -8356,7 +8356,7 @@ int Session::runInternal() {
 
         return (std::min)(MaxExitCode, static_cast<int>(runTests(m_config).assertions.failed));
     } catch (std::exception& ex) {
-        Catch::cerr() << ex.what() << std::endl;
+        Catch::cerr() << ex.what() << Colors::End;
         return MaxExitCode;
     }
 }
@@ -8773,7 +8773,7 @@ void TagAliasRegistry::add(std::string const& alias, std::string const& tag, Sou
 
     CATCH_ENFORCE(m_registry.insert(std::make_pair(alias, TagAlias(tag, lineInfo))).second,
         "error: tag alias, '" << alias << "' already registered.\n"
-        << "\tFirst seen at: " << find(alias)->lineInfo << "\n"
+        << "\tFirst seen at: " << find(alias)->lineInfo << Colors::End
         << "\tRedefined at: " << lineInfo);
 }
 
@@ -8981,7 +8981,7 @@ void enforceNoDuplicateTestCases(std::vector<TestCase> const& functions) {
         auto prev = seenFunctions.insert(function);
         CATCH_ENFORCE(prev.second,
             "error: TEST_CASE( \"" << function.name << "\" ) already defined.\n"
-            << "\tFirst seen at " << prev.first->getTestCaseInfo().lineInfo << "\n"
+            << "\tFirst seen at " << prev.first->getTestCaseInfo().lineInfo << Colors::End
             << "\tRedefined at " << function.getTestCaseInfo().lineInfo);
     }
 }
@@ -10083,7 +10083,7 @@ XmlWriter& XmlWriter::endElement() {
     } else {
         m_os << m_indent << "</" << m_tags.back() << ">";
     }
-    m_os << std::endl;
+    m_os << Colors::End;
     m_tags.pop_back();
     return *this;
 }
@@ -10130,7 +10130,7 @@ XmlWriter& XmlWriter::writeBlankLine() {
 
 void XmlWriter::ensureTagClosed() {
     if (m_tagIsOpen) {
-        m_os << ">" << std::endl;
+        m_os << ">" << Colors::End;
         m_tagIsOpen = false;
     }
 }
@@ -10141,7 +10141,7 @@ void XmlWriter::writeDeclaration() {
 
 void XmlWriter::newlineIfNecessary() {
     if (m_needsNewline) {
-        m_os << std::endl;
+        m_os << Colors::End;
         m_needsNewline = false;
     }
 }
@@ -10231,7 +10231,7 @@ struct CompactReporter : StreamingReporterBase<CompactReporter> {
     }
 
     void noMatchingTestCases(std::string const& spec) override {
-        stream << "No test cases matched '" << spec << '\'' << std::endl;
+        stream << "No test cases matched '" << spec << '\'' << Colors::End;
     }
 
     void assertionStarting(AssertionInfo const&) override {}
@@ -10251,19 +10251,19 @@ struct CompactReporter : StreamingReporterBase<CompactReporter> {
         AssertionPrinter printer(stream, _assertionStats, printInfoMessages);
         printer.print();
 
-        stream << std::endl;
+        stream << Colors::End;
         return true;
     }
 
     void sectionEnded(SectionStats const& _sectionStats) override {
         if (m_config->showDurations() == ShowDurations::Always) {
-            stream << getFormattedDuration(_sectionStats.durationInSeconds) << " s: " << _sectionStats.sectionInfo.name << std::endl;
+            stream << getFormattedDuration(_sectionStats.durationInSeconds) << " s: " << _sectionStats.sectionInfo.name << Colors::End;
         }
     }
 
     void testRunEnded(TestRunStats const& _testRunStats) override {
         printTotals(_testRunStats.totals);
-        stream << '\n' << std::endl;
+        stream << '\n' << Colors::End;
         StreamingReporterBase::testRunEnded(_testRunStats);
     }
 
@@ -10543,13 +10543,13 @@ public:
             for (auto const& info : m_columnInfos)
                 *this << info.name << ColumnBreak();
             *this << RowBreak();
-            m_os << Catch::getLineOfChars<'-'>() << "\n";
+            m_os << Catch::getLineOfChars<'-'>() << Colors::End;
         }
     }
     void close() {
         if (m_isOpen) {
             *this << RowBreak();
-            m_os << std::endl;
+            m_os << Colors::End;
             m_isOpen = false;
         }
     }
@@ -10568,7 +10568,7 @@ public:
         tp.open();
         if (tp.m_currentColumn == static_cast<int>(tp.m_columnInfos.size() - 1)) {
             tp.m_currentColumn = -1;
-            tp.m_os << "\n";
+            tp.m_os << Colors::End;
         }
         tp.m_currentColumn++;
 
@@ -10585,7 +10585,7 @@ public:
 
     friend TablePrinter& operator << (TablePrinter& tp, RowBreak) {
         if (tp.m_currentColumn > 0) {
-            tp.m_os << "\n";
+            tp.m_os << Colors::End;
             tp.m_currentColumn = -1;
         }
         return tp;
@@ -10685,7 +10685,7 @@ struct ConsoleReporter : StreamingReporterBase<ConsoleReporter> {
     }
 
     void noMatchingTestCases(std::string const& spec) override {
-        stream << "No test cases matched '" << spec << '\'' << std::endl;
+        stream << "No test cases matched '" << spec << '\'' << Colors::End;
     }
 
     void assertionStarting(AssertionInfo const&) override {
@@ -10704,7 +10704,7 @@ struct ConsoleReporter : StreamingReporterBase<ConsoleReporter> {
 
         AssertionPrinter printer(stream, _assertionStats, includeResults);
         printer.print();
-        stream << std::endl;
+        stream << Colors::End;
         return true;
     }
 
@@ -10721,10 +10721,10 @@ struct ConsoleReporter : StreamingReporterBase<ConsoleReporter> {
                 stream << "\nNo assertions in section";
             else
                 stream << "\nNo assertions in test case";
-            stream << " '" << _sectionStats.sectionInfo.name << "'\n" << std::endl;
+            stream << " '" << _sectionStats.sectionInfo.name << "'\n" << Colors::End;
         }
         if (m_config->showDurations() == ShowDurations::Always) {
-            stream << getFormattedDuration(_sectionStats.durationInSeconds) << " s: " << _sectionStats.sectionInfo.name << std::endl;
+            stream << getFormattedDuration(_sectionStats.durationInSeconds) << " s: " << _sectionStats.sectionInfo.name << Colors::End;
         }
         if (m_headerPrinted) {
             m_headerPrinted = false;
@@ -10765,14 +10765,14 @@ struct ConsoleReporter : StreamingReporterBase<ConsoleReporter> {
             printSummaryDivider();
             stream << "Summary for group '" << _testGroupStats.groupInfo.name << "':\n";
             printTotals(_testGroupStats.totals);
-            stream << '\n' << std::endl;
+            stream << '\n' << Colors::End;
         }
         StreamingReporterBase::testGroupEnded(_testGroupStats);
     }
     void testRunEnded(TestRunStats const& _testRunStats) override {
         printTotalsDivider(_testRunStats.totals);
         printTotals(_testRunStats.totals);
-        stream << std::endl;
+        stream << Colors::End;
         StreamingReporterBase::testRunEnded(_testRunStats);
     }
 
@@ -10975,7 +10975,7 @@ private:
             Colour colourGuard(Colour::FileName);
             stream << lineInfo << '\n';
         }
-        stream << getLineOfChars<'.'>() << '\n' << std::endl;
+        stream << getLineOfChars<'.'>() << '\n' << Colors::End;
     }
 
     void printClosedHeader(std::string const& _name) {

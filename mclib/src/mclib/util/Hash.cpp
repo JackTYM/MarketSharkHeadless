@@ -8,6 +8,7 @@
 #include <openssl/sha.h>
 #include <openssl/bio.h>
 #include <openssl/evp.h>
+#include <Colors.h>
 
 namespace mc {
 namespace util {
@@ -98,7 +99,7 @@ bool Sha1DigestTest() {
         std::string result = Sha1HexDigest(digest);
 
         if (result.compare(outputs[i]) != 0) {
-            std::cerr << "Hex digest not a match. Expected " << outputs[i] << " got " << result << std::endl;
+            std::cerr << "Hex digest not a match. Expected " << outputs[i] << " got " << result << Colors::End;
             pass = false;
         }
     }

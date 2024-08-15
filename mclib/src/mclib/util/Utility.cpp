@@ -108,7 +108,7 @@ bool GetProfileToken(const std::string& username, core::AuthToken* token) {
     try {
         root = json::parse(in);
     } catch (json::parse_error& e) {
-        std::cerr << e.what() << std::endl;
+        std::cerr << e.what() << Colors::End;
         return false;
     }
 
@@ -378,27 +378,27 @@ void PlayerController::SetMoveSpeed(double speed) { m_MoveSpeed = speed; }
 
 void PlayerController::OnClientSpawn(core::PlayerPtr player) {
     return;
-    std::cout << "Client Spawn1" << std::endl;
+    std::cout << "Client Spawn1" << Colors::End;
     m_Yaw = player->GetEntity()->GetYaw();
-    std::cout << "Client Spawn2" << std::endl;
+    std::cout << "Client Spawn2" << Colors::End;
     m_Pitch = player->GetEntity()->GetPitch();
-    std::cout << "Client Spawn3" << std::endl;
+    std::cout << "Client Spawn3" << Colors::End;
     m_Position = player->GetEntity()->GetPosition();
-    std::cout << "Client Spawn4" << std::endl;
+    std::cout << "Client Spawn4" << Colors::End;
     m_LoadedIn = true;
-    std::cout << "Client Spawn5" << std::endl;
+    std::cout << "Client Spawn5" << Colors::End;
     m_TargetPos = m_Position;
-    std::cout << "Client Spawn6" << std::endl;
+    std::cout << "Client Spawn6" << Colors::End;
     auto entity = player->GetEntity();
-    std::cout << "Client Spawn7" << std::endl;
+    std::cout << "Client Spawn7" << Colors::End;
     if (entity) {
         EntityId eid = entity->GetEntityId();
-        std::cout << "Client Spawn8" << std::endl;
+        std::cout << "Client Spawn8" << Colors::End;
 
         m_EntityId = eid;
-        std::cout << "Client Spawn9" << std::endl;
+        std::cout << "Client Spawn9" << Colors::End;
     }
-    std::cout << "Client Spawn10" << std::endl;
+    std::cout << "Client Spawn10" << Colors::End;
 }
 
 void PlayerController::Dig(Vector3d target) {
@@ -529,7 +529,7 @@ void PlayerController::UpdatePosition() {
     static int counter = 0;
 
     if (++counter == 30) {
-        console << "Current pos: " << GetPosition() << "\n";
+        console << "Current pos: " << GetPosition() << Colors::End;
         counter = 0;
     }
 
@@ -693,18 +693,18 @@ public:
         auto x = column->GetMetadata().x;
         auto z = column->GetMetadata().z;
 
-        std::wcout << "Received chunk data for chunk " << x << ", " << z << std::endl;*/
+        std::wcout << "Received chunk data for chunk " << x << ", " << z << Colors::End;*/
     }
 
     void HandlePacket(protocol::packets::in::EntityPropertiesPacket* packet) {
-        /*  std::wcout << "Received entity properties: " << std::endl;
+        /*  std::wcout << "Received entity properties: " << Colors::End;
         const auto& properties = packet->GetProperties();
         for (const auto& kv : properties) {
         std::wstring key = kv.first;
         const auto& property = kv.second;
-        std::wcout << key << " : " << property.value << std::endl;
+        std::wcout << key << " : " << property.value << Colors::End;
         for (const auto& modifier : property.modifiers)
-        std::wcout << "Modifier: " << modifier.uuid << " " << modifier.amount << " " << (int)modifier.operation << std::endl;
+        std::wcout << "Modifier: " << modifier.uuid << " " << modifier.amount << " " << (int)modifier.operation << Colors::End;
         }*/
     }
 
@@ -717,15 +717,15 @@ public:
         x = packet->GetX();
         y = packet->GetY();
         z = packet->GetZ();
-        m_Out << "Spawn player " << packet->GetUUID() << " at (" << x << ", " << y << ", " << z << ")" << std::endl;*/
+        m_Out << "Spawn player " << packet->GetUUID() << " at (" << x << ", " << y << ", " << z << ")" << Colors::End;*/
     }
 
     void HandlePacket(protocol::packets::in::UpdateHealthPacket* packet) {
-        console << "Set health. health: " << packet->GetHealth() << "\n";
+        console << "Set health. health: " << packet->GetHealth() << Colors::End;
     }
 
     void HandlePacket(protocol::packets::in::SetExperiencePacket* packet) {
-        console << "Set experience. Level: " << packet->GetLevel() << "\n";
+        console << "Set experience. Level: " << packet->GetLevel() << Colors::End;
     }
 
     std::string ParseChatNode(const json& node) {
@@ -765,19 +765,19 @@ public:
             return c < 32 || c > 126;
         }), message.end());
         if (message.length() > 0)
-            console << std::wstring(message.begin(), message.end()) << "\n";
+            console << std::wstring(message.begin(), message.end()) << Colors::End;
     }
 
     void HandlePacket(protocol::packets::in::EntityMetadataPacket* packet) {
         //const auto& metadata = packet->GetMetadata();
 
-        //std::wcout << "Received entity metadata" << std::endl;
+        //std::wcout << "Received entity metadata" << Colors::End;
     }
 
     void HandlePacket(protocol::packets::in::SpawnMobPacket* packet) {
         //const auto& metadata = packet->GetMetadata();
 
-        //std::wcout << "Received SpawnMobPacket" << std::endl;
+        //std::wcout << "Received SpawnMobPacket" << Colors::End;
     }
 
     void HandlePacket(protocol::packets::in::SetSlotPacket* packet) {
@@ -785,11 +785,11 @@ public:
         int window = packet->GetWindowId();
         int index = packet->GetSlotIndex();
 
-        console << "Set slot (" << window << ", " << index << ") = " << slot.GetItemId() << ":" << slot.GetItemDamage() << "\n";
+        console << "Set slot (" << window << ", " << index << ") = " << slot.GetItemId() << ":" << slot.GetItemDamage() << Colors::End;
     }
 
     void HandlePacket(protocol::packets::in::WindowItemsPacket* packet) {
-        console << "Received window items for WindowId " << (int)packet->GetWindowId() << "." << "\n";
+        console << "Received window items for WindowId " << (int)packet->GetWindowId() << "." << Colors::End;
 
         const std::vector<inventory::Slot>& slots = packet->GetSlots();
 
@@ -800,7 +800,7 @@ public:
             //const Minecraft::NBT::NBT& nbt = slot.GetNBT();
 
             if (id != -1)
-                console << "Item: " << id << " Amount: " << (int)count << " Dmg: " << dmg << "\n";
+                console << "Item: " << id << " Amount: " << (int)count << " Dmg: " << dmg << Colors::End;
         }
     }
 
@@ -813,9 +813,9 @@ public:
         switch (action) {
         case WorldBorderPacket::Action::Initialize:
         {
-            console << "World border radius: " << (packet->GetDiameter() / 2.0) << "\n";
-            console << "World border center: " << packet->GetX() << ", " << packet->GetZ() << "\n";
-            console << "World border warning time: " << packet->GetWarningTime() << " seconds, blocks: " << packet->GetWarningBlocks() << " meters" << "\n";
+            console << "World border radius: " << (packet->GetDiameter() / 2.0) << Colors::End;
+            console << "World border center: " << packet->GetX() << ", " << packet->GetZ() << Colors::End;
+            console << "World border warning time: " << packet->GetWarningTime() << " seconds, blocks: " << packet->GetWarningBlocks() << " meters" << Colors::End;
         }
         break;
         default:
@@ -829,35 +829,35 @@ public:
 
         if (entity)
             pos = entity->GetPosition();
-        console << "Spawn player " << player->GetName() << " at " << pos << "\n";
+        console << "Spawn player " << player->GetName() << " at " << pos << Colors::End;
     }
 
     void OnPlayerJoin(core::PlayerPtr player) {
-        console << player->GetName() << L" added to playerlist" << "\n";
+        console << player->GetName() << L" added to playerlist" << Colors::End;
     }
 
     void OnPlayerLeave(core::PlayerPtr player) {
-        console << player->GetName() << L" removed from playerlist" << "\n";
+        console << player->GetName() << L" removed from playerlist" << Colors::End;
     }
 
     void HandlePacket(protocol::packets::in::StatisticsPacket* packet) {
         const auto& stats = packet->GetStatistics();
 
         for (auto& kv : stats)
-            console << kv.first << " = " << kv.second << "\n";
+            console << kv.first << " = " << kv.second << Colors::End;
     }
 
     void HandlePacket(protocol::packets::in::PlayerAbilitiesPacket* packet) {
-        console << "Abilities: " << (int)packet->GetFlags() << ", " << packet->GetFlyingSpeed() << ", " << packet->GetFOVModifier() << "\n";
+        console << "Abilities: " << (int)packet->GetFlags() << ", " << packet->GetFlyingSpeed() << ", " << packet->GetFOVModifier() << Colors::End;
     }
 
     void HandlePacket(protocol::packets::in::SpawnPositionPacket* packet) {
-        console << "Spawn position: " << packet->GetLocation() << "\n";
+        console << "Spawn position: " << packet->GetLocation() << Colors::End;
     }
 
     void HandlePacket(protocol::packets::in::DisconnectPacket* packet) {
-        console << "Disconnected from server. Reason: " << "\n";
-        console << packet->GetReason() << "\n";
+        console << "Disconnected from server. Reason: " << Colors::End;
+        console << packet->GetReason() << Colors::End;
     }
 
     void HandlePacket(protocol::packets::in::EncryptionRequestPacket* packet) {
@@ -866,24 +866,24 @@ public:
 
     void HandlePacket(protocol::packets::in::LoginSuccessPacket* packet) {
         console << "Successfully logged in. Username: ";
-        console << packet->GetUsername() << "\n";
+        console << packet->GetUsername() << Colors::End;
     }
 
     void HandlePacket(protocol::packets::in::JoinGamePacket* packet) {
-        console << "Joining game with entity id of " << packet->GetEntityId() << "\n";
-        console << "Game difficulty: " << (int)packet->GetDifficulty() << ", Dimension: " << (int)packet->GetDimension() << "\n";
-        console << "Level type: " << packet->GetLevelType() << "\n";
+        console << "Joining game with entity id of " << packet->GetEntityId() << Colors::End;
+        console << "Game difficulty: " << (int)packet->GetDifficulty() << ", Dimension: " << (int)packet->GetDimension() << Colors::End;
+        console << "Level type: " << packet->GetLevelType() << Colors::End;
     }
 
     void HandlePacket(protocol::packets::in::PluginMessagePacket* packet) {
-        std::cout << "Handle packet?" << std::endl;
+        std::cout << "Handle packet?" << Colors::End;
         console << "Plugin message received on channel " << packet->GetChannel();
         auto value = packet->GetData();
-        console << " Value: " << std::wstring(value.begin(), value.end()) << "\n";
+        console << " Value: " << std::wstring(value.begin(), value.end()) << Colors::End;
     }
 
     void HandlePacket(protocol::packets::in::ServerDifficultyPacket* packet) {
-        console << "New server difficulty: " << (int)packet->GetDifficulty() << "\n";
+        console << "New server difficulty: " << (int)packet->GetDifficulty() << Colors::End;
     }
 };
 
@@ -918,12 +918,12 @@ void PlayerFollower::UpdateRotation() {
 
     yaw += dt * 360.0f / (1.0f / RotationsPerSecond);*/
 
-    // std::wcout << yaw << std::endl;
+    // std::wcout << yaw << Colors::End;
 
     //m_Pitch = (((float)std::sin(ticks * 0.5 * 3.14 / 1000) * 0.5f + 0.5f) * 360.0f) - 180.0f;
     //float yaw = (((float)std::sin(ticks * 0.5 * 3.14 / 1000))) * 360.0f;
 
-    //std::wcout << yaw << std::endl;
+    //std::wcout << yaw << Colors::End;
 
     //m_PlayerController.SetYaw(yaw);
     //m_PlayerController.LookAt(m_Following->GetEntity()->GetPosition());
@@ -1188,7 +1188,7 @@ public:
                     }
                 }
             }
-            std::wcout << m_CreateQueue.size() << std::endl;
+            std::wcout << m_CreateQueue.size() << Colors::End;
             for (int colorIndex = 0; colorIndex < colors.size(); ++colorIndex) {
                 for (int type = 0; type < 5; ++type) {
                     Minecraft::Slot slot = CreateFirework(true, true, type, 1, std::vector<int>{colors[colorIndex]});

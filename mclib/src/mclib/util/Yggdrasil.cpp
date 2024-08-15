@@ -5,6 +5,8 @@
 
 #include <iostream>
 #include <openssl/sha.h>
+#include <Colors.h>
+#include "Objects.h"
 
 namespace {
 const std::string DefaultClientToken = "pmToken";
@@ -44,7 +46,7 @@ Yggdrasil& Yggdrasil::operator=(const Yggdrasil& other) {
 bool Yggdrasil::JoinServer(const std::wstring& serverId, const std::string& sharedSecret, const std::string& publicKey, const std::string& access_token, const std::string& uuid) {
     m_AccessToken = access_token;
     m_ProfileId = uuid;
-    std::cout << "Joining Server" << std::endl;
+    std::cout << Colors::Green << "Joining Server" << Colors::End;
     SHA_CTX shaCtx;
     SHA1_Init(&shaCtx);
 
@@ -67,7 +69,9 @@ bool Yggdrasil::JoinServer(const std::string& serverHash) {
 
     json data;
 
-    std::cout << "Sending Access Token with UUID - " << m_ProfileId << std::endl;
+    if (Objects::debug) {
+        std::cout << Colors::Black << "Sending Access Token with UUID - " << m_ProfileId << Colors::End;
+    }
 
     data["accessToken"] = m_AccessToken;
     data["selectedProfile"] = m_ProfileId;

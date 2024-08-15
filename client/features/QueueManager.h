@@ -8,6 +8,7 @@
 #include <queue>
 #include <string>
 #include <functional>
+#include <Colors.h>
 
 class QueueManager {
 public:

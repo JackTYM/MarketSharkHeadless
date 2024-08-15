@@ -12,22 +12,23 @@ std::map<CommandType, std::string> CommandTypeHelper::data;
 
 void CoflNet::setupWebsocket() {
     CommandTypeHelper::initialize();
-    Objects::coflWebSocket.setUrl("wss://sky.coflnet.com/modsocket?version=1.5.6-Alpha&player=" + Objects::currentUsername + "&SId=" +
-                     GetCoflSession(Objects::currentUsername).id);
+    Objects::coflWebSocket.setUrl(
+            "wss://sky.coflnet.com/modsocket?version=1.5.6-Alpha&player=" + Objects::currentUsername + "&SId=" +
+            GetCoflSession(Objects::currentUsername).id);
 
     Objects::coflWebSocket.setOnMessageCallback([](const ix::WebSocketMessagePtr &msg) {
         switch (msg->type) {
             case ix::WebSocketMessageType::Open:
                 break;
             case ix::WebSocketMessageType::Close:
-                std::cout << "Closed!" << std::endl;
+                std::cout << Colors::Red << "Closed!" << Colors::End;
                 break;
             case ix::WebSocketMessageType::Error:
-                std::cout << "Error!" << std::endl;
+                std::cout << Colors::Red << "Error!" << Colors::End;
                 break;
             case ix::WebSocketMessageType::Message:
                 if (Objects::debug) {
-                    std::cout << "Received: " << msg->str << std::endl;
+                    std::cout << Colors::Black << "Received: " << msg->str << Colors::End;
                 }
 
                 json j = json::parse(msg->str);
@@ -38,16 +39,19 @@ void CoflNet::setupWebsocket() {
                 JsonStringCommand cmd(type, data);
 
                 if (Objects::debug) {
-                    std::cout << "Cofl Handling Command=" << cmd.toString() << std::endl;
+                    std::cout << Colors::Black << "Cofl Handling Command=" << cmd.toString() << Colors::End;
                 }
 
                 switch (cmd.getType()) {
                     case CommandType::WriteToChat:
-                        std::cout << cmd.GetAs<ChatMessageData>().getData().Text << std::endl;
+                        std::cout << Colors::WhiteBackground << cmd.GetAs<ChatMessageData>().getData().Text
+                                  << Colors::End;
                         break;
                     case CommandType::Execute: {
                         std::string msg = cmd.GetAs<std::string>().getData();
-                        std::cout << "Sending Message - " << msg << std::endl;
+                        if (Objects::debug) {
+                            std::cout << Colors::Black << "Sending Message - " << msg << Colors::End;
+                        }
 
                         if (msg.starts_with("/cofl ")) {
                             size_t type_start = msg.find(' ') + 1;
@@ -67,26 +71,48 @@ void CoflNet::setupWebsocket() {
                         break;
                     }
                     case CommandType::ChatMessage:
-                        std::cout << "Adding Message - ";
-                        for (const ChatMessageData &wcmd: cmd.GetAs<std::vector<ChatMessageData>>().getData()) {
-                            std::cout << wcmd.Text;
-                            if (!wcmd.OnClick.empty()) {
-                                std::cout << " onClick: " << wcmd.OnClick;
-                            }
-                            if (!wcmd.Hover.empty()) {
-                                std::cout << " hover: " << wcmd.Hover;
-                            }
-                            if (wcmd.Text.find("What do you want to do?") != std::string::npos) {
-                                RawCommand rc("flip", "true");
-                                json cmd;
+                        if (Objects::debug) {
+                            std::cout << Colors::Black << "Adding Message - ";
+                            for (const ChatMessageData &wcmd: cmd.GetAs<std::vector<ChatMessageData>>().getData()) {
+                                std::cout << wcmd.Text;
+                                if (!wcmd.OnClick.empty()) {
+                                    std::cout << " onClick: " << wcmd.OnClick;
+                                }
+                                if (!wcmd.Hover.empty()) {
+                                    std::cout << " hover: " << wcmd.Hover;
+                                }
+                                if (wcmd.Text.find("What do you want to do?") != std::string::npos) {
+                                    RawCommand rc("flip", "true");
+                                    json cmd;
 
-                                cmd["Type"] = rc.getType();
-                                cmd["Data"] = rc.getData();
+                                    cmd["Type"] = rc.getType();
+                                    cmd["Data"] = rc.getData();
 
-                                Objects::coflWebSocket.send(cmd.dump());
+                                    Objects::coflWebSocket.send(cmd.dump());
+                                }
                             }
+                            std::cout << Colors::End;
+                        } else {
+                            std::cout << Colors::WhiteBackground;
+                            for (const ChatMessageData &wcmd: cmd.GetAs<std::vector<ChatMessageData>>().getData()) {
+                                std::cout << wcmd.Text;
+
+                                if (wcmd.Text.find("What do you want to do?") != std::string::npos) {
+                                    RawCommand rc("flip", "true");
+                                    json cmd;
+
+                                    cmd["Type"] = rc.getType();
+                                    cmd["Data"] = rc.getData();
+
+                                    Objects::coflWebSocket.send(cmd.dump());
+                                } else if (wcmd.Text.contains("so we can load your settings")) {
+                                    if (!wcmd.OnClick.empty()) {
+                                        std::cout << " onClick: " << wcmd.OnClick;
+                                    }
+                                }
+                            }
+                            std::cout << Colors::End;
                         }
-                        std::cout << std::endl;
                         break;
                     case CommandType::Flip: {
                         FlipData flip = cmd.GetAs<FlipData>().getData();
@@ -99,7 +125,9 @@ void CoflNet::setupWebsocket() {
                         item.finder = flip.Finder;
                         item.bed = false;
 
-                        std::cout << "New Flip! Target - " << flip.Target << std::endl;
+                        if (Objects::debug) {
+                            std::cout << Colors::Cyan << "New Flip! Target - " << flip.Target << Colors::End;
+                        }
                         AutoOpen::OpenAuction(item);
                         break;
                     }
@@ -140,7 +168,7 @@ void CoflNet::setupWebsocket() {
                         cmd["Type"] = rc.getType();
                         cmd["Data"] = rc.getData();
 
-                        std::cout << cmd.dump() << std::endl;
+                        std::cout << cmd.dump() << Colors::End;
 
                         Objects::coflWebSocket.send(cmd.dump());
                         break;

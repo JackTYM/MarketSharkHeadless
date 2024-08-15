@@ -14,7 +14,7 @@
 #include <thread>
 
 #include "Server.h"
-#include "Logger.h"
+#include "util/Logger.h"
 
 #include "features/JoinSkyblock.h"
 #include "features/ChatLogger.h"
@@ -28,7 +28,7 @@ void Server::connectToServer() {
 
     mc::block::BlockRegistry::GetInstance()->RegisterVanillaBlocks(version);
 
-    std::cout << "Connecting with version " << mc::protocol::to_string(version) << std::endl;
+    std::cout << Colors::Green << "Connecting with version " << mc::protocol::to_string(version) << Colors::End;
 
     mc::core::Client client(&versionFetcher.GetDispatcher(), version);
 
@@ -49,12 +49,12 @@ void Server::connectToServer() {
     example::Logger logger(&client, &versionFetcher.GetDispatcher());
 
     try {
-        std::cout << "Logging in." << std::endl;
+        std::cout << Colors::Green << "Logging in." << Colors::End;
 
         mc::core::AuthToken token;
         client.Login(Objects::serverAddress, Objects::port, Objects::currentUsername, Objects::currentUUID, Objects::currentSSID, mc::core::UpdateMethod::Block);
     } catch (std::exception& e) {
-        std::wcout << e.what() << std::endl;
+        std::cout << e.what() << Colors::End;
         return;
     }
 }

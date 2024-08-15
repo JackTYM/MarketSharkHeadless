@@ -6,6 +6,7 @@
 #include <iostream>
 #include <locale>
 #include <codecvt>
+#include <Colors.h>
 
 namespace mc {
     namespace nbt {
@@ -361,7 +362,7 @@ namespace mc {
                     else if (type == TagType::IntArray)
                         tagType = "IntArray";
 
-                    std::cout << "Added tag of type " << tagType << " with name " << converter.to_bytes(name.GetValue()) << std::endl;*/
+                    std::cout << "Added tag of type " << tagType << " with name " << converter.to_bytes(name.GetValue()) << Colors::End;*/
                     m_Tags.push_back(std::make_pair(type, tag));
                     tag->Read(buffer);
                     tag->SetName(name.GetValue());
@@ -432,7 +433,7 @@ namespace mc {
         }
 
         void TagCompound::printTags() {
-            std::cout << "Size of tags - " << m_Tags.size() << std::endl;
+            std::cout << "Size of tags - " << m_Tags.size() << Colors::End;
             for (const auto &tagPair: m_Tags) {
                 TagType tagType = tagPair.first;
                 TagPtr tagPtr = tagPair.second;
@@ -482,7 +483,7 @@ namespace mc {
                             break;
                     }
 
-                    std::wcout << std::endl;
+                    std::cout << Colors::End;
                 }
             }
         }

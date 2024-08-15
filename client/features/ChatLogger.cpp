@@ -15,17 +15,77 @@ void ChatLogger::HandlePacket(mc::protocol::packets::in::ChatPacket *packet) {
         const nlohmann::json &root = packet->GetChatData();
 
         std::string message = mc::util::ParseChatNode(root);
-        std::size_t pos = message.find((char) 0xA7);
 
-        while (pos != std::string::npos) {
-            message.erase(pos - 1, 3);
-            pos = message.find((char) 0xA7);
+        // Array of strings that should preserve color codes
+        std::vector<std::string> preserveStrings = {"You purchased ", "Putting coins in escrow",
+                                                    "Visit the Auction House ", "Sending to server "};
+
+        bool preserveColorCodes = false;
+        for (const auto &str : preserveStrings) {
+            if (message.find(str) != std::string::npos) {
+                preserveColorCodes = true;
+                break;
+            }
         }
 
-        message.erase(std::remove_if(message.begin(), message.end(), [](char c) {
-            return c < 32 || c > 126;
-        }), message.end());
-        if (message.length() > 0)
-            std::cout << std::string(message.begin(), message.end()) << "\n";
+        if (message.contains("pingwarspls")) {
+            Objects::m_Connection->SendPacket(mc::protocol::packets::out::ChatPacket("/social pingwars"));
+        }
+
+        if (preserveColorCodes) {
+            std::unordered_map<char, std::string> colorMap = {
+                    {'0', Colors::Black},
+                    {'1', Colors::Blue},
+                    {'2', Colors::Green},
+                    {'3', Colors::Cyan},
+                    {'4', Colors::Red},
+                    {'5', Colors::Magenta},
+                    {'6', Colors::Yellow},
+                    {'7', Colors::White},
+                    {'8', Colors::Gray},
+                    {'9', Colors::BrightBlue},
+                    {'a', Colors::BrightGreen},
+                    {'b', Colors::BrightCyan},
+                    {'c', Colors::BrightRed},
+                    {'d', Colors::BrightMagenta},
+                    {'e', Colors::BrightYellow},
+                    {'f', Colors::BrightWhite},
+                    {'l', Colors::Bold},
+                    {'n', Colors::Underline},
+                    {'r', Colors::ResetHighlight}
+            };
+
+            std::size_t pos = message.find((char) 0xA7);
+            while (pos != std::string::npos && pos + 1 < message.length()) {
+                char code = message[pos + 1];
+                auto it = colorMap.find(code);
+                if (it != colorMap.end()) {
+                    message.replace(pos, 2, it->second);
+                } else {
+                    message.erase(pos, 2);
+                }
+                pos = message.find((char) 0xA7, pos);
+            }
+
+            message = Colors::BrightYellowBackground + message;
+        } else {
+            // Remove color codes if not preserving them
+            std::size_t pos = message.find((char) 0xA7);
+            while (pos != std::string::npos) {
+                message.erase(pos, 2);
+                pos = message.find((char) 0xA7);
+            }
+
+            // Remove any non-printable characters
+            message.erase(std::remove_if(message.begin(), message.end(), [](char c) {
+                return c < 32 || c > 126;
+            }), message.end());
+
+            message = Colors::Gray + message;
+        }
+
+        if (!message.empty()) {
+            std::cout << message << Colors::End;
+        }
     }
 }

@@ -10,10 +10,10 @@ ix::WebSocket Objects::msWebSocket;
 bool Objects::debug = false;
 
 std::string Objects::currentUsername = "Sandal61";
-std::string Objects::currentUUID = "";
-std::string Objects::currentSSID = "";
-std::string Objects::serverAddress = "192.168.7.201";
-u16 Objects::port = 25566;
+std::string Objects::currentUUID;
+std::string Objects::currentSSID;
+std::string Objects::serverAddress = "mc.hypixel.net";
+u16 Objects::port = 25565;
 
 
 int Objects::openWindowId = 0;

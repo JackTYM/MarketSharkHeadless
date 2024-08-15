@@ -14,6 +14,7 @@
 #include <string>
 #include <queue>
 #include <utility>
+#include <Colors.h>
 
 namespace mc {
 
@@ -219,11 +220,11 @@ public:
     }
 
     void Output(const std::string& str) override {
-        m_Out << str << std::endl;
+        m_Out << str << Colors::End;
     }
 
     void Output(const std::wstring& str) override {
-        m_Out << std::string(str.begin(), str.end()) << std::endl;
+        m_Out << std::string(str.begin(), str.end()) << Colors::End;
     }
 
     IConsole& operator<<(const std::string& str) override {

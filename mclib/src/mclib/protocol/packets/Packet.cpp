@@ -846,7 +846,7 @@ bool PluginMessagePacket::Deserialize(DataBuffer& data, std::size_t packetLength
 
     data.ReadSome(m_Data, data.GetSize() - (data.GetReadOffset() - begin) - 1);
 
-    //std::cout << m_Channel.GetUTF8() << m_Data << m_Data.size() << std::endl;
+    //std::cout << m_Channel.GetUTF8() << m_Data << m_Data.size() << Colors::End;
 
     return true;
 }
@@ -1445,7 +1445,7 @@ bool PlayerPositionAndLookPacket::Deserialize(DataBuffer& data, std::size_t pack
 }
 
 void PlayerPositionAndLookPacket::Dispatch(PacketHandler* handler) {
-    //std::cout << "Dispatch Player Pos Look" << std::endl;
+    //std::cout << "Dispatch Player Pos Look" << Colors::End;
     handler->HandlePacket(this);
 }
 
@@ -2272,7 +2272,7 @@ DisconnectPacket::DisconnectPacket() {
 }
 
 bool DisconnectPacket::Deserialize(DataBuffer& data, std::size_t packetLength) {
-        std::cout << "Disconnected !" << std::endl;
+        std::cout << "Disconnected !" << Colors::End;
     // Update the protocol state so the login and play versions of this are handled correctly.
     if (m_Connection)
         m_ProtocolState = m_Connection->GetProtocolState();

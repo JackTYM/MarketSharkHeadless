@@ -16,7 +16,8 @@
 #include <chrono>
 
 #include "../cofl/CoflNet.h"
-#include "../Objects.h"
+#include "../util/Objects.h"
+#include <Colors.h>
 
 class JoinSkyblock : public mc::protocol::packets::PacketHandler {
 private:

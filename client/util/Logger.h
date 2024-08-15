@@ -1,8 +1,9 @@
 #ifndef CLIENT_LOGGER_H_
 #define CLIENT_LOGGER_H_
 
-#include <mclib/core/Client.h>
-#include <mclib/protocol/packets/PacketHandler.h>
+#include "mclib/core/Client.h"
+#include "mclib/protocol/packets/PacketHandler.h"
+#include <Colors.h>
 
 namespace example {
 

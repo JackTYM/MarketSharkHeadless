@@ -22,8 +22,9 @@
 
 #include "../features/AutoOpen.h"
 #include "../Server.h"
-#include "../FlipItem.h"
-#include "../Objects.h"
+#include "../util/FlipItem.h"
+#include "../util/Objects.h"
+#include <Colors.h>
 
 class CoflNet {
 public:

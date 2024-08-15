@@ -83,9 +83,10 @@ find_package(ZLIB REQUIRED)
 find_package(Curses REQUIRED)
 
 target_include_directories(mclib
-	PUBLIC
+		PUBLIC
 		mclib/include
-	PRIVATE
+		client/util
+		PRIVATE
 		${OPENSSL_INCLUDE_DIR}
 		${CURL_INCLUDE_DIRS}
 		${ZLIB_INCLUDE_DIRS}
@@ -114,7 +115,7 @@ include_directories(${CMAKE_SOURCE_DIR}/external/IXWebSocket/ixwebsocket)
 
 add_executable(client
 		client/main.cpp
-		client/Logger.cpp
+		client/util/Logger.cpp
 		client/Server.cpp
 
 		client/auth/Auth.cpp
@@ -132,12 +133,14 @@ add_executable(client
 		client/features/QueueManager.cpp
 		client/features/AutoBuy.cpp
 		client/features/AutoBuy.h
-		client/FlipItem.cpp
-		client/FlipItem.h
+		client/util/FlipItem.cpp
+		client/util/FlipItem.h
         client/features/Failsafes.cpp
         client/features/Failsafes.h
-		client/Objects.cpp
-		client/Objects.h
+		client/util/Objects.cpp
+		client/util/Objects.h
+		client/util/Colors.h
+		client/util/Colors.cpp
 )
 
 target_link_libraries(client PRIVATE mclib ixwebsocket uuid)

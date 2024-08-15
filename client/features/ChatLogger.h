@@ -11,7 +11,8 @@
 #include <mclib/common/internal/json.hpp>
 
 #include <iostream>
-#include "../Objects.h"
+#include "../util/Objects.h"
+#include <Colors.h>
 
 class ChatLogger : public mc::protocol::packets::PacketHandler {
 public:

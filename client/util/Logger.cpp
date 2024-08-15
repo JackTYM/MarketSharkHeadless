@@ -1,8 +1,9 @@
 #include "Logger.h"
 
-#include <mclib/util/Utility.h>
+#include "mclib/util/Utility.h"
 
 #include <iostream>
+#include <codecvt>
 
 namespace example {
 
@@ -30,48 +31,20 @@ Logger::~Logger() {
 void Logger::HandlePacket(mc::protocol::packets::in::ChatPacket* packet) {
     std::string message = mc::util::ParseChatNode(packet->GetChatData());
 
-    // CAN REMOVE?
-    //if (!message.empty())
-        //std::cout << message << std::endl;
 
-    if (message.find("!selected") != std::string::npos) {
-        mc::inventory::Slot item = m_Client->GetHotbar().GetCurrentItem();
-
-        std::cout << "Selected item: " << item.GetItemId() << ":" << item.GetItemDamage() << " (" << item.GetItemCount() << ")" << std::endl;
-    } else if (message.find("!select") != std::string::npos) {
-        std::string amountStr = message.substr(message.find("!select ") + 8);
-        int slotIndex = strtol(amountStr.c_str(), nullptr, 10);
-
-
-        if (slotIndex >= 0 && slotIndex < 9) {
-            m_Client->GetHotbar().SelectSlot(slotIndex);
-        } else {
-            std::cout << "Bad slot index." << std::endl;
-        }
-    } else if (message.find("!find ") != std::string::npos) {
-        std::string toFind = message.substr(message.find("!find ") + 6);
-
-        s32 itemId = strtol(toFind.c_str(), nullptr, 10);
-        mc::inventory::Inventory* inv = m_Client->GetInventoryManager()->GetPlayerInventory();
-        if (inv) {
-            bool contained = inv->Contains(itemId);
-
-            std::cout << "Contains " << itemId << ": " << std::boolalpha << contained << std::endl;
-        }
-    }
 }
 
 void Logger::HandlePacket(mc::protocol::packets::in::EntityLookAndRelativeMovePacket* packet) {
     mc::Vector3d delta = mc::ToVector3d(packet->GetDelta()) / (128.0 * 32.0);
 
-    //std::cout << delta << std::endl;
+    //std::cout << delta << Colors::End;
 }
 
 void Logger::HandlePacket(mc::protocol::packets::in::BlockChangePacket* packet) {
     mc::Vector3i pos = packet->GetPosition();
     s32 blockId = packet->GetBlockId();
 
-    //std::cout << "Block changed at " << pos << " to " << blockId << std::endl;
+    //std::cout << "Block changed at " << pos << " to " << blockId << Colors::End;
 }
 
 void Logger::HandlePacket(mc::protocol::packets::in::MultiBlockChangePacket* packet) {
@@ -81,12 +54,13 @@ void Logger::HandlePacket(mc::protocol::packets::in::MultiBlockChangePacket* pac
     for (const auto& change : packet->GetBlockChanges()) {
         mc::Vector3i pos(chunkX + change.x, change.y + chunkZ + change.z);
 
-        //std::cout << "Block changed at " << pos << " to " << change.blockData << std::endl;
+        //std::cout << "Block changed at " << pos << " to " << change.blockData << Colors::End;
     }
 }
 
 void Logger::HandlePacket(mc::protocol::packets::in::DisconnectPacket* packet) {
-    std::wcout << L"Disconnected: " << packet->GetReason() << std::endl;
+    std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+    std::cout << "Disconnected: " << converter.to_bytes(packet->GetReason()) << Colors::End;
 }
 
 void Logger::OnTick() {

@@ -6,6 +6,7 @@
 #define MCLIB_SERVER_H
 
 #include <mclib/core/Connection.h>
+#include <Colors.h>
 
 class Server {
 public:
