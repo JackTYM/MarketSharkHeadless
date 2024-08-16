@@ -2,12 +2,20 @@
 // Created by root on 8/11/24.
 //
 
+#include <codecvt>
 #include "ChatLogger.h"
 
 ChatLogger::ChatLogger(mc::protocol::packets::PacketDispatcher *dispatcher)
         : mc::protocol::packets::PacketHandler(dispatcher) {
 
     dispatcher->RegisterHandler(mc::protocol::State::Play, mc::protocol::play::Chat, this);
+    dispatcher->RegisterHandler(mc::protocol::State::Play, mc::protocol::play::Disconnect, this);
+    dispatcher->RegisterHandler(mc::protocol::State::Login, mc::protocol::login::Disconnect, this);
+}
+
+void ChatLogger::HandlePacket(mc::protocol::packets::in::DisconnectPacket *packet) {
+    std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+    std::cout << Colors::Red << "Disconnected! " << converter.to_bytes(packet->GetReason()) << Colors::End;
 }
 
 void ChatLogger::HandlePacket(mc::protocol::packets::in::ChatPacket *packet) {

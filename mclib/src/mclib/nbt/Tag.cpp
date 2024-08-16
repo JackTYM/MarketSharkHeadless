@@ -432,62 +432,6 @@ namespace mc {
             return *this;
         }
 
-        void TagCompound::printTags() {
-            std::cout << "Size of tags - " << m_Tags.size() << Colors::End;
-            for (const auto &tagPair: m_Tags) {
-                TagType tagType = tagPair.first;
-                TagPtr tagPtr = tagPair.second;
-
-                if (tagPtr) {  // Check if tagPtr is not null
-                    //std::wcout << L"Tag Name: " << tagPtr->GetName() << L", Tag Type: ";
-
-                    switch (tagType) {
-                        case TagType::End:
-                            std::wcout << L"End";
-                            break;
-                        case TagType::Byte:
-                            std::wcout << L"Byte";
-                            break;
-                        case TagType::Short:
-                            std::wcout << L"Short";
-                            break;
-                        case TagType::Int:
-                            std::wcout << L"Int";
-                            break;
-                        case TagType::Long:
-                            std::wcout << L"Long";
-                            break;
-                        case TagType::Float:
-                            std::wcout << L"Float";
-                            break;
-                        case TagType::Double:
-                            std::wcout << L"Double";
-                            break;
-                        case TagType::ByteArray:
-                            std::wcout << L"ByteArray";
-                            break;
-                        case TagType::String:
-                            std::wcout << L"String";
-                            break;
-                        case TagType::List:
-                            std::wcout << L"List";
-                            break;
-                        case TagType::Compound:
-                            std::wcout << L"Compound";
-                            break;
-                        case TagType::IntArray:
-                            std::wcout << L"IntArray";
-                            break;
-                        default:
-                            std::wcout << L"Unknown";
-                            break;
-                    }
-
-                    std::cout << Colors::End;
-                }
-            }
-        }
-
         TagType TagByte::GetType() const noexcept {
             return TagType::Byte;
         }

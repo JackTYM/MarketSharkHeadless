@@ -19,6 +19,7 @@ public:
     MCLIB_API ChatLogger(mc::protocol::packets::PacketDispatcher* dispatcher);
 
     MCLIB_API void HandlePacket(mc::protocol::packets::in::ChatPacket* packet);
+    MCLIB_API void HandlePacket(mc::protocol::packets::in::DisconnectPacket* packet);
 };
 
 

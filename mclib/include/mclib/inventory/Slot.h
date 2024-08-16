@@ -39,6 +39,10 @@ public:
     s16 GetItemDamage() const noexcept { return m_ItemDamage; }
     const nbt::NBT& GetNBT() const noexcept { return m_NBT; }
 
+    void SetNBT(const nbt::NBT& nbt) {
+        m_NBT = nbt;  // Assign the new root NBT data
+    }
+
     static MCLIB_API Slot FromNBT(nbt::TagCompound& compound);
 
     DataBuffer Serialize(protocol::Version version) const;

@@ -188,8 +188,17 @@ public:
     friend MCLIB_API DataBuffer& operator<<(DataBuffer& out, const TagCompound& tag);
     friend MCLIB_API DataBuffer& operator<<(DataBuffer& out, const Tag& tag);
 
-    void printTags();
-    const void printTagsC();
+    void SetTag(const std::wstring& tagName, TagPtr tag) {
+        auto iter = std::find_if(m_Tags.begin(), m_Tags.end(), [&](DataType& entry) {
+            return entry.second->GetName() == tagName;
+        });
+
+        if (iter != m_Tags.end()) {
+            iter->second = tag; // Update the existing tag
+        } else {
+            m_Tags.emplace_back(tag->GetType(), tag); // Add new tag if it doesn't exist
+        }
+    }
 };
 
 class TagByte : public Tag {

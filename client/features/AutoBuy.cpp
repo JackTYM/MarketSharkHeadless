@@ -116,8 +116,9 @@ void AutoBuy::HandlePacket(mc::protocol::packets::in::SetSlotPacket *packet) {
                         }
 
                         if (Objects::skip && exampleConfirmItem.GetNBT().HasData()) {
-                            const mc::nbt::TagCompound confirmRoot = exampleConfirmItem.GetNBT().GetRoot();
-                            mc::nbt::TagCompound *confirmDisplay = root.GetTag<mc::nbt::TagCompound>(L"display");
+                            mc::nbt::NBT confirmNbt = exampleConfirmItem.GetNBT();
+                            mc::nbt::TagCompound confirmRoot = confirmNbt.GetRoot();
+                            mc::nbt::TagCompound *confirmDisplay = confirmRoot.GetTag<mc::nbt::TagCompound>(L"display");
                             mc::nbt::TagList *confirmLore = confirmDisplay->GetTag<mc::nbt::TagList>(L"Lore");
 
                             mc::nbt::TagList *lore = display->GetTag<mc::nbt::TagList>(L"Lore");
@@ -139,13 +140,26 @@ void AutoBuy::HandlePacket(mc::protocol::packets::in::SetSlotPacket *packet) {
                                         costPtr->SetValue(L"§7Cost: " + itemCostLine.substr(9));
                                         std::cout << "FakeL - " << converter.to_bytes(L"§7Cost: " + itemCostLine.substr(9)) << Colors::End;
 
-                                        std::cout << Colors::Bold << Colors::Yellow << "SKIPPING WITH 0MS DOTN LEAK DUMB FUCK" << Colors::End;
+                                        std::cout << Colors::Bold << Colors::Yellow << "SKIPPING WITH " << Objects::skipDelay << "MS DOTN LEAK DUMB FUCK" << Colors::End;
+
+                                        mc::nbt::TagPtr fakeConfirmDisplay = std::make_shared<mc::nbt::TagCompound>(*confirmDisplay);
+
+                                        confirmRoot.SetTag(L"display", fakeConfirmDisplay);
+                                        confirmNbt.SetRoot(confirmRoot);
+                                        exampleConfirmItem.SetNBT(confirmNbt);
 
                                         Objects::openWindowId = packet->GetWindowId()+1;
-                                        Objects::m_Connection->SendPacket(
-                                                mc::protocol::packets::out::ClickWindowPacket(packet->GetWindowId()+1,
-                                                                                              11, 0,
-                                                                                              Objects::actionNumber++, 0, exampleConfirmItem));
+                                        auto sendPacketWithDelay = [packet]() {
+                                            std::this_thread::sleep_for(std::chrono::milliseconds(Objects::skipDelay));
+                                            Objects::m_Connection->SendPacket(
+                                                    mc::protocol::packets::out::ClickWindowPacket(
+                                                            packet->GetWindowId() + 1,
+                                                            11, 0,
+                                                            Objects::actionNumber++, 0, exampleConfirmItem
+                                                    )
+                                            );
+                                        };
+                                        std::thread(sendPacketWithDelay).detach();
 
                                         if (Objects::debug) {
                                             std::cout << Colors::Black << "Clicked Confirm (Skip)!" << Colors::End;
@@ -223,6 +237,8 @@ void AutoBuy::HandlePacket(mc::protocol::packets::in::ChatPacket *packet) {
                 Objects::m_Connection->SendPacket(mc::protocol::packets::out::CloseWindowPacket(Objects::openWindowId));
                 Objects::openWindowId = 0;
 
+                QueueManager::endCurrentTask("AutoBuy");
+            } else if (message.contains("There was an error with the auction house!")) {
                 QueueManager::endCurrentTask("AutoBuy");
             }
         }
