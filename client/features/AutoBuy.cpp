@@ -10,6 +10,8 @@ bool AutoBuy::isWindowOpened = false;
 
 int buyWindowId = 0;
 int confirmWindowId = 0;
+std::wstring buyItemName = L"";
+mc::inventory::Slot exampleConfirmItem;
 
 FlipItem item;
 
@@ -82,8 +84,14 @@ void AutoBuy::HandlePacket(mc::protocol::packets::in::SetSlotPacket *packet) {
         if (packet->GetWindowId() == buyWindowId) {
             switch (packet->GetSlotIndex()) {
                 case 13: {
+                    buyItemName = itemName;
+                    size_t start_pos = 0;
+                    while ((start_pos = buyItemName.find(L"§f§f", start_pos)) != std::wstring::npos) {
+                        buyItemName.replace(start_pos, 4, L"§a§f");
+                        start_pos += 4; // Move past the replacement
+                    }
                     if (Objects::debug) {
-                        std::cout << Colors::Black << "Item Name - " << converter.to_bytes(itemName) << Colors::End;
+                        std::cout << Colors::Black << "Item Name - " << converter.to_bytes(buyItemName) << Colors::End;
                     }
                     break;
                 }
@@ -106,10 +114,51 @@ void AutoBuy::HandlePacket(mc::protocol::packets::in::SetSlotPacket *packet) {
                         if (Objects::debug) {
                             std::cout << Colors::Black << "Clicked!" << Colors::End;
                         }
+
+                        if (Objects::skip && exampleConfirmItem.GetNBT().HasData()) {
+                            const mc::nbt::TagCompound confirmRoot = exampleConfirmItem.GetNBT().GetRoot();
+                            mc::nbt::TagCompound *confirmDisplay = root.GetTag<mc::nbt::TagCompound>(L"display");
+                            mc::nbt::TagList *confirmLore = confirmDisplay->GetTag<mc::nbt::TagList>(L"Lore");
+
+                            mc::nbt::TagList *lore = display->GetTag<mc::nbt::TagList>(L"Lore");
+                            auto buyPtr = std::dynamic_pointer_cast<mc::nbt::TagString>(lore->GetList()[1]);
+
+                            if (buyPtr) {
+                                std::wstring itemCostLine = buyPtr->GetValue();
+
+                                auto purchasePtr = std::dynamic_pointer_cast<mc::nbt::TagString>(
+                                        confirmLore->GetList()[0]);
+                                if (purchasePtr) {
+                                    purchasePtr->SetValue(L"§7Purchasing: " + buyItemName);
+                                    std::cout << "FakeL - " << converter.to_bytes(L"§7Purchasing: " + buyItemName)
+                                              << Colors::End;
+
+                                    auto costPtr = std::dynamic_pointer_cast<mc::nbt::TagString>(
+                                            confirmLore->GetList()[1]);
+                                    if (costPtr) {
+                                        costPtr->SetValue(L"§7Cost: " + itemCostLine.substr(9));
+                                        std::cout << "FakeL - " << converter.to_bytes(L"§7Cost: " + itemCostLine.substr(9)) << Colors::End;
+
+                                        std::cout << Colors::Bold << Colors::Yellow << "SKIPPING WITH 0MS DOTN LEAK DUMB FUCK" << Colors::End;
+
+                                        Objects::openWindowId = packet->GetWindowId()+1;
+                                        Objects::m_Connection->SendPacket(
+                                                mc::protocol::packets::out::ClickWindowPacket(packet->GetWindowId()+1,
+                                                                                              11, 0,
+                                                                                              Objects::actionNumber++, 0, exampleConfirmItem));
+
+                                        if (Objects::debug) {
+                                            std::cout << Colors::Black << "Clicked Confirm (Skip)!" << Colors::End;
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     } else if (itemId != 288) {
                         std::cout << Colors::Red << "Lost! Closing Flip" << Colors::End;
                         if (Objects::debug) {
-                            std::cout << Colors::Black << "Item ID - " << itemId << " Item Name - " << converter.to_bytes(itemName) << Colors::End;
+                            std::cout << Colors::Black << "Item ID - " << itemId << " Item Name - "
+                                      << converter.to_bytes(itemName) << Colors::End;
                         }
                         Objects::m_Connection->SendPacket(
                                 mc::protocol::packets::out::CloseWindowPacket(Objects::openWindowId));
@@ -131,7 +180,11 @@ void AutoBuy::HandlePacket(mc::protocol::packets::in::SetSlotPacket *packet) {
                     if (Objects::debug) {
                         std::cout << Colors::Black << "Clicked Confirm!" << Colors::End;
                     }
+
+                    exampleConfirmItem = slot;
                 }
+
+                //mc::nbt::TagString purchasing = lore->GetList()[0];
             }
         }
     }
@@ -159,7 +212,8 @@ void AutoBuy::HandlePacket(mc::protocol::packets::in::ChatPacket *packet) {
         if (!message.empty()) {
             if (message.contains("Putting coins in escrow...")) {
                 item.buyTime = std::chrono::high_resolution_clock::now();
-                item.buySpeed = static_cast<int>(std::chrono::duration_cast<std::chrono::milliseconds>(item.buyTime - item.startTime).count());
+                item.buySpeed = static_cast<int>(std::chrono::duration_cast<std::chrono::milliseconds>(
+                        item.buyTime - item.startTime).count());
 
                 Objects::m_Connection->SendPacket(mc::protocol::packets::out::CloseWindowPacket(Objects::openWindowId));
                 Objects::openWindowId = 0;

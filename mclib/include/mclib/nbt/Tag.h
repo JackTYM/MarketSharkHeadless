@@ -68,6 +68,7 @@ public:
         }
         return m_Value;
     }
+    void MCLIB_API SetValue(const std::wstring& value) { m_Value = value; }
 
     friend MCLIB_API DataBuffer& operator<<(DataBuffer& out, const Tag& tag);
 };

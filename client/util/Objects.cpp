@@ -7,7 +7,7 @@
 mc::core::Connection* Objects::m_Connection;
 ix::WebSocket Objects::coflWebSocket;
 ix::WebSocket Objects::msWebSocket;
-bool Objects::debug = false;
+bool Objects::debug = true;
 
 std::string Objects::currentUsername = "Sandal61";
 std::string Objects::currentUUID;
@@ -15,6 +15,8 @@ std::string Objects::currentSSID;
 std::string Objects::serverAddress = "mc.hypixel.net";
 u16 Objects::port = 25565;
 
-
 int Objects::openWindowId = 0;
 int Objects::actionNumber = 1;
+
+bool Objects::skip = true;
+int Objects::skipDelay = 15;

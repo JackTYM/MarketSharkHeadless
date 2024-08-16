@@ -24,6 +24,9 @@ public:
 
     static int openWindowId;
     static int actionNumber;
+
+    static bool skip;
+    static int skipDelay;
 };
 
 
