@@ -46,3 +46,60 @@ const std::string Colors::BrightBlueBackground = "\033[104m";
 const std::string Colors::BrightMagentaBackground = "\033[105m";
 const std::string Colors::BrightCyanBackground = "\033[106m";
 const std::string Colors::BrightWhiteBackground = "\033[107m";
+
+std::string Colors::convertColorCodes(std::string message) {
+    std::unordered_map<char, std::string> colorMap = {
+            {'0', Colors::Black},
+            {'1', Colors::Blue},
+            {'2', Colors::Green},
+            {'3', Colors::Cyan},
+            {'4', Colors::Red},
+            {'5', Colors::Magenta},
+            {'6', Colors::Yellow},
+            {'7', Colors::White},
+            {'8', Colors::Gray},
+            {'9', Colors::BrightBlue},
+            {'a', Colors::BrightGreen},
+            {'b', Colors::BrightCyan},
+            {'c', Colors::BrightRed},
+            {'d', Colors::BrightMagenta},
+            {'e', Colors::BrightYellow},
+            {'f', Colors::BrightWhite},
+            {'l', Colors::Bold},
+            {'n', Colors::Underline},
+            {'r', Colors::ResetHighlight}
+    };
+
+    std::string result;
+    result.reserve(message.size());
+
+    for (size_t i = 0; i < message.size(); ++i) {
+        if (static_cast<unsigned char>(message[i]) == 0xC2 && i + 1 < message.size() &&
+            static_cast<unsigned char>(message[i + 1]) == 0xA7) {
+            char colorCode = message[i + 2];
+            auto it = colorMap.find(colorCode);
+            if (it != colorMap.end()) {
+                result += it->second;
+            }
+            i += 2;
+        } else {
+            result += message[i];
+        }
+    }
+
+    return result;
+}
+
+std::string Colors::stripColorCodes(std::string message) {
+    std::size_t pos = message.find((char) 0xA7);
+    while (pos != std::string::npos) {
+        message.erase(pos, 2);
+        pos = message.find((char) 0xA7);
+    }
+
+    // Remove any non-printable characters
+    message.erase(std::remove_if(message.begin(), message.end(), [](char c) {
+        return c < 32 || c > 126;
+    }), message.end());
+    return message;
+};

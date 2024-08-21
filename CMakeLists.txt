@@ -2,13 +2,15 @@ cmake_minimum_required(VERSION 3.10)
 
 project(mclib)
 
-#set(CMAKE_BUILD_TYPE Release)
 set(CMAKE_CXX_STANDARD 23)
-
 set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_CXX_FLAGS_DEBUG "-g")
 
-add_library(mclib SHARED
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O0")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0")
+
+# Build the library as a static library instead of a shared library
+add_library(mclib STATIC
 	mclib/src/mclib/block/Banner.cpp
 	mclib/src/mclib/block/Beacon.cpp
 	mclib/src/mclib/block/Bed.cpp
@@ -74,45 +76,27 @@ add_library(mclib SHARED
 
 add_definitions(-DMCLIB_EXPORTS -DCURL_STATICLIB)
 
-set_target_properties(mclib PROPERTIES VERSION 1.0.0)
-set_target_properties(mclib PROPERTIES SOVERSION 1)
-
+# Find required packages
 find_package(CURL REQUIRED)
 find_package(OpenSSL REQUIRED)
 find_package(ZLIB REQUIRED)
 find_package(Curses REQUIRED)
 
+# Include directories
 target_include_directories(mclib
-		PUBLIC
-		mclib/include
+		PUBLIC mclib/include
 		client/util
-		PRIVATE
-		${OPENSSL_INCLUDE_DIR}
-		${CURL_INCLUDE_DIRS}
-		${ZLIB_INCLUDE_DIRS}
-		${CURSES_INCLUDE_DIRS}
+		PRIVATE ${OPENSSL_INCLUDE_DIR} ${CURL_INCLUDE_DIRS} ${ZLIB_INCLUDE_DIRS} ${CURSES_INCLUDE_DIRS}
 )
 
+# Link libraries
 if (WIN32)
-	target_link_libraries(mclib ${ZLIB_LIBRARIES} ${CURL_LIBRARIES} ${OPENSSL_LIBRARIES} Wldap32.lib Crypt32.lib ${CURSES_LIBRARIES})  # Add ncurses here
+	target_link_libraries(mclib ${ZLIB_LIBRARIES} ${CURL_LIBRARIES} ${OPENSSL_LIBRARIES} Wldap32.lib Crypt32.lib ${CURSES_LIBRARIES})
 else ()
-	target_link_libraries(mclib ${ZLIB_LIBRARIES} ${CURL_LIBRARIES} ${OPENSSL_LIBRARIES} ${CURSES_LIBRARIES})  # Add ncurses here
+	target_link_libraries(mclib ${ZLIB_LIBRARIES} ${CURL_LIBRARIES} ${OPENSSL_LIBRARIES} ${CURSES_LIBRARIES})
 endif ()
 
-include(GNUInstallDirs)
-
-install(TARGETS mclib
-	DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
-install(DIRECTORY mclib/include DESTINATION ${CMAKE_INSTALL_PREFIX}/)
-
-configure_file(mclib.pc.in mclib.pc @ONLY)
-install(FILES ${CMAKE_BINARY_DIR}/mclib.pc DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/pkgconfig)
-
-# Include the libwebsockets headers
-include_directories(${CMAKE_SOURCE_DIR}/external/IXWebSocket/ixwebsocket)
-
+# Build the client executable
 add_executable(client
 		client/main.cpp
 		client/util/Logger.cpp
@@ -143,4 +127,10 @@ add_executable(client
 		client/util/Colors.cpp
 )
 
+# Link the static mclib library with the client executable
 target_link_libraries(client PRIVATE mclib ixwebsocket uuid)
+
+# Install the client executable
+install(TARGETS client
+		RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+)

@@ -26,6 +26,8 @@
 #include "../util/Objects.h"
 #include <Colors.h>
 
+#include <regex>
+
 class CoflNet {
 public:
     static void setupWebsocket();

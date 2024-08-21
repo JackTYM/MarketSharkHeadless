@@ -41,7 +41,7 @@ include CMakeFiles/rules.ninja
 
 cmake_ninja_workdir = /root/MarketSharkMCLib/cmake-build-debug/
 # =============================================================================
-# Object build statements for SHARED_LIBRARY target mclib
+# Object build statements for STATIC_LIBRARY target mclib
 
 
 #############################################
@@ -50,519 +50,508 @@ cmake_ninja_workdir = /root/MarketSharkMCLib/cmake-build-debug/
 build cmake_object_order_depends_target_mclib: phony || CMakeFiles/mclib.dir
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/block/Banner.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/block/Banner.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/block/Banner.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/block
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/block/Beacon.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/block/Beacon.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/block/Beacon.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/block
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/block/Bed.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/block/Bed.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/block/Bed.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/block
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/block/Block.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/block/Block.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/block/Block.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/block
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/block/BlockEntity.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/block/BlockEntity.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/block/BlockEntity.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/block
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/block/BrewingStand.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/block/BrewingStand.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/block/BrewingStand.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/block
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/block/Chest.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/block/Chest.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/block/Chest.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/block
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/block/Dispenser.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/block/Dispenser.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/block/Dispenser.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/block
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/block/Dropper.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/block/Dropper.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/block/Dropper.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/block
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/block/EnchantmentTable.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/block/EnchantmentTable.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/block/EnchantmentTable.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/block
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/block/EndGateway.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/block/EndGateway.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/block/EndGateway.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/block
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/block/FlowerPot.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/block/FlowerPot.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/block/FlowerPot.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/block
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/block/Furnace.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/block/Furnace.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/block/Furnace.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/block
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/block/Hopper.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/block/Hopper.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/block/Hopper.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/block
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/block/InventoryBlock.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/block/InventoryBlock.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/block/InventoryBlock.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/block
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/block/Jukebox.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/block/Jukebox.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/block/Jukebox.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/block
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/block/MonsterSpawner.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/block/MonsterSpawner.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/block/MonsterSpawner.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/block
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/block/NoteBlock.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/block/NoteBlock.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/block/NoteBlock.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/block
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/block/Piston.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/block/Piston.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/block/Piston.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/block
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/block/RedstoneComparator.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/block/RedstoneComparator.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/block/RedstoneComparator.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/block
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/block/ShulkerBox.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/block/ShulkerBox.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/block/ShulkerBox.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/block
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/block/Sign.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/block/Sign.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/block/Sign.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/block
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/block/Skull.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/block/Skull.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/block/Skull.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/block
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/common/DataBuffer.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/common/DataBuffer.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/common/DataBuffer.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/common
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/common/DyeColor.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/common/DyeColor.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/common/DyeColor.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/common
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/common/MCString.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/common/MCString.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/common/MCString.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/common
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/common/Position.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/common/Position.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/common/Position.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/common
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/common/UUID.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/common/UUID.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/common/UUID.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/common
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/common/VarInt.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/common/VarInt.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/common/VarInt.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/common
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/core/AuthToken.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/core/AuthToken.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/core/AuthToken.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/core
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/core/Client.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/core/Client.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/core/Client.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/core
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/core/ClientSettings.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/core/ClientSettings.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/core/ClientSettings.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/core
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/core/Compression.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/core/Compression.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/core/Compression.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/core
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/core/Connection.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/core/Connection.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/core/Connection.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/core
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/core/Encryption.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/core/Encryption.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/core/Encryption.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/core
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/core/PlayerManager.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/core/PlayerManager.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/core/PlayerManager.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/core
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/entity/EntityManager.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/entity/EntityManager.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/entity/EntityManager.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/entity
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/entity/Metadata.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/entity/Metadata.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/entity/Metadata.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/entity
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/inventory/Hotbar.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/inventory/Hotbar.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/inventory/Hotbar.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/inventory
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/inventory/Inventory.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/inventory/Inventory.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/inventory/Inventory.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/inventory
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/inventory/Slot.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/inventory/Slot.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/inventory/Slot.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/inventory
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/nbt/NBT.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/nbt/NBT.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/nbt/NBT.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/nbt
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/nbt/Tag.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/nbt/Tag.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/nbt/Tag.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/nbt
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/network/IPAddress.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/network/IPAddress.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/network/IPAddress.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/network
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/network/Network.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/network/Network.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/network/Network.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/network
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/network/Socket.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/network/Socket.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/network/Socket.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/network
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/network/TCPSocket.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/network/TCPSocket.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/network/TCPSocket.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/network
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/network/UDPSocket.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/network/UDPSocket.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/network/UDPSocket.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/network
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/protocol/packets/Packet.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/protocol/packets/Packet.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/protocol/packets/Packet.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/protocol/packets
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/protocol/packets/PacketDispatcher.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/protocol/packets/PacketDispatcher.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/protocol/packets/PacketDispatcher.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/protocol/packets
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/protocol/packets/PacketFactory.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/protocol/packets/PacketFactory.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/protocol/packets/PacketFactory.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/protocol/packets
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/protocol/packets/PacketHandler.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/protocol/packets/PacketHandler.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/protocol/packets/PacketHandler.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/protocol/packets
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/protocol/Protocol.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/protocol/Protocol.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/protocol/Protocol.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/protocol
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/util/Forge.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/util/Forge.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/util/Forge.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/util
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/util/Hash.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/util/Hash.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/util/Hash.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/util
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/util/HTTPClient.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/util/HTTPClient.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/util/HTTPClient.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/util
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/util/Utility.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/util/Utility.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/util/Utility.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/util
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/util/VersionFetcher.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/util/VersionFetcher.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/util/VersionFetcher.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/util
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/util/Yggdrasil.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/util/Yggdrasil.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/util/Yggdrasil.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/util
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/world/Chunk.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/world/Chunk.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/world/Chunk.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/world
 
 build CMakeFiles/mclib.dir/mclib/src/mclib/world/World.cpp.o: CXX_COMPILER__mclib_unscanned_Debug /root/MarketSharkMCLib/mclib/src/mclib/world/World.cpp || cmake_object_order_depends_target_mclib
-  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS -Dmclib_EXPORTS
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/mclib.dir/mclib/src/mclib/world/World.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fPIC -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/mclib.dir
   OBJECT_FILE_DIR = CMakeFiles/mclib.dir/mclib/src/mclib/world
 
 
 # =============================================================================
-# Link build statements for SHARED_LIBRARY target mclib
+# Link build statements for STATIC_LIBRARY target mclib
 
 
 #############################################
-# Link the shared library libmclib.so.1.0.0
+# Link the static library libmclib.a
 
-build libmclib.so.1.0.0: CXX_SHARED_LIBRARY_LINKER__mclib_Debug CMakeFiles/mclib.dir/mclib/src/mclib/block/Banner.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/Beacon.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/Bed.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/Block.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/BlockEntity.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/BrewingStand.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/Chest.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/Dispenser.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/Dropper.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/EnchantmentTable.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/EndGateway.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/FlowerPot.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/Furnace.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/Hopper.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/InventoryBlock.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/Jukebox.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/MonsterSpawner.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/NoteBlock.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/Piston.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/RedstoneComparator.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/ShulkerBox.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/Sign.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/Skull.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/common/DataBuffer.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/common/DyeColor.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/common/MCString.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/common/Position.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/common/UUID.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/common/VarInt.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/core/AuthToken.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/core/Client.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/core/ClientSettings.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/core/Compression.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/core/Connection.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/core/Encryption.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/core/PlayerManager.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/entity/EntityManager.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/entity/Metadata.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/inventory/Hotbar.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/inventory/Inventory.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/inventory/Slot.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/nbt/NBT.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/nbt/Tag.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/network/IPAddress.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/network/Network.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/network/Socket.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/network/TCPSocket.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/network/UDPSocket.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/protocol/packets/Packet.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/protocol/packets/PacketDispatcher.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/protocol/packets/PacketFactory.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/protocol/packets/PacketHandler.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/protocol/Protocol.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/util/Forge.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/util/Hash.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/util/HTTPClient.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/util/Utility.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/util/VersionFetcher.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/util/Yggdrasil.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/world/Chunk.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/world/World.cpp.o | /usr/lib/x86_64-linux-gnu/libz.so /usr/lib/x86_64-linux-gnu/libcurl.so /usr/lib/x86_64-linux-gnu/libssl.so /usr/lib/x86_64-linux-gnu/libcrypto.so /usr/lib/x86_64-linux-gnu/libcurses.so /usr/lib/x86_64-linux-gnu/libform.so
-  LANGUAGE_COMPILE_FLAGS = -g
-  LINK_LIBRARIES = /usr/lib/x86_64-linux-gnu/libz.so  /usr/lib/x86_64-linux-gnu/libcurl.so  /usr/lib/x86_64-linux-gnu/libssl.so  /usr/lib/x86_64-linux-gnu/libcrypto.so  -lcurses  /usr/lib/x86_64-linux-gnu/libform.so
+build libmclib.a: CXX_STATIC_LIBRARY_LINKER__mclib_Debug CMakeFiles/mclib.dir/mclib/src/mclib/block/Banner.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/Beacon.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/Bed.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/Block.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/BlockEntity.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/BrewingStand.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/Chest.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/Dispenser.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/Dropper.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/EnchantmentTable.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/EndGateway.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/FlowerPot.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/Furnace.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/Hopper.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/InventoryBlock.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/Jukebox.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/MonsterSpawner.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/NoteBlock.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/Piston.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/RedstoneComparator.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/ShulkerBox.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/Sign.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/block/Skull.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/common/DataBuffer.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/common/DyeColor.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/common/MCString.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/common/Position.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/common/UUID.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/common/VarInt.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/core/AuthToken.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/core/Client.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/core/ClientSettings.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/core/Compression.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/core/Connection.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/core/Encryption.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/core/PlayerManager.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/entity/EntityManager.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/entity/Metadata.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/inventory/Hotbar.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/inventory/Inventory.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/inventory/Slot.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/nbt/NBT.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/nbt/Tag.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/network/IPAddress.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/network/Network.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/network/Socket.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/network/TCPSocket.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/network/UDPSocket.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/protocol/packets/Packet.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/protocol/packets/PacketDispatcher.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/protocol/packets/PacketFactory.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/protocol/packets/PacketHandler.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/protocol/Protocol.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/util/Forge.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/util/Hash.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/util/HTTPClient.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/util/Utility.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/util/VersionFetcher.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/util/Yggdrasil.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/world/Chunk.cpp.o CMakeFiles/mclib.dir/mclib/src/mclib/world/World.cpp.o
+  LANGUAGE_COMPILE_FLAGS = -O0 -g
   OBJECT_DIR = CMakeFiles/mclib.dir
   POST_BUILD = :
   PRE_LINK = :
-  SONAME = libmclib.so.1
-  SONAME_FLAG = -Wl,-soname,
-  TARGET_FILE = libmclib.so.1.0.0
-  TARGET_IMPLIB = /root/MarketSharkMCLib/cmake-build-debug/
-  TARGET_PDB = mclib.so.dbg
-
-
-#############################################
-# Create library symlink libmclib.so
-
-build libmclib.so.1 libmclib.so: CMAKE_SYMLINK_LIBRARY libmclib.so.1.0.0
-  POST_BUILD = :
+  TARGET_FILE = libmclib.a
+  TARGET_PDB = mclib.a.dbg
 
 # =============================================================================
 # Object build statements for EXECUTABLE target client
@@ -576,82 +565,122 @@ build cmake_object_order_depends_target_client: phony || cmake_object_order_depe
 build CMakeFiles/client.dir/client/main.cpp.o: CXX_COMPILER__client_unscanned_Debug /root/MarketSharkMCLib/client/main.cpp || cmake_object_order_depends_target_client
   DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/client.dir/client/main.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket -I/root/MarketSharkMCLib/mclib/include
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/client.dir
   OBJECT_FILE_DIR = CMakeFiles/client.dir/client
 
-build CMakeFiles/client.dir/client/Logger.cpp.o: CXX_COMPILER__client_unscanned_Debug /root/MarketSharkMCLib/client/Logger.cpp || cmake_object_order_depends_target_client
+build CMakeFiles/client.dir/client/util/Logger.cpp.o: CXX_COMPILER__client_unscanned_Debug /root/MarketSharkMCLib/client/util/Logger.cpp || cmake_object_order_depends_target_client
   DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
-  DEP_FILE = CMakeFiles/client.dir/client/Logger.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket -I/root/MarketSharkMCLib/mclib/include
+  DEP_FILE = CMakeFiles/client.dir/client/util/Logger.cpp.o.d
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/client.dir
-  OBJECT_FILE_DIR = CMakeFiles/client.dir/client
+  OBJECT_FILE_DIR = CMakeFiles/client.dir/client/util
 
 build CMakeFiles/client.dir/client/Server.cpp.o: CXX_COMPILER__client_unscanned_Debug /root/MarketSharkMCLib/client/Server.cpp || cmake_object_order_depends_target_client
   DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/client.dir/client/Server.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket -I/root/MarketSharkMCLib/mclib/include
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/client.dir
   OBJECT_FILE_DIR = CMakeFiles/client.dir/client
 
 build CMakeFiles/client.dir/client/auth/Auth.cpp.o: CXX_COMPILER__client_unscanned_Debug /root/MarketSharkMCLib/client/auth/Auth.cpp || cmake_object_order_depends_target_client
   DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/client.dir/client/auth/Auth.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket -I/root/MarketSharkMCLib/mclib/include
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/client.dir
   OBJECT_FILE_DIR = CMakeFiles/client.dir/client/auth
 
 build CMakeFiles/client.dir/client/features/JoinSkyblock.cpp.o: CXX_COMPILER__client_unscanned_Debug /root/MarketSharkMCLib/client/features/JoinSkyblock.cpp || cmake_object_order_depends_target_client
   DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/client.dir/client/features/JoinSkyblock.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket -I/root/MarketSharkMCLib/mclib/include
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/client.dir
   OBJECT_FILE_DIR = CMakeFiles/client.dir/client/features
 
 build CMakeFiles/client.dir/client/features/ChatLogger.cpp.o: CXX_COMPILER__client_unscanned_Debug /root/MarketSharkMCLib/client/features/ChatLogger.cpp || cmake_object_order_depends_target_client
   DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/client.dir/client/features/ChatLogger.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket -I/root/MarketSharkMCLib/mclib/include
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/client.dir
   OBJECT_FILE_DIR = CMakeFiles/client.dir/client/features
 
 build CMakeFiles/client.dir/client/cofl/CoflNet.cpp.o: CXX_COMPILER__client_unscanned_Debug /root/MarketSharkMCLib/client/cofl/CoflNet.cpp || cmake_object_order_depends_target_client
   DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/client.dir/client/cofl/CoflNet.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket -I/root/MarketSharkMCLib/mclib/include
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/client.dir
   OBJECT_FILE_DIR = CMakeFiles/client.dir/client/cofl
 
 build CMakeFiles/client.dir/client/cofl/CoflSessionManager.cpp.o: CXX_COMPILER__client_unscanned_Debug /root/MarketSharkMCLib/client/cofl/CoflSessionManager.cpp || cmake_object_order_depends_target_client
   DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/client.dir/client/cofl/CoflSessionManager.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket -I/root/MarketSharkMCLib/mclib/include
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/client.dir
   OBJECT_FILE_DIR = CMakeFiles/client.dir/client/cofl
 
 build CMakeFiles/client.dir/client/features/AutoOpen.cpp.o: CXX_COMPILER__client_unscanned_Debug /root/MarketSharkMCLib/client/features/AutoOpen.cpp || cmake_object_order_depends_target_client
   DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/client.dir/client/features/AutoOpen.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket -I/root/MarketSharkMCLib/mclib/include
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/client.dir
   OBJECT_FILE_DIR = CMakeFiles/client.dir/client/features
 
 build CMakeFiles/client.dir/client/features/QueueManager.cpp.o: CXX_COMPILER__client_unscanned_Debug /root/MarketSharkMCLib/client/features/QueueManager.cpp || cmake_object_order_depends_target_client
   DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
   DEP_FILE = CMakeFiles/client.dir/client/features/QueueManager.cpp.o.d
-  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
-  INCLUDES = -I/root/MarketSharkMCLib/external/IXWebSocket/ixwebsocket -I/root/MarketSharkMCLib/mclib/include
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
   OBJECT_DIR = CMakeFiles/client.dir
   OBJECT_FILE_DIR = CMakeFiles/client.dir/client/features
+
+build CMakeFiles/client.dir/client/features/AutoBuy.cpp.o: CXX_COMPILER__client_unscanned_Debug /root/MarketSharkMCLib/client/features/AutoBuy.cpp || cmake_object_order_depends_target_client
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
+  DEP_FILE = CMakeFiles/client.dir/client/features/AutoBuy.cpp.o.d
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
+  OBJECT_DIR = CMakeFiles/client.dir
+  OBJECT_FILE_DIR = CMakeFiles/client.dir/client/features
+
+build CMakeFiles/client.dir/client/util/FlipItem.cpp.o: CXX_COMPILER__client_unscanned_Debug /root/MarketSharkMCLib/client/util/FlipItem.cpp || cmake_object_order_depends_target_client
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
+  DEP_FILE = CMakeFiles/client.dir/client/util/FlipItem.cpp.o.d
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
+  OBJECT_DIR = CMakeFiles/client.dir
+  OBJECT_FILE_DIR = CMakeFiles/client.dir/client/util
+
+build CMakeFiles/client.dir/client/features/Failsafes.cpp.o: CXX_COMPILER__client_unscanned_Debug /root/MarketSharkMCLib/client/features/Failsafes.cpp || cmake_object_order_depends_target_client
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
+  DEP_FILE = CMakeFiles/client.dir/client/features/Failsafes.cpp.o.d
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
+  OBJECT_DIR = CMakeFiles/client.dir
+  OBJECT_FILE_DIR = CMakeFiles/client.dir/client/features
+
+build CMakeFiles/client.dir/client/util/Objects.cpp.o: CXX_COMPILER__client_unscanned_Debug /root/MarketSharkMCLib/client/util/Objects.cpp || cmake_object_order_depends_target_client
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
+  DEP_FILE = CMakeFiles/client.dir/client/util/Objects.cpp.o.d
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
+  OBJECT_DIR = CMakeFiles/client.dir
+  OBJECT_FILE_DIR = CMakeFiles/client.dir/client/util
+
+build CMakeFiles/client.dir/client/util/Colors.cpp.o: CXX_COMPILER__client_unscanned_Debug /root/MarketSharkMCLib/client/util/Colors.cpp || cmake_object_order_depends_target_client
+  DEFINES = -DCURL_STATICLIB -DMCLIB_EXPORTS
+  DEP_FILE = CMakeFiles/client.dir/client/util/Colors.cpp.o.d
+  FLAGS = -O0 -g -std=gnu++23 -fdiagnostics-color=always
+  INCLUDES = -I/root/MarketSharkMCLib/mclib/include -I/root/MarketSharkMCLib/client/util
+  OBJECT_DIR = CMakeFiles/client.dir
+  OBJECT_FILE_DIR = CMakeFiles/client.dir/client/util
 
 
 # =============================================================================
@@ -661,9 +690,9 @@ build CMakeFiles/client.dir/client/features/QueueManager.cpp.o: CXX_COMPILER__cl
 #############################################
 # Link the executable client
 
-build client: CXX_EXECUTABLE_LINKER__client_Debug CMakeFiles/client.dir/client/main.cpp.o CMakeFiles/client.dir/client/Logger.cpp.o CMakeFiles/client.dir/client/Server.cpp.o CMakeFiles/client.dir/client/auth/Auth.cpp.o CMakeFiles/client.dir/client/features/JoinSkyblock.cpp.o CMakeFiles/client.dir/client/features/ChatLogger.cpp.o CMakeFiles/client.dir/client/cofl/CoflNet.cpp.o CMakeFiles/client.dir/client/cofl/CoflSessionManager.cpp.o CMakeFiles/client.dir/client/features/AutoOpen.cpp.o CMakeFiles/client.dir/client/features/QueueManager.cpp.o | libmclib.so.1.0.0 /usr/lib/x86_64-linux-gnu/libz.so /usr/lib/x86_64-linux-gnu/libcurl.so /usr/lib/x86_64-linux-gnu/libssl.so /usr/lib/x86_64-linux-gnu/libcrypto.so /usr/lib/x86_64-linux-gnu/libcurses.so /usr/lib/x86_64-linux-gnu/libform.so || libmclib.so libmclib.so
-  FLAGS = -g
-  LINK_LIBRARIES = -Wl,-rpath,/root/MarketSharkMCLib/cmake-build-debug  libmclib.so.1.0.0  -lixwebsocket  -luuid  /usr/lib/x86_64-linux-gnu/libz.so  /usr/lib/x86_64-linux-gnu/libcurl.so  /usr/lib/x86_64-linux-gnu/libssl.so  /usr/lib/x86_64-linux-gnu/libcrypto.so  -lcurses  /usr/lib/x86_64-linux-gnu/libform.so
+build client: CXX_EXECUTABLE_LINKER__client_Debug CMakeFiles/client.dir/client/main.cpp.o CMakeFiles/client.dir/client/util/Logger.cpp.o CMakeFiles/client.dir/client/Server.cpp.o CMakeFiles/client.dir/client/auth/Auth.cpp.o CMakeFiles/client.dir/client/features/JoinSkyblock.cpp.o CMakeFiles/client.dir/client/features/ChatLogger.cpp.o CMakeFiles/client.dir/client/cofl/CoflNet.cpp.o CMakeFiles/client.dir/client/cofl/CoflSessionManager.cpp.o CMakeFiles/client.dir/client/features/AutoOpen.cpp.o CMakeFiles/client.dir/client/features/QueueManager.cpp.o CMakeFiles/client.dir/client/features/AutoBuy.cpp.o CMakeFiles/client.dir/client/util/FlipItem.cpp.o CMakeFiles/client.dir/client/features/Failsafes.cpp.o CMakeFiles/client.dir/client/util/Objects.cpp.o CMakeFiles/client.dir/client/util/Colors.cpp.o | libmclib.a /usr/lib/x86_64-linux-gnu/libz.so /usr/lib/x86_64-linux-gnu/libcurl.so /usr/lib/x86_64-linux-gnu/libssl.so /usr/lib/x86_64-linux-gnu/libcrypto.so /usr/lib/x86_64-linux-gnu/libcurses.so /usr/lib/x86_64-linux-gnu/libform.so || libmclib.a
+  FLAGS = -O0 -g
+  LINK_LIBRARIES = libmclib.a  -lixwebsocket  -luuid  /usr/lib/x86_64-linux-gnu/libz.so  /usr/lib/x86_64-linux-gnu/libcurl.so  /usr/lib/x86_64-linux-gnu/libssl.so  /usr/lib/x86_64-linux-gnu/libcrypto.so  -lcurses  /usr/lib/x86_64-linux-gnu/libform.so
   OBJECT_DIR = CMakeFiles/client.dir
   POST_BUILD = :
   PRE_LINK = :
@@ -738,7 +767,7 @@ build install/strip: phony CMakeFiles/install/strip.util
 # =============================================================================
 # Target aliases.
 
-build mclib: phony libmclib.so
+build mclib: phony libmclib.a
 
 # =============================================================================
 # Folder targets.
@@ -748,7 +777,7 @@ build mclib: phony libmclib.so
 #############################################
 # Folder: /root/MarketSharkMCLib/cmake-build-debug
 
-build all: phony libmclib.so client
+build all: phony libmclib.a client
 
 # =============================================================================
 # Built-in targets
@@ -757,14 +786,14 @@ build all: phony libmclib.so client
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeCInformation.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeCXXInformation.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeCommonLanguageInclude.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeGenericSystem.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeInitializeConfigs.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeLanguageInformation.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeSystemSpecificInformation.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeSystemSpecificInitialize.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CheckLibraryExists.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Compiler/CMakeCommonCompilerMacros.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Compiler/GNU-C.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Compiler/GNU-CXX.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Compiler/GNU.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/FindCURL.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/FindCurses.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/FindOpenSSL.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/FindPackageHandleStandardArgs.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/FindPackageMessage.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/FindPkgConfig.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/FindZLIB.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/GNUInstallDirs.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/Linux-GNU-C.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/Linux-GNU-CXX.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/Linux-GNU.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/Linux-Initialize.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/Linux.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/UnixPaths.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/SelectLibraryConfigurations.cmake /root/MarketSharkMCLib/CMakeLists.txt /root/MarketSharkMCLib/mclib.pc.in CMakeCache.txt CMakeFiles/3.28.1/CMakeCCompiler.cmake CMakeFiles/3.28.1/CMakeCXXCompiler.cmake CMakeFiles/3.28.1/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeCInformation.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeCXXInformation.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeCommonLanguageInclude.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeGenericSystem.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeInitializeConfigs.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeLanguageInformation.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeSystemSpecificInformation.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeSystemSpecificInitialize.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CheckLibraryExists.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Compiler/CMakeCommonCompilerMacros.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Compiler/GNU-C.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Compiler/GNU-CXX.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Compiler/GNU.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/FindCURL.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/FindCurses.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/FindOpenSSL.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/FindPackageHandleStandardArgs.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/FindPackageMessage.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/FindPkgConfig.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/FindZLIB.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/Linux-GNU-C.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/Linux-GNU-CXX.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/Linux-GNU.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/Linux-Initialize.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/Linux.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/UnixPaths.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/SelectLibraryConfigurations.cmake /root/MarketSharkMCLib/CMakeLists.txt CMakeCache.txt CMakeFiles/3.28.1/CMakeCCompiler.cmake CMakeFiles/3.28.1/CMakeCXXCompiler.cmake CMakeFiles/3.28.1/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeCInformation.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeCXXInformation.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeCommonLanguageInclude.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeGenericSystem.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeInitializeConfigs.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeLanguageInformation.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeSystemSpecificInformation.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeSystemSpecificInitialize.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CheckLibraryExists.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Compiler/CMakeCommonCompilerMacros.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Compiler/GNU-C.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Compiler/GNU-CXX.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Compiler/GNU.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/FindCURL.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/FindCurses.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/FindOpenSSL.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/FindPackageHandleStandardArgs.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/FindPackageMessage.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/FindPkgConfig.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/FindZLIB.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/GNUInstallDirs.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/Linux-GNU-C.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/Linux-GNU-CXX.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/Linux-GNU.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/Linux-Initialize.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/Linux.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/UnixPaths.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/SelectLibraryConfigurations.cmake /root/MarketSharkMCLib/CMakeLists.txt /root/MarketSharkMCLib/mclib.pc.in CMakeCache.txt CMakeFiles/3.28.1/CMakeCCompiler.cmake CMakeFiles/3.28.1/CMakeCXXCompiler.cmake CMakeFiles/3.28.1/CMakeSystem.cmake: phony
+build /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeCInformation.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeCXXInformation.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeCommonLanguageInclude.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeGenericSystem.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeInitializeConfigs.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeLanguageInformation.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeSystemSpecificInformation.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CMakeSystemSpecificInitialize.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/CheckLibraryExists.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Compiler/CMakeCommonCompilerMacros.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Compiler/GNU-C.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Compiler/GNU-CXX.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Compiler/GNU.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/FindCURL.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/FindCurses.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/FindOpenSSL.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/FindPackageHandleStandardArgs.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/FindPackageMessage.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/FindPkgConfig.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/FindZLIB.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/Linux-GNU-C.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/Linux-GNU-CXX.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/Linux-GNU.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/Linux-Initialize.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/Linux.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/Platform/UnixPaths.cmake /root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/share/cmake-3.28/Modules/SelectLibraryConfigurations.cmake /root/MarketSharkMCLib/CMakeLists.txt CMakeCache.txt CMakeFiles/3.28.1/CMakeCCompiler.cmake CMakeFiles/3.28.1/CMakeCXXCompiler.cmake CMakeFiles/3.28.1/CMakeSystem.cmake: phony
 
 
 #############################################

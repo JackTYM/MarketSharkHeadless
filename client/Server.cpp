@@ -52,9 +52,13 @@ void Server::connectToServer() {
         std::cout << Colors::Green << "Logging in." << Colors::End;
 
         mc::core::AuthToken token;
-        client.Login(Objects::serverAddress, Objects::port, Objects::currentUsername, Objects::currentUUID, Objects::currentSSID, mc::core::UpdateMethod::Block);
+        client.Login(Objects::serverAddress, Objects::port, Objects::getCurrentUsername(), Objects::currentUUID, Objects::currentSSID, mc::core::UpdateMethod::Threaded);
     } catch (std::exception& e) {
         std::cout << e.what() << Colors::End;
         return;
+    }
+
+    while (true) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     }
 }

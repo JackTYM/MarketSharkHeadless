@@ -6,6 +6,8 @@
 #define MCLIB_COLORS_H
 
 #include <string>
+#include <regex>
+#include <unordered_map>
 
 class Colors {
 public:
@@ -54,6 +56,9 @@ public:
     static const std::string BrightMagentaBackground;
     static const std::string BrightCyanBackground;
     static const std::string BrightWhiteBackground;
+
+    static std::string convertColorCodes(std::string message);
+    static std::string stripColorCodes(std::string message);
 };
 
 #endif //MCLIB_COLORS_H

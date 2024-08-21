@@ -1,4 +1,6 @@
 #include "FlipItem.h"
+#include "Objects.h"
+
 std::unordered_map<std::string, FlipItem> FlipItem::flipMap;
 std::vector<FlipItem> FlipItem::flipItems;
 
@@ -33,19 +35,26 @@ void FlipItem::setSlot(mc::inventory::Slot* slot) {
 }
 
 nlohmann::json FlipItem::serialize() const {
+
     nlohmann::json jsonObject;
-    jsonObject["displayName"] = this->displayName;
+    //jsonObject["displayName"] = this->displayName;
     jsonObject["strippedDisplayName"] = this->strippedDisplayName;
     jsonObject["uuid"] = this->uuid;
     jsonObject["buyPrice"] = this->buyPrice;
     jsonObject["sellPrice"] = this->sellPrice;
     jsonObject["coflWorth"] = this->coflWorth;
-    //jsonObject["startTime"] = this->startTime;
-    //jsonObject["buyTime"] = this->buyTime;
+
+    // Convert std::chrono::time_point to Unix timestamp in milliseconds
+    auto startTimeMillis = std::chrono::duration_cast<std::chrono::milliseconds>(this->startTime.time_since_epoch()).count();
+    auto buyTimeMillis = std::chrono::duration_cast<std::chrono::milliseconds>(this->buyTime.time_since_epoch()).count();
+    auto auctionStartMillis = std::chrono::duration_cast<std::chrono::milliseconds>(this->auctionStart.time_since_epoch()).count();
+
+    jsonObject["startTime"] = startTimeMillis;
+    jsonObject["buyTime"] = buyTimeMillis;
     jsonObject["buySpeed"] = this->buySpeed;
-    jsonObject["auctionStart"] = this->auctionStart;
+    jsonObject["auctionStart"] = auctionStartMillis;
     jsonObject["auctionId"] = this->auctionId;
-    jsonObject["username"] = this->username;
+    jsonObject["username"] = Objects::getCurrentUsername();
     jsonObject["sellerUuid"] = this->sellerUuid;
     jsonObject["skyblockId"] = this->skyblockId;
     jsonObject["bed"] = this->bed;
@@ -56,14 +65,15 @@ nlohmann::json FlipItem::serialize() const {
     jsonObject["sendBought"] = true;
     jsonObject["sendSold"] = true;
     jsonObject["finder"] = this->finder;
+
     return jsonObject;
 }
 
 std::string FlipItem::getUuid(mc::inventory::Slot* stack) {
     if (stack != nullptr) {
-        auto uuidTag = stack->GetNBT().GetTag<mc::nbt::TagCompound>(L"tag")->GetTag<mc::nbt::TagCompound>(L"ExtraAttributes")->GetTag<mc::nbt::Tag>(L"uuid");
+        auto uuidTag = stack->GetNBT().GetRoot().GetTag<mc::nbt::TagCompound>(L"ExtraAttributes")->GetTag<mc::nbt::TagString>(L"uuid");
         if (uuidTag != nullptr) {
-            std::wstring wstr = uuidTag->GetName();
+            std::wstring wstr = uuidTag->GetValue();
             std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
             std::string uuidStr = converter.to_bytes(wstr);
 

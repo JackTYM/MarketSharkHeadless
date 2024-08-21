@@ -20,8 +20,6 @@
 #include <Colors.h>
 
 class JoinSkyblock : public mc::protocol::packets::PacketHandler {
-private:
-    bool connected = false;
 public:
     MCLIB_API JoinSkyblock(mc::protocol::packets::PacketDispatcher* dispatcher);
 
@@ -29,8 +27,10 @@ public:
     MCLIB_API void HandlePacket(mc::protocol::packets::in::DisconnectPacket* packet);
     MCLIB_API void HandlePacket(mc::protocol::packets::in::PlayerPositionAndLookPacket* packet);
 
-    void SendSkyblock();
-    void SendIs();
+    static void SendSkyblock();
+    static void SendIs();
+
+    static bool connected;
 };
 
 

@@ -69,7 +69,7 @@ bool Yggdrasil::JoinServer(const std::string& serverHash) {
 
     json data;
 
-    if (Objects::debug) {
+    if (Objects::getDebug()) {
         std::cout << Colors::Black << "Sending Access Token with UUID - " << m_ProfileId << Colors::End;
     }
 

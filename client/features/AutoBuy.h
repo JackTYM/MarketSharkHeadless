@@ -25,6 +25,7 @@ public:
     void HandlePacket(mc::protocol::packets::in::SetSlotPacket *packet) override;
     void HandlePacket(mc::protocol::packets::in::ChatPacket *packet) override;
     static void autoBuy(FlipItem item);
+    static void clickBed(const mc::inventory::Slot &slot);
 private:
     static void startTimeout();
     static void endTaskIfTimedOut();

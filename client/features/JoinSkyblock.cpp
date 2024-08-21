@@ -4,6 +4,8 @@
 
 #include "JoinSkyblock.h"
 
+bool JoinSkyblock::connected = false;
+
 JoinSkyblock::JoinSkyblock(mc::protocol::packets::PacketDispatcher *dispatcher)
         : mc::protocol::packets::PacketHandler(dispatcher)
 {
@@ -46,9 +48,7 @@ void JoinSkyblock::HandlePacket(mc::protocol::packets::in::LoginSuccessPacket* p
 
     std::cout << Colors::Green << "Joined Server!" << Colors::End;
 
-    std::thread delayThread(&JoinSkyblock::SendSkyblock, this);
-
-    delayThread.detach();
+    std::thread(&JoinSkyblock::SendSkyblock).detach();
 }
 
 void JoinSkyblock::HandlePacket(mc::protocol::packets::in::PlayerPositionAndLookPacket* packet) {

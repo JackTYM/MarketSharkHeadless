@@ -41,53 +41,11 @@ void ChatLogger::HandlePacket(mc::protocol::packets::in::ChatPacket *packet) {
         }
 
         if (preserveColorCodes) {
-            std::unordered_map<char, std::string> colorMap = {
-                    {'0', Colors::Black},
-                    {'1', Colors::Blue},
-                    {'2', Colors::Green},
-                    {'3', Colors::Cyan},
-                    {'4', Colors::Red},
-                    {'5', Colors::Magenta},
-                    {'6', Colors::Yellow},
-                    {'7', Colors::White},
-                    {'8', Colors::Gray},
-                    {'9', Colors::BrightBlue},
-                    {'a', Colors::BrightGreen},
-                    {'b', Colors::BrightCyan},
-                    {'c', Colors::BrightRed},
-                    {'d', Colors::BrightMagenta},
-                    {'e', Colors::BrightYellow},
-                    {'f', Colors::BrightWhite},
-                    {'l', Colors::Bold},
-                    {'n', Colors::Underline},
-                    {'r', Colors::ResetHighlight}
-            };
-
-            std::size_t pos = message.find((char) 0xA7);
-            while (pos != std::string::npos && pos + 1 < message.length()) {
-                char code = message[pos + 1];
-                auto it = colorMap.find(code);
-                if (it != colorMap.end()) {
-                    message.replace(pos, 2, it->second);
-                } else {
-                    message.erase(pos, 2);
-                }
-                pos = message.find((char) 0xA7, pos);
-            }
+            message = Colors::convertColorCodes(message);
 
             message = Colors::BrightYellowBackground + message;
         } else {
-            // Remove color codes if not preserving them
-            std::size_t pos = message.find((char) 0xA7);
-            while (pos != std::string::npos) {
-                message.erase(pos, 2);
-                pos = message.find((char) 0xA7);
-            }
-
-            // Remove any non-printable characters
-            message.erase(std::remove_if(message.begin(), message.end(), [](char c) {
-                return c < 32 || c > 126;
-            }), message.end());
+            message = Colors::stripColorCodes(message);
 
             message = Colors::Gray + message;
         }

@@ -3,6 +3,7 @@
 //
 
 #include "Failsafes.h"
+#include "JoinSkyblock.h"
 
 Failsafes::Failsafes(mc::protocol::packets::PacketDispatcher *dispatcher)
         : mc::protocol::packets::PacketHandler(dispatcher) {
@@ -15,20 +16,17 @@ void Failsafes::HandlePacket(mc::protocol::packets::in::ChatPacket *packet) {
         const nlohmann::json &root = packet->GetChatData();
 
         std::string message = mc::util::ParseChatNode(root);
-        std::size_t pos = message.find((char) 0xA7);
+        message = Colors::stripColorCodes(message);
 
-        while (pos != std::string::npos) {
-            message.erase(pos - 1, 3);
-            pos = message.find((char) 0xA7);
-        }
-
-        message.erase(std::remove_if(message.begin(), message.end(), [](char c) {
-            return c < 32 || c > 126;
-        }), message.end());
-        if (message.length() > 0) {
+        if (!message.empty()) {
             if (message.contains("You cannot view this auction!")) {
                 std::cout << "No cookie! Closing cofl." << Colors::End;
                 Objects::coflWebSocket.stop();
+            } else if (message.contains("A disconnect occurred in your connection, so you were put in the SkyBlock Lobby!")) {
+                JoinSkyblock::connected = false;
+                std::thread([]() {
+                    JoinSkyblock::SendSkyblock();
+                }).detach();
             }
         }
     }

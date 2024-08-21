@@ -32,7 +32,8 @@ enum class CommandType {
     GetMods,
     ProxyRequest,
     GetScoreboard,
-    Ignoring
+    Ignoring,
+    GetInventory
 };
 
 class CommandTypeHelper {
@@ -63,6 +64,7 @@ public:
         data[CommandType::GetMods] = "getMods";
         data[CommandType::ProxyRequest] = "proxy";
         data[CommandType::GetScoreboard] = "getScoreboard";
+        data[CommandType::GetInventory] = "getInventory";
     }
 
     static std::string toJson(CommandType type) {

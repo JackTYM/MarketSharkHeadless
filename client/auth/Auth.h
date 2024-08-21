@@ -13,8 +13,6 @@
 class Auth {
 public:
     static void setupWebsocket();
-    static void sendToWebsocket(const std::string& type, const std::string message);
-    static void sendNoLog(const std::string& type, const std::string message);
 private:
 };
 

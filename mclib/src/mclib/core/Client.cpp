@@ -45,7 +45,7 @@ void Client::Update() {
     try {
         m_Connection.CreatePacket();
     } catch (std::exception& e) {
-        //std::wcout << e.what() << Colors::End;
+        //std::wcout << e.what() << std::endl;
     }
 
     entity::EntityPtr playerEntity = m_EntityManager.GetPlayerEntity();
@@ -67,6 +67,8 @@ void Client::UpdateThread() {
         Update();
         std::this_thread::sleep_for(std::chrono::milliseconds(1));
     }
+
+    std::cout << "No Longer Connected?" << Colors::End;
 }
 
 bool Client::Login(const std::string& host, unsigned short port,
