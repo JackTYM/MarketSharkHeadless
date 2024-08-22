@@ -47,6 +47,8 @@ const std::string Colors::BrightMagentaBackground = "\033[105m";
 const std::string Colors::BrightCyanBackground = "\033[106m";
 const std::string Colors::BrightWhiteBackground = "\033[107m";
 
+const std::string Colors::None;
+
 std::string Colors::convertColorCodes(std::string message) {
     std::unordered_map<char, std::string> colorMap = {
             {'0', Colors::Black},

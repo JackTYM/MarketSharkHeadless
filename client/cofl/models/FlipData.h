@@ -24,24 +24,18 @@ public:
     std::string Uuid;
     std::string SellerUuid;
     std::string SkyblockId;
-    std::chrono::time_point<std::chrono::high_resolution_clock> AuctionStart;
-    std::chrono::time_point<std::chrono::high_resolution_clock> PurchaseAt;
+    std::string ItemName;
+    int64_t AuctionStart;
+    int64_t PurchaseAt;
 
     FlipData() {}
 
     FlipData(const std::vector<ChatMessageData>& messages, const std::string& id, int worth, int target, const SoundData& sound,
              const std::string& render, const std::string& finder, const std::string& uuid, const std::string& sellerUuid,
-             const std::string& skyblockId, const std::chrono::time_point<std::chrono::high_resolution_clock>& auctionStart,
-             const std::chrono::time_point<std::chrono::high_resolution_clock>& purchaseAt)
+             const std::string& skyblockId, std::string itemName, const int64_t& auctionStart,
+             const int64_t& purchaseAt)
             : Messages(messages), Id(id), Worth(worth), Target(target), Sound(sound), Render(render), Finder(finder),
-              Uuid(uuid), SellerUuid(sellerUuid), SkyblockId(skyblockId), AuctionStart(auctionStart), PurchaseAt(purchaseAt) {}
-
-    friend void to_json(json& j, const FlipData& f) {
-        j = json{{"messages", f.Messages}, {"id", f.Id}, {"worth", f.Worth}, {"target", f.Target}, {"sound", f.Sound},
-                 {"render", f.Render}, {"finder", f.Finder}, {"uuid", f.Uuid}, {"sellerUuid", f.SellerUuid},
-                 {"skyblockId", f.SkyblockId}, {"auctionStart", std::chrono::duration_cast<std::chrono::milliseconds>(f.AuctionStart.time_since_epoch()).count()},
-                 {"purchaseAt", std::chrono::duration_cast<std::chrono::milliseconds>(f.PurchaseAt.time_since_epoch()).count()}};
-    }
+              Uuid(uuid), SellerUuid(sellerUuid), SkyblockId(skyblockId), ItemName(itemName), AuctionStart(auctionStart), PurchaseAt(purchaseAt) {}
 
     friend void from_json(const json& j, FlipData& f) {
         if (j.find("messages") != j.end() && !j.at("messages").is_null()) {
@@ -100,27 +94,101 @@ public:
             f.SkyblockId = "";
         }
 
+        if (j.find("itemName") != j.end() && !j.at("itemName").is_null()) {
+            j.at("itemName").get_to(f.ItemName);
+        } else {
+            f.ItemName = "";
+        }
+
         if (j.find("auction") != j.end() && j.at("auction").find("start") != j.at("auction").end() && !j.at("auction").at("start").is_null()) {
             std::string auctionStartStr = j.at("auction").at("start").get<std::string>();
-            std::istringstream in{auctionStartStr};
-            std::tm tm = {};
-            in >> std::get_time(&tm, "%Y-%m-%dT%H:%M:%S");
-            if (!in.fail()) {
-                auto auctionStartTime = std::chrono::system_clock::from_time_t(std::mktime(&tm));
-                f.AuctionStart = std::chrono::time_point_cast<std::chrono::high_resolution_clock::duration>(
-                        auctionStartTime);
+
+            if (auctionStartStr.contains("Z")) {
+                std::tm tm = {};
+                std::istringstream ss(auctionStartStr);
+                ss >> std::get_time(&tm, "%Y-%m-%dT%H:%M:%S");
+                if (ss.fail()) {
+                    throw std::runtime_error("Failed to parse date time");
+                }
+
+                std::time_t time = timegm(&tm);  // Use timegm for UTC conversion
+                std::chrono::system_clock::time_point tp = std::chrono::system_clock::from_time_t(time);
+
+                // Extract the fractional seconds part
+                size_t dot_pos = auctionStartStr.find('.');
+                int milliseconds = 0;
+                if (dot_pos != std::string::npos) {
+                    std::string fractional_part = auctionStartStr.substr(dot_pos + 1);
+                    fractional_part = fractional_part.substr(0, 3); // Consider only up to 3 digits
+                    milliseconds = std::stoi(fractional_part);
+                }
+
+                f.AuctionStart = std::chrono::duration_cast<std::chrono::milliseconds>(tp.time_since_epoch()).count() + milliseconds;
+            } else {
+                // Handle case with offset, e.g., "2024-08-22T03:11:37.043+00:00"
+                std::string date_time_part = auctionStartStr.substr(0, auctionStartStr.find('+'));
+                std::string offset_part = auctionStartStr.substr(auctionStartStr.find('+'));
+
+                std::tm tm = {};
+                std::istringstream ss(date_time_part);
+                ss >> std::get_time(&tm, "%Y-%m-%dT%H:%M:%S");
+                if (ss.fail()) {
+                    throw std::runtime_error("Failed to parse date time");
+                }
+
+                std::time_t time = timegm(&tm);  // Convert to time_t in UTC
+
+                // Parse the offset and adjust time accordingly
+                int offset_hours = 0;
+                int offset_minutes = 0;
+                if (offset_part.size() >= 6) {
+                    offset_hours = std::stoi(offset_part.substr(1, 2));
+                    offset_minutes = std::stoi(offset_part.substr(4, 2));
+                    if (offset_part[0] == '-') {
+                        offset_hours = -offset_hours;
+                        offset_minutes = -offset_minutes;
+                    }
+                }
+                time -= (offset_hours * 3600 + offset_minutes * 60);  // Adjust the time by the offset
+
+                std::chrono::system_clock::time_point tp = std::chrono::system_clock::from_time_t(time);
+
+                // Extract the fractional seconds part
+                size_t dot_pos = auctionStartStr.find('.');
+                int milliseconds = 0;
+                if (dot_pos != std::string::npos) {
+                    std::string fractional_part = auctionStartStr.substr(dot_pos + 1, 3); // Consider only up to 3 digits
+                    milliseconds = std::stoi(fractional_part);
+                }
+
+                f.AuctionStart = std::chrono::duration_cast<std::chrono::milliseconds>(tp.time_since_epoch()).count() + milliseconds;
             }
         }
 
         if (j.find("purchaseAt") != j.end() && !j.at("purchaseAt").is_null()) {
             std::string auctionStartStr = j.at("purchaseAt").get<std::string>();
-            std::istringstream in{auctionStartStr};
+
             std::tm tm = {};
-            in >> std::get_time(&tm, "%Y-%m-%dT%H:%M:%S");
-            if (!in.fail()) {
-                auto auctionStartTime = std::chrono::system_clock::from_time_t(std::mktime(&tm));
-                f.PurchaseAt = std::chrono::time_point_cast<std::chrono::high_resolution_clock::duration>(auctionStartTime);
+            std::istringstream ss(auctionStartStr);
+            ss >> std::get_time(&tm, "%Y-%m-%dT%H:%M:%S");
+            if (ss.fail()) {
+                throw std::runtime_error("Failed to parse date time");
             }
+
+            // Convert to time_t in UTC
+            std::time_t time = timegm(&tm);  // Use timegm for UTC conversion
+            std::chrono::system_clock::time_point tp = std::chrono::system_clock::from_time_t(time);
+
+            // Extract the fractional seconds part
+            size_t dot_pos = auctionStartStr.find('.');
+            int milliseconds = 0;
+            if (dot_pos != std::string::npos) {
+                std::string fractional_part = auctionStartStr.substr(dot_pos + 1);
+                fractional_part = fractional_part.substr(0, 3); // Consider only up to 3 digits
+                milliseconds = std::stoi(fractional_part);
+            }
+
+            f.PurchaseAt = std::chrono::duration_cast<std::chrono::milliseconds>(tp.time_since_epoch()).count() + milliseconds;
         }
     }
 };

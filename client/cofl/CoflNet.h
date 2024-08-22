@@ -25,8 +25,10 @@
 #include "../util/FlipItem.h"
 #include "../util/Objects.h"
 #include <Colors.h>
+#include <ColorConfig.h>
 
 #include <regex>
+
 
 class CoflNet {
 public:

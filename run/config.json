@@ -1,7 +1,7 @@
 {
-    "bafSocket": true,
+    "bafSocket": false,
     "bedSpamDelay": 50,
-    "bedSpamStartDelay": 19900,
+    "bedSpamStartDelay": 19950,
     "currentUsername": "Normelt",
     "debug": true,
     "key": "b73bb1c6-aa42-453e-aa0b-ea22f8cb70dd",

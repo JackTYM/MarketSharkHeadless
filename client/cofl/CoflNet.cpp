@@ -24,14 +24,14 @@ void CoflNet::setupWebsocket() {
             case ix::WebSocketMessageType::Open:
                 break;
             case ix::WebSocketMessageType::Close:
-                std::cout << Colors::Red << "Closed!" << Colors::End;
+                std::cout << ColorConfig::Disconnection << "Closed!" << Colors::End;
                 break;
             case ix::WebSocketMessageType::Error:
-                std::cout << Colors::Red << "Error!" << Colors::End;
+                std::cout << ColorConfig::Error << "Error!" << Colors::End;
                 break;
             case ix::WebSocketMessageType::Message:
                 if (Objects::getDebug()) {
-                    std::cout << Colors::Black << "Received: " << msg->str << Colors::End;
+                    std::cout << ColorConfig::Debug << "Received: " << msg->str << Colors::End;
                 }
 
                 json j = json::parse(msg->str);
@@ -42,20 +42,20 @@ void CoflNet::setupWebsocket() {
                 JsonStringCommand cmd(type, data);
 
                 if (Objects::getDebug()) {
-                    std::cout << Colors::Black << "Cofl Handling Command=" << cmd.toString() << Colors::End;
+                    std::cout << ColorConfig::Debug << "Cofl Handling Command=" << cmd.toString() << Colors::End;
                 }
 
                 switch (cmd.getType()) {
                     case CommandType::WriteToChat: {
                         std::string text = cmd.GetAs<ChatMessageData>().getData().Text;
-                        std::cout << Colors::WhiteBackground << text
+                        std::cout << ColorConfig::CoflMessage << text
                                   << Colors::End;
 
                         // Captcha
 
                         if (text.contains("Click to get a letter captcha to prove you are not.") &&
                             !text.contains("You are currently delayed for likely being afk")) {
-                            Objects::sendRawCommand("captcha", "\"vertical\"");
+                            Objects::sendRawCommand("captcha", "vertical");
                         }
                         if (text.contains("Thanks for confirming that you are a real user")) {
                             Objects::sendToWebsocket("CaptchaSuccess", "");
@@ -72,7 +72,7 @@ void CoflNet::setupWebsocket() {
                         std::string msg = cmd.GetAs<std::string>().getData();
                         msg = Colors::stripColorCodes(msg);
                         if (Objects::getDebug()) {
-                            std::cout << Colors::Black << "Sending Message - " << msg << Colors::End;
+                            std::cout << ColorConfig::Debug << "Sending Message - " << msg << Colors::End;
                         }
 
                         if (msg.starts_with("/cofl ")) {
@@ -89,6 +89,7 @@ void CoflNet::setupWebsocket() {
                     }
                     case CommandType::ChatMessage: {
                         if (Objects::getDebug()) {
+                            std::cout << ColorConfig::Debug;
                             for (const ChatMessageData &wcmd: cmd.GetAs<std::vector<ChatMessageData>>().getData()) {
                                 std::cout << Colors::stripColorCodes(wcmd.Text);
                                 if (!wcmd.OnClick.empty()) {
@@ -108,7 +109,7 @@ void CoflNet::setupWebsocket() {
                             }
                             std::cout << Colors::End;
                         } else {
-                            std::cout << Colors::WhiteBackground;
+                            std::cout << ColorConfig::CoflMessage;
                             for (const ChatMessageData &wcmd: cmd.GetAs<std::vector<ChatMessageData>>().getData()) {
                                 std::cout << Colors::stripColorCodes(wcmd.Text);
 
@@ -251,6 +252,8 @@ void CoflNet::setupWebsocket() {
                         item.bed = false;
                         item.auctionStart = flip.AuctionStart;
                         item.purchaseAt = flip.PurchaseAt;
+                        item.displayName = flip.ItemName;
+                        item.strippedDisplayName = Colors::stripColorCodes(flip.ItemName);
 
                         try {
                             //item.auctionStart = std::chrono::milliseconds(std::stoll(flip.AuctionStart.count()));
@@ -259,7 +262,7 @@ void CoflNet::setupWebsocket() {
                         }
 
                         if (Objects::getDebug()) {
-                            std::cout << Colors::Cyan << "New Flip! Target - " << flip.Target << Colors::End;
+                            std::cout << ColorConfig::FlipInfo << "New Flip! Item Name - " << item.strippedDisplayName << " Target - " << flip.Target << Colors::End;
                         }
                         AutoOpen::OpenAuction(item);
                         break;

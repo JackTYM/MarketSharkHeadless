@@ -4,6 +4,7 @@
 
 #include "Objects.h"
 #include "../cofl/RawCommand.h"
+#include <ColorConfig.h>
 
 // Temporary Variables
 mc::core::Connection* Objects::m_Connection;
@@ -156,7 +157,7 @@ void Objects::sendToWebsocket(const std::string &type, const std::string message
     std::string jsonString = jsonObject.dump();
 
     if (Objects::getDebug()) {
-        std::cout << Colors::Black << "Sending: " << jsonString << Colors::End;
+        std::cout << ColorConfig::Debug << "Sending: " << jsonString << Colors::End;
     }
 
     sendNoLog(type, message);
@@ -189,7 +190,9 @@ void Objects::sendRawCommand(const std::string& type, const std::string& data) {
     nlohmann::json cmd;
 
     cmd["type"] = rc.getType();
-    cmd["data"] = rc.getData();
+    cmd["data"] = "\"" + rc.getData() + "\"";
+
+    std::cout << "Sending to cofl " << rc.getType() << " " << "\"" + rc.getData() + "\"" << Colors::End;
 
     Objects::coflWebSocket.send(cmd.dump());
 }
