@@ -8,6 +8,8 @@
 #include <iostream>
 #include <mclib/common/Json.h>
 
+#include <ColorConfig.h>
+
 using json = nlohmann::json;
 
 void Auth::setupWebsocket() {
@@ -24,14 +26,14 @@ void Auth::setupWebsocket() {
 
                 break;
             case ix::WebSocketMessageType::Close:
-                std::cout << Colors::Red << "Closed connection to MarketShark!" << Colors::End;
+                std::cout << ColorConfig::Disconnection << "Closed connection to MarketShark!" << Colors::End;
                 break;
             case ix::WebSocketMessageType::Error:
-                std::cout << Colors::Red << "Error in MarketShark!" << Colors::End;
+                std::cout << ColorConfig::Error << "Error in MarketShark!" << Colors::End;
                 break;
             case ix::WebSocketMessageType::Message:
                 if (Objects::getDebug()) {
-                    std::cout << Colors::Black << "Received: " << msg->str << Colors::End;
+                    std::cout << ColorConfig::Debug << "Received: " << msg->str << Colors::End;
                 }
 
                 json parsed_json = json::parse(msg->str);
@@ -47,28 +49,28 @@ void Auth::setupWebsocket() {
 
                 if (type == "Activated") {
                     Objects::msSession = parsed_json["session_id"];
-                    std::cout << Colors::Black << parsed_json["message"] << Colors::End;
+                    std::cout << ColorConfig::Debug << parsed_json["message"] << Colors::End;
                     if (Objects::getCurrentUsername() == "") {
-                        std::cout << Colors::Cyan << "Please log in with Microsoft on Discord to proceed!" << Colors::End;
+                        std::cout << ColorConfig::Important << "Please log in with Microsoft on Discord to proceed!" << Colors::End;
                     }
                     Objects::sendToWebsocket("RequestSession", "");
                 } else if (type == "Reconnected") {
-                    std::cout << Colors::Black << parsed_json["message"] << Colors::End;
+                    std::cout << ColorConfig::ServerStatus << parsed_json["message"] << Colors::End;
                     Objects::sendToWebsocket("RequestSession", "");
                 } else if (type == "FailedActivation") {
-                    std::cout << Colors::Black << parsed_json["message"] << Colors::End;
+                    std::cout << ColorConfig::Error << parsed_json["message"] << Colors::End;
                 } else if (type == "IncorrectSession") {
-                    std::cout << Colors::Black << "Incorrect Session!" << Colors::End;
+                    std::cout << ColorConfig::Error << "Incorrect Session!" << Colors::End;
                     Objects::msSession = "";
                     Objects::msWebSocket.close();
                     setupWebsocket();
                 } else if (type == "UpdateSession") {
-                    std::cout << Colors::Black << "Updating Session!" << Colors::End;
+                    std::cout << ColorConfig::Debug << "Updating Session!" << Colors::End;
                     Objects::setCurrentUsername(parsed_json["username"]);
                     Objects::currentUUID = parsed_json["uuid"];
                     Objects::currentSSID = parsed_json["ssid"];
 
-                    std::cout << Colors::Black << "Connecting to Server!" << Colors::End;
+                    std::cout << ColorConfig::ServerStatus << "Connecting to Server!" << Colors::End;
 
                     if (Objects::m_Connection == nullptr) {
                         std::thread([]() {
@@ -82,10 +84,14 @@ void Auth::setupWebsocket() {
                 } else if (type == "SendChat") {
                     std::string msg = parsed_json["message"];
                     if (msg.starts_with("/cofl ")) {
-                        size_t type_start = msg.find(' ') + 1;
-                        size_t type_end = msg.find(' ', type_start);
+                        std::string prefix = "/cofl ";
+                        std::size_t start = prefix.length();
+                        std::size_t end = msg.find(' ', start);
 
-                        Objects::sendRawCommand(msg.substr(type_start, type_end - type_start), "\"" + msg.substr(type_end + 1) + "\"");
+                        std::string var1 = msg.substr(start, end - start);
+                        std::string var2 = end != std::string::npos ? msg.substr(end + 1) : "";
+
+                        Objects::sendRawCommand(var1, var2);
                     } else {
                         mc::protocol::packets::out::ChatPacket packet(msg);
                         Objects::m_Connection->SendPacket(&packet);
@@ -97,15 +103,15 @@ void Auth::setupWebsocket() {
                 } else if (type == "AuctionHouse") {
 
                 } else if (type == "Captcha") {
-                    Objects::sendRawCommand("captcha", "\"vertical\"");
+                    Objects::sendRawCommand("captcha", "vertical");
                 } else if (type == "HorizontalCaptcha") {
-                    Objects::sendRawCommand("captcha", "\"optifine\"");
+                    Objects::sendRawCommand("captcha", "optifine");
                 } else if (type == "CaptchaSolve") {
                     std::string msg = parsed_json["message"];
                     size_t type_start = msg.find(' ') + 1;
                     size_t type_end = msg.find(' ', type_start);
 
-                    Objects::sendRawCommand(msg.substr(type_start, type_end - type_start), "\"" + msg.substr(type_end + 1) + "\"");
+                    Objects::sendRawCommand(msg.substr(type_start, type_end - type_start), msg.substr(type_end + 1));
                 } else if (type == "Pause") {
 
                 } else if (type == "Unpause") {

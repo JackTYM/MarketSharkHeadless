@@ -43,16 +43,10 @@ nlohmann::json FlipItem::serialize() const {
     jsonObject["buyPrice"] = this->buyPrice;
     jsonObject["sellPrice"] = this->sellPrice;
     jsonObject["coflWorth"] = this->coflWorth;
-
-    // Convert std::chrono::time_point to Unix timestamp in milliseconds
-    auto startTimeMillis = std::chrono::duration_cast<std::chrono::milliseconds>(this->startTime.time_since_epoch()).count();
-    auto buyTimeMillis = std::chrono::duration_cast<std::chrono::milliseconds>(this->buyTime.time_since_epoch()).count();
-    auto auctionStartMillis = std::chrono::duration_cast<std::chrono::milliseconds>(this->auctionStart.time_since_epoch()).count();
-
-    jsonObject["startTime"] = startTimeMillis;
-    jsonObject["buyTime"] = buyTimeMillis;
+    jsonObject["startTime"] = this->startTime;
+    jsonObject["buyTime"] = this->buyTime;
     jsonObject["buySpeed"] = this->buySpeed;
-    jsonObject["auctionStart"] = auctionStartMillis;
+    jsonObject["auctionStart"] = this->auctionStart;
     jsonObject["auctionId"] = this->auctionId;
     jsonObject["username"] = Objects::getCurrentUsername();
     jsonObject["sellerUuid"] = this->sellerUuid;

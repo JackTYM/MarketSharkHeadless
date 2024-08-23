@@ -29,11 +29,11 @@ public:
     long buyPrice = 0;
     long coflWorth = 0;
     long sellPrice = 0;
-    std::chrono::time_point<std::chrono::high_resolution_clock> startTime;
-    std::chrono::time_point<std::chrono::high_resolution_clock> buyTime;
+    int64_t startTime;
+    int64_t buyTime;
     int buySpeed = 0;
-    std::chrono::time_point<std::chrono::high_resolution_clock> auctionStart;
-    std::chrono::time_point<std::chrono::high_resolution_clock> purchaseAt;
+    int64_t auctionStart;
+    int64_t purchaseAt;
     std::string auctionId;
     std::string username;
     std::string sellerUuid;

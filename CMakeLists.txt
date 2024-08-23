@@ -125,6 +125,8 @@ add_executable(client
 		client/util/Objects.h
 		client/util/Colors.h
 		client/util/Colors.cpp
+		client/util/ColorConfig.h
+		client/util/ColorConfig.cpp
 )
 
 # Link the static mclib library with the client executable

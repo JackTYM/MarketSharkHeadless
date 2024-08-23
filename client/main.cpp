@@ -7,12 +7,17 @@
 #endif
 
 #include <Colors.h>
+#include <ColorConfig.h>
 
 int main(void) {
     Objects::loadConfig();
     Objects::saveConfig();
+
+    ColorConfig::loadColors();
+    ColorConfig::saveColors();
+
     if (Objects::getKey() == "" ) {
-        std::cout << Colors::Red << "Please put your MarketShark key into config.json!" << Colors::End;
+        std::cout << ColorConfig::Error << "Please put your MarketShark key into config.json!" << Colors::End;
         return 0;
     }
     Auth::setupWebsocket();

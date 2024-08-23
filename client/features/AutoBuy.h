@@ -17,6 +17,7 @@
 #include <thread>
 #include <chrono>
 #include <Colors.h>
+#include <ColorConfig.h>
 
 class AutoBuy : public mc::protocol::packets::PacketHandler {
 public:

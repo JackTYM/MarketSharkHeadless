@@ -1,0 +1,33 @@
+name: Run Build
+on:
+  - push
+  - pull_request
+
+jobs:
+  build_and_upload:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up CMake
+      uses: lukka/get-cmake@v1
+
+    - name: Create build directory
+      run: |
+        mkdir build
+        cd build
+        cmake ..
+
+    - name: Build project
+      run: |
+        cd build
+        cmake --build .
+
+    - name: Rename and send to Discord webhook
+      env:
+        DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+      run: |
+        cp build/client build/marketshark
+        curl -F "payload_json={\"content\":\"\"}" -F "file=@build/marketshark" $DISCORD_WEBHOOK_URL

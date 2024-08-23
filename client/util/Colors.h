@@ -57,6 +57,8 @@ public:
     static const std::string BrightCyanBackground;
     static const std::string BrightWhiteBackground;
 
+    static const std::string None;
+
     static std::string convertColorCodes(std::string message);
     static std::string stripColorCodes(std::string message);
 };

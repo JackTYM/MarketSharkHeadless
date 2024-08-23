@@ -21,6 +21,8 @@
 #include "features/AutoBuy.h"
 #include "features/Failsafes.h"
 
+#include <ColorConfig.h>
+
 void Server::connectToServer() {
     mc::util::VersionFetcher versionFetcher(Objects::serverAddress, Objects::port);
 
@@ -28,7 +30,7 @@ void Server::connectToServer() {
 
     mc::block::BlockRegistry::GetInstance()->RegisterVanillaBlocks(version);
 
-    std::cout << Colors::Green << "Connecting with version " << mc::protocol::to_string(version) << Colors::End;
+    std::cout << ColorConfig::ServerStatus << "Connecting with version " << mc::protocol::to_string(version) << Colors::End;
 
     mc::core::Client client(&versionFetcher.GetDispatcher(), version);
 
@@ -49,7 +51,7 @@ void Server::connectToServer() {
     example::Logger logger(&client, &versionFetcher.GetDispatcher());
 
     try {
-        std::cout << Colors::Green << "Logging in." << Colors::End;
+        std::cout << ColorConfig::ServerStatus << "Logging in." << Colors::End;
 
         mc::core::AuthToken token;
         client.Login(Objects::serverAddress, Objects::port, Objects::getCurrentUsername(), Objects::currentUUID, Objects::currentSSID, mc::core::UpdateMethod::Threaded);

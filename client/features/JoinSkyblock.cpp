@@ -3,6 +3,7 @@
 //
 
 #include "JoinSkyblock.h"
+#include <ColorConfig.h>
 
 bool JoinSkyblock::connected = false;
 
@@ -20,7 +21,7 @@ void JoinSkyblock::SendIs() {
     std::this_thread::sleep_for(std::chrono::seconds(5));
 
     if (connected) {
-        std::cout << Colors::Green << "Joining Island!" << Colors::End;
+        std::cout << ColorConfig::ServerStatus << "Joining Island!" << Colors::End;
 
         mc::protocol::packets::out::ChatPacket packet("/is");
         Objects::m_Connection->SendPacket(&packet);
@@ -34,7 +35,7 @@ void JoinSkyblock::SendSkyblock() {
     std::this_thread::sleep_for(std::chrono::seconds(10));
 
     if (connected) {
-        std::cout << Colors::Green << "Joining Skyblock!" << Colors::End;
+        std::cout << ColorConfig::ServerStatus << "Joining Skyblock!" << Colors::End;
 
         mc::protocol::packets::out::ChatPacket packet("/skyblock");
         Objects::m_Connection->SendPacket(&packet);
@@ -46,7 +47,7 @@ void JoinSkyblock::SendSkyblock() {
 void JoinSkyblock::HandlePacket(mc::protocol::packets::in::LoginSuccessPacket* packet) {
     connected = true;
 
-    std::cout << Colors::Green << "Joined Server!" << Colors::End;
+    std::cout << ColorConfig::ServerStatus << "Joined Server!" << Colors::End;
 
     std::thread(&JoinSkyblock::SendSkyblock).detach();
 }

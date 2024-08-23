@@ -4,6 +4,7 @@
 
 #include <codecvt>
 #include "ChatLogger.h"
+#include <ColorConfig.h>
 
 ChatLogger::ChatLogger(mc::protocol::packets::PacketDispatcher *dispatcher)
         : mc::protocol::packets::PacketHandler(dispatcher) {
@@ -15,7 +16,7 @@ ChatLogger::ChatLogger(mc::protocol::packets::PacketDispatcher *dispatcher)
 
 void ChatLogger::HandlePacket(mc::protocol::packets::in::DisconnectPacket *packet) {
     std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
-    std::cout << Colors::Red << "Disconnected! " << converter.to_bytes(packet->GetReason()) << Colors::End;
+    std::cout << ColorConfig::Disconnection << "Disconnected! " << converter.to_bytes(packet->GetReason()) << Colors::End;
 }
 
 void ChatLogger::HandlePacket(mc::protocol::packets::in::ChatPacket *packet) {
@@ -43,11 +44,11 @@ void ChatLogger::HandlePacket(mc::protocol::packets::in::ChatPacket *packet) {
         if (preserveColorCodes) {
             message = Colors::convertColorCodes(message);
 
-            message = Colors::BrightYellowBackground + message;
+            message = ColorConfig::Important + message;
         } else {
             message = Colors::stripColorCodes(message);
 
-            message = Colors::Gray + message;
+            message = ColorConfig::ChatMessage + message;
         }
 
         if (!message.empty()) {
