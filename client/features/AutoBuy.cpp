@@ -126,7 +126,18 @@ void AutoBuy::HandlePacket(mc::protocol::packets::in::SetSlotPacket *packet) {
                         item.bedClicking = true;
 
                         std::thread([slot, delay]() {
+                            auto now = std::chrono::system_clock::now();
+                            auto milliseconds_since_epoch = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()).count();
+
+                            std::cout << "Pre Delay " << milliseconds_since_epoch << std::endl;
+
                             std::this_thread::sleep_for(std::chrono::milliseconds(delay));
+
+
+                            auto now2 = std::chrono::system_clock::now();
+                            auto milliseconds_since_epoch2 = std::chrono::duration_cast<std::chrono::milliseconds>(now2.time_since_epoch()).count();
+
+                            std::cout << "Post Delay " << milliseconds_since_epoch2 << std::endl;
 
                             AutoBuy::clickBed(slot);
 
@@ -266,6 +277,21 @@ void AutoBuy::HandlePacket(mc::protocol::packets::in::SetSlotPacket *packet) {
                 }
             }
         } else if (packet->GetWindowId() == confirmWindowId) {
+
+            auto tagCompound = std::make_shared<mc::nbt::TagCompound>();
+
+            auto overrid = std::make_shared<mc::nbt::TagByte>("overrideMeta", 1);
+
+            auto display = std::make_shared<mc::nbt::TagCompound>();
+            auto name = std::make_shared<mc::nbt::TagString>("Name", "§aConfirm");
+            display->AddItem(name->GetType(), name);
+
+            tagCompound->AddItem(display->GetType(), display);
+
+            mc::inventory::Slot fakeConfim = mc::inventory::Slot(159, 1, 13);
+
+
+            return;
             if (packet->GetSlotIndex() == 11) {
                 if (itemId == 159) {
                     Objects::m_Connection->SendPacket(
