@@ -12,6 +12,7 @@ int buyWindowId = 0;
 int confirmWindowId = 0;
 mc::inventory::Slot exampleConfirmItem;
 std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
+std::wstring priceStr;
 
 FlipItem item;
 
@@ -124,14 +125,16 @@ void AutoBuy::HandlePacket(mc::protocol::packets::in::SetSlotPacket *packet) {
                         auto delay = bedTime - now;
 
                         std::cout << "Current Time " << now << std::endl;
-                        std::cout << ColorConfig::FlipInfo << "Spamming item " << item.strippedDisplayName << " in " << delay
+                        std::cout << ColorConfig::FlipInfo << "Spamming item " << item.strippedDisplayName << " in "
+                                  << delay
                                   << "ms" << Colors::End;
 
                         item.bedClicking = true;
 
                         std::thread([slot, delay]() {
                             auto now = std::chrono::system_clock::now();
-                            auto milliseconds_since_epoch = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()).count();
+                            auto milliseconds_since_epoch = std::chrono::duration_cast<std::chrono::milliseconds>(
+                                    now.time_since_epoch()).count();
 
                             std::cout << "Pre Delay " << milliseconds_since_epoch << std::endl;
 
@@ -139,7 +142,8 @@ void AutoBuy::HandlePacket(mc::protocol::packets::in::SetSlotPacket *packet) {
 
 
                             auto now2 = std::chrono::system_clock::now();
-                            auto milliseconds_since_epoch2 = std::chrono::duration_cast<std::chrono::milliseconds>(now2.time_since_epoch()).count();
+                            auto milliseconds_since_epoch2 = std::chrono::duration_cast<std::chrono::milliseconds>(
+                                    now2.time_since_epoch()).count();
 
                             std::cout << "Post Delay " << milliseconds_since_epoch2 << std::endl;
 
@@ -161,6 +165,10 @@ void AutoBuy::HandlePacket(mc::protocol::packets::in::SetSlotPacket *packet) {
                             }).detach();
                         }).detach();
                     } else if (itemId == 371 || (itemName == L"Buy Item Right Now" && itemId != 394)) {
+                        priceStr = std::dynamic_pointer_cast<mc::nbt::TagString>(
+                                display->GetTag<mc::nbt::TagList>(L"Lore")->GetList()[1])->GetValue();
+                        std::cout << "Price Str " << converter.to_bytes(priceStr) << std::endl;
+
                         std::cout << ColorConfig::FlipInfo << "Opened Nugget" << Colors::End;
                         Objects::m_Connection->SendPacket(
                                 mc::protocol::packets::out::ClickWindowPacket(packet->GetWindowId(),
@@ -244,7 +252,8 @@ void AutoBuy::HandlePacket(mc::protocol::packets::in::SetSlotPacket *packet) {
                             }
                         }*/
                     } else if (itemId == 394) {
-                        std::cout << ColorConfig::Important << "Not Enough Coins (Poisonous Potato)! Closing Flip" << Colors::End;
+                        std::cout << ColorConfig::Important << "Not Enough Coins (Poisonous Potato)! Closing Flip"
+                                  << Colors::End;
                         Objects::m_Connection->SendPacket(
                                 mc::protocol::packets::out::CloseWindowPacket(Objects::openWindowId));
                         item.closed = true;
@@ -260,7 +269,8 @@ void AutoBuy::HandlePacket(mc::protocol::packets::in::SetSlotPacket *packet) {
 
                         QueueManager::endCurrentTask("AutoBuy");
                     } else if (itemId == 166) {
-                        std::cout << ColorConfig::FlipInfo << "Auction Cancelled (Barrier)! Closing Flip" << Colors::End;
+                        std::cout << ColorConfig::FlipInfo << "Auction Cancelled (Barrier)! Closing Flip"
+                                  << Colors::End;
                         Objects::m_Connection->SendPacket(
                                 mc::protocol::packets::out::CloseWindowPacket(Objects::openWindowId));
                         item.closed = true;
@@ -284,22 +294,33 @@ void AutoBuy::HandlePacket(mc::protocol::packets::in::SetSlotPacket *packet) {
                 }
             }
         } else if (packet->GetWindowId() == confirmWindowId) {
-
-            auto tagCompound = std::make_shared<mc::nbt::TagCompound>();
-
-            auto overrid = std::make_shared<mc::nbt::TagByte>("overrideMeta", 1);
-
-            auto display = std::make_shared<mc::nbt::TagCompound>();
-            auto name = std::make_shared<mc::nbt::TagString>("Name", "§aConfirm");
-            display->AddItem(name->GetType(), name);
-
-            tagCompound->AddItem(display->GetType(), display);
-
-            mc::inventory::Slot fakeConfim = mc::inventory::Slot(159, 1, 13);
-
-
-            return;
             if (packet->GetSlotIndex() == 11) {
+                std::cout << "Confirm SKipping " << std::endl;
+                mc::nbt::NBT fakeNbt;
+
+                auto overrideMeta = std::make_shared<mc::nbt::TagByte>("overrideMeta", 1);
+                fakeNbt.AddItem(overrideMeta->GetType(), overrideMeta);
+
+                auto fakeDisplay = std::make_shared<mc::nbt::TagCompound>(L"display");
+
+                auto loreList = std::make_shared<mc::nbt::TagList>(L"Lore", mc::nbt::TagType::String);
+                loreList->AddItem(std::make_shared<mc::nbt::TagString>("", "§7Purchasing: " + item.displayName));
+                loreList->AddItem(std::make_shared<mc::nbt::TagString>(L"", L"§7Cost: " + priceStr.substr(9)));
+
+                fakeDisplay->AddItem(mc::nbt::TagType::String, loreList);
+                fakeDisplay->AddItem(mc::nbt::TagType::String,
+                                     std::make_shared<mc::nbt::TagString>(L"Name", L"§aConfirm"));
+
+                fakeNbt.SetTag(L"display", fakeDisplay);
+
+                mc::inventory::Slot fakeConfirm = mc::inventory::Slot(159, 1, 13, fakeNbt);
+
+                Objects::m_Connection->SendPacket(
+                        mc::protocol::packets::out::ClickWindowPacket(packet->GetWindowId(),
+                                                                      11, 0,
+                                                                      Objects::actionNumber++, 0, fakeConfirm));
+
+                return;
                 if (itemId == 159) {
                     Objects::m_Connection->SendPacket(
                             mc::protocol::packets::out::ClickWindowPacket(packet->GetWindowId(),
@@ -372,7 +393,8 @@ void AutoBuy::HandlePacket(mc::protocol::packets::in::ChatPacket *packet) {
                 item.closed = true;
                 Objects::openWindowId = 0;
             } else if (message.contains("You purchased")) {
-                std::cout << ColorConfig::Won << "Won " << Colors::convertColorCodes(item.displayName) << ColorConfig::Won
+                std::cout << ColorConfig::Won << "Won " << Colors::convertColorCodes(item.displayName)
+                          << ColorConfig::Won
                           << " in " << ColorConfig::BuySpeed << item.buySpeed << "ms" << ColorConfig::Won
                           << " with a (no fee) profit of " << ColorConfig::Coins << (item.coflWorth - item.buyPrice)
                           << ColorConfig::Won << " coins" << Colors::End;

@@ -6,6 +6,7 @@
 #include <mclib/nbt/Tag.h>
 
 #include <string>
+#include <utility>
 #include <vector>
 #include <memory>
 #include <map>
@@ -33,6 +34,14 @@ public:
     bool HasData() const { return m_Root.begin() != m_Root.end(); }
 
     void SetRoot(const TagCompound& compound) { m_Root = compound; }
+
+    void AddItem(TagType type, TagPtr item) {
+        m_Root.AddItem(type, std::move(item));
+    }
+
+    void SetTag(const std::wstring& tagName, TagPtr tag) {
+        m_Root.SetTag(tagName, std::move(tag));
+    }
 
     template <typename T>
     T* GetTag(const std::wstring& tagName) const {
