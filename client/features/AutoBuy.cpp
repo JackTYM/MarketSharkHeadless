@@ -296,10 +296,10 @@ void AutoBuy::HandlePacket(mc::protocol::packets::in::SetSlotPacket *packet) {
         } else if (packet->GetWindowId() == confirmWindowId) {
             if (packet->GetSlotIndex() == 11) {
                 std::cout << "Confirm SKipping " << std::endl;
-                mc::nbt::NBT fakeNbt;
+                mc::inventory::Slot fakeConfirm = mc::inventory::Slot(159, 1, 13);
 
                 auto overrideMeta = std::make_shared<mc::nbt::TagByte>("overrideMeta", 1);
-                fakeNbt.AddItem(overrideMeta->GetType(), overrideMeta);
+                fakeConfirm.AddItem(overrideMeta->GetType(), overrideMeta);
 
                 auto fakeDisplay = std::make_shared<mc::nbt::TagCompound>(L"display");
 
@@ -311,9 +311,8 @@ void AutoBuy::HandlePacket(mc::protocol::packets::in::SetSlotPacket *packet) {
                 fakeDisplay->AddItem(mc::nbt::TagType::String,
                                      std::make_shared<mc::nbt::TagString>(L"Name", L"§aConfirm"));
 
-                fakeNbt.SetTag(L"display", fakeDisplay);
+                fakeConfirm.SetTag(L"display", fakeDisplay);
 
-                mc::inventory::Slot fakeConfirm = mc::inventory::Slot(159, 1, 13, fakeNbt);
 
                 Objects::m_Connection->SendPacket(
                         mc::protocol::packets::out::ClickWindowPacket(packet->GetWindowId(),

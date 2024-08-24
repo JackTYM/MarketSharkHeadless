@@ -39,6 +39,14 @@ public:
     s16 GetItemDamage() const noexcept { return m_ItemDamage; }
     const nbt::NBT& GetNBT() const noexcept { return m_NBT; }
 
+    void AddItem(nbt::TagType type, nbt::TagPtr item) {
+        m_NBT.AddItem(type, std::move(item));
+    }
+
+    void SetTag(const std::wstring& tagName, nbt::TagPtr tag) {
+        m_NBT.SetTag(tagName, std::move(tag));
+    }
+
     void SetNBT(const nbt::NBT& nbt) {
         m_NBT = nbt;  // Assign the new root NBT data
     }
