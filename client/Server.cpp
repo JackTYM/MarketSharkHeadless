@@ -30,7 +30,7 @@ void Server::connectToServer() {
 
     mc::block::BlockRegistry::GetInstance()->RegisterVanillaBlocks(version);
 
-    std::cout << ColorConfig::ServerStatus << "Connecting with version " << mc::protocol::to_string(version) << Colors::End;
+    Logger::log(ColorConfig::ServerStatus + "Connecting with version " + mc::protocol::to_string(version) + Colors::End);
 
     mc::core::Client client(&versionFetcher.GetDispatcher(), version);
 
@@ -49,15 +49,13 @@ void Server::connectToServer() {
     Failsafes failsafes(&versionFetcher.GetDispatcher());
     Stats stats(&versionFetcher.GetDispatcher());
 
-    example::Logger logger(&client, &versionFetcher.GetDispatcher());
-
     try {
-        std::cout << ColorConfig::ServerStatus << "Logging in." << Colors::End;
+        Logger::log(ColorConfig::ServerStatus + "Logging in." + Colors::End);
 
         mc::core::AuthToken token;
         client.Login(Objects::serverAddress, Objects::port, Objects::getCurrentUsername(), Objects::currentUUID, Objects::currentSSID, mc::core::UpdateMethod::Threaded);
     } catch (std::exception& e) {
-        std::cout << e.what() << Colors::End;
+        Logger::log(e.what() + Colors::End);
         return;
     }
 

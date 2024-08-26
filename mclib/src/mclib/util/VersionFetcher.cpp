@@ -40,7 +40,7 @@ namespace mc {
                 if (protocolNode.is_number_integer()) {
                     s32 protocol = protocolNode.get<int>();
 
-                    std::cout << "Server Protocol Version - " << protocol << Colors::End;
+                    Logger::log("Server Protocol Version - " + protocol + Colors::End);
 
                     auto iter = mapping.lower_bound(protocol);
                     if (iter != mapping.end()) {

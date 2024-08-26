@@ -47,7 +47,7 @@ Yggdrasil& Yggdrasil::operator=(const Yggdrasil& other) {
 bool Yggdrasil::JoinServer(const std::wstring& serverId, const std::string& sharedSecret, const std::string& publicKey, const std::string& access_token, const std::string& uuid) {
     m_AccessToken = access_token;
     m_ProfileId = uuid;
-    std::cout << ColorConfig::ServerStatus << "Joining Server" << Colors::End;
+    Logger::log(ColorConfig::ServerStatus + "Joining Server" + Colors::End);
     SHA_CTX shaCtx;
     SHA1_Init(&shaCtx);
 
@@ -71,7 +71,7 @@ bool Yggdrasil::JoinServer(const std::string& serverHash) {
     json data;
 
     if (Objects::getDebug()) {
-        std::cout << ColorConfig::Debug << "Sending Access Token with UUID - " << m_ProfileId << Colors::End;
+        Logger::log(ColorConfig::Debug + "Sending Access Token with UUID - " + m_ProfileId + Colors::End);
     }
 
     data["accessToken"] = m_AccessToken;

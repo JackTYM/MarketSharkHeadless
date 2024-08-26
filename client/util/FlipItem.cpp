@@ -30,7 +30,7 @@ void FlipItem::setSlot(mc::inventory::Slot* slot) {
         this->uuid = getUuid(this->slot);
         flipMap[uuid] = *this;
     } catch (const std::exception& e) {
-        //BugLogger::logError(e.what());
+        //BugLogger::logError(e.what()));
     }
 }
 
@@ -90,7 +90,7 @@ void FlipItem::saveFlipData() {
             try {
                 jsonArray.append(item.serialize());
             } catch (const std::exception& e) {
-                BugLogger::logError(e.what());
+                BugLogger::logError(e.what()));
             }
         }
     }
@@ -100,14 +100,14 @@ void FlipItem::saveFlipData() {
         file << jsonArray.toStyledString();
         file.close();
     } else {
-        BugLogger::logError("Failed to open file for writing");
+        BugLogger::logError("Failed to open file for writing"));
     }*/
 }
 
 void FlipItem::loadFlipData() {
     /*std::ifstream file("config/flipitems.json");
     if (!file.is_open()) {
-        BugLogger::logError("Failed to open file for reading");
+        BugLogger::logError("Failed to open file for reading"));
         return;
     }
 
@@ -145,7 +145,7 @@ void FlipItem::loadFlipData() {
                 flipItems.erase(std::remove(flipItems.begin(), flipItems.end(), item), flipItems.end());
             }
         } catch (const std::exception& e) {
-            BugLogger::logError(e.what());
+            BugLogger::logError(e.what()));
         }
     }*/
 }

@@ -24,14 +24,14 @@ void CoflNet::setupWebsocket() {
             case ix::WebSocketMessageType::Open:
                 break;
             case ix::WebSocketMessageType::Close:
-                std::cout << ColorConfig::Disconnection << "Closed!" << Colors::End;
+                Logger::log(ColorConfig::Disconnection + "Closed!" + Colors::End);
                 break;
             case ix::WebSocketMessageType::Error:
-                std::cout << ColorConfig::Error << "Error!" << Colors::End;
+                Logger::log(ColorConfig::Error + "Error!" + Colors::End);
                 break;
             case ix::WebSocketMessageType::Message:
                 if (Objects::getDebug()) {
-                    std::cout << ColorConfig::Debug << "Received: " << msg->str << Colors::End;
+                    Logger::log(ColorConfig::Debug + "Received: " + msg->str + Colors::End);
                 }
 
                 json j = json::parse(msg->str);
@@ -42,14 +42,13 @@ void CoflNet::setupWebsocket() {
                 JsonStringCommand cmd(type, data);
 
                 if (Objects::getDebug()) {
-                    std::cout << ColorConfig::Debug << "Cofl Handling Command=" << cmd.toString() << Colors::End;
+                    Logger::log(ColorConfig::Debug + "Cofl Handling Command=" + cmd.toString() + Colors::End);
                 }
 
                 switch (cmd.getType()) {
                     case CommandType::WriteToChat: {
                         std::string text = cmd.GetAs<ChatMessageData>().getData().Text;
-                        std::cout << ColorConfig::CoflMessage << text
-                                  << Colors::End;
+                        Logger::log(ColorConfig::CoflMessage + text + Colors::End);
 
                         // Captcha
 
@@ -77,7 +76,7 @@ void CoflNet::setupWebsocket() {
                         std::string msg = cmd.GetAs<std::string>().getData();
                         msg = Colors::stripColorCodes(msg);
                         if (Objects::getDebug()) {
-                            std::cout << ColorConfig::Debug << "Sending Message - " << msg << Colors::End;
+                            Logger::log(ColorConfig::Debug + "Sending Message - " + msg + Colors::End);
                         }
 
                         if (msg.starts_with("/cofl ")) {
@@ -94,20 +93,20 @@ void CoflNet::setupWebsocket() {
                     }
                     case CommandType::ChatMessage: {
                         if (Objects::getDebug()) {
-                            std::cout << ColorConfig::Debug;
+                            Logger::log(ColorConfig::Debug);
                         } else {
-                            std::cout << ColorConfig::CoflMessage;
+                            Logger::log(ColorConfig::CoflMessage);
                         }
 
                         for (const ChatMessageData &wcmd: cmd.GetAs<std::vector<ChatMessageData>>().getData()) {
-                            std::cout << Colors::stripColorCodes(wcmd.Text);
+                            Logger::log(Colors::stripColorCodes(wcmd.Text));
 
                             if (Objects::getDebug()) {
                                 if (!wcmd.OnClick.empty()) {
-                                    std::cout << " onClick: " << wcmd.OnClick;
+                                    Logger::log(" onClick: " + wcmd.OnClick);
                                 }
                                 if (!wcmd.Hover.empty()) {
-                                    std::cout << " hover: " << wcmd.Hover;
+                                    Logger::log(" hover: " + wcmd.Hover);
                                 }
                             }
 
@@ -115,7 +114,7 @@ void CoflNet::setupWebsocket() {
                                 Objects::sendRawCommand("flip", "true");
                             } else if (wcmd.Text.contains("so we can load your settings")) {
                                 if (!wcmd.OnClick.empty()) {
-                                    std::cout << " onClick: " << wcmd.OnClick;
+                                    Logger::log(" onClick: " + wcmd.OnClick);
                                 }
                             } else if (wcmd.Text.contains("Your settings could not be loaded, please relink again")) {
                                 Objects::sendRawCommand("logout", "");
@@ -125,7 +124,7 @@ void CoflNet::setupWebsocket() {
                                 Stats::coflPing = Colors::stripColorCodes(wcmd.Text).substr(42);
                             }
                         }
-                        std::cout << Colors::End;
+                        Logger::log(Colors::End);
 
                         // Captcha
                         std::string strippedData = data.substr(1, data.length() - 2);
@@ -162,7 +161,7 @@ void CoflNet::setupWebsocket() {
                                 line = Objects::replaceAll(line, "\302", "");
 
                                 line = Objects::replaceAll(line, "\\n", "\n");
-                                std::cout << line;
+                                Logger::log(line);
 
                                 captchaString += line;
 
@@ -201,7 +200,7 @@ void CoflNet::setupWebsocket() {
                                 }
                             }
 
-                            //std::cout << "Column Clicks Length " << clickColumns.size() << Colors::End;
+                            //Logger::log("Column Clicks Length " + clickColumns.size() + Colors::End);
 
                             std::map<std::string, int> characters;
 
@@ -265,8 +264,7 @@ void CoflNet::setupWebsocket() {
                         }
 
                         if (Objects::getDebug()) {
-                            std::cout << ColorConfig::FlipInfo << "New Flip! Item Name - " << item.strippedDisplayName
-                                      << " Target - " << flip.Target << Colors::End;
+                            Logger::log(ColorConfig::FlipInfo + "New Flip! Item Name - " + item.strippedDisplayName + " Target - " + std::to_string(flip.Target) + Colors::End);
                         }
                         AutoOpen::OpenAuction(item);
                         break;

@@ -110,9 +110,9 @@ public:
 
         // DEBUG
         /*if (status == 0) {
-            std::cout << "Sending Packet - " << demangled_name <<  Colors::End;
+            Logger::log("Sending Packet - " + demangled_name +  Colors::End);
         } else {
-            std::cout << "Sending Packet - " << typeid(packet).name() << Colors::End;
+            Logger::log("Sending Packet - " + typeid(packet).name() + Colors::End);
         }*/
         m_Socket->Send(encrypted);
     }

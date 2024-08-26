@@ -8,6 +8,7 @@
 #include <string>
 #include <regex>
 #include <unordered_map>
+#include "Logger.h"
 
 class Colors {
 public:

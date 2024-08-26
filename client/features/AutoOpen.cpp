@@ -10,7 +10,7 @@ void AutoOpen::OpenAuction(FlipItem item) {
             Objects::m_Connection->SendPacket(mc::protocol::packets::out::CloseWindowPacket(Objects::openWindowId));
             AutoBuy::autoBuy(item);
             Objects::m_Connection->SendPacket(mc::protocol::packets::out::ChatPacket("/viewauction " + item.auctionId));
-            std::cout << ColorConfig::FlipInfo << "Opening " << item.auctionId << " Item Name - " << item.strippedDisplayName << " Target " << item.coflWorth << Colors::End;
+            Logger::log(ColorConfig::FlipInfo + "Opening " + item.auctionId + " Item Name - " + item.strippedDisplayName + " Target " + std::to_string(item.coflWorth) + Colors::End);
         });
     }
 }

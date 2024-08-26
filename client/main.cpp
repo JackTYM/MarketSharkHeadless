@@ -16,8 +16,10 @@ int main(void) {
     ColorConfig::loadColors();
     ColorConfig::saveColors();
 
+    Logger::initialize();
+
     if (Objects::getKey() == "" ) {
-        std::cout << ColorConfig::Error << "Please put your MarketShark key into config.json!" << Colors::End;
+        Logger::log(ColorConfig::Error + "Please put your MarketShark key into config.json!" + Colors::End);
         return 0;
     }
     Auth::setupWebsocket();

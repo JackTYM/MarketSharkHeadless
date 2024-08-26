@@ -20,7 +20,7 @@ void Failsafes::HandlePacket(mc::protocol::packets::in::ChatPacket *packet) {
 
         if (!message.empty()) {
             if (message.contains("You cannot view this auction!")) {
-                std::cout << "No cookie! Closing cofl." << Colors::End;
+                Logger::log("No cookie! Closing cofl." + Colors::End);
                 Objects::coflWebSocket.stop();
             } else if (message.contains(
                     "A disconnect occurred in your connection, so you were put in the SkyBlock Lobby!")) {
@@ -31,7 +31,7 @@ void Failsafes::HandlePacket(mc::protocol::packets::in::ChatPacket *packet) {
             } else if (message.contains("Your connection timed out")) {
                 JoinSkyblock::connected = false;
             std::thread([]() {
-                std::cout << ColorConfig::ServerStatus << "Going to Lobby!" << Colors::End;
+                Logger::log(ColorConfig::ServerStatus + "Going to Lobby!" + Colors::End);
 
                 mc::protocol::packets::out::ChatPacket packet("/l");
                 JoinSkyblock::SendSkyblock();

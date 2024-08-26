@@ -18,7 +18,7 @@ ChatLogger::ChatLogger(mc::protocol::packets::PacketDispatcher *dispatcher)
 
 void ChatLogger::HandlePacket(mc::protocol::packets::in::DisconnectPacket *packet) {
     std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
-    std::cout << ColorConfig::Disconnection << "Disconnected! " << converter.to_bytes(packet->GetReason()) << Colors::End;
+    Logger::log(ColorConfig::Disconnection + "Disconnected! " + converter.to_bytes(packet->GetReason()) + Colors::End);
 }
 
 void ChatLogger::HandlePacket(mc::protocol::packets::in::ChatPacket *packet) {
@@ -56,7 +56,7 @@ void ChatLogger::HandlePacket(mc::protocol::packets::in::ChatPacket *packet) {
         }
 
         if (!message.empty()) {
-            std::cout << message << Colors::End;
+            Logger::log(message + Colors::End);
         }
     }
 }

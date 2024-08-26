@@ -21,7 +21,7 @@ void JoinSkyblock::SendIs() {
     std::this_thread::sleep_for(std::chrono::seconds(5));
 
     if (connected) {
-        std::cout << ColorConfig::ServerStatus << "Joining Island!" << Colors::End;
+        Logger::log(ColorConfig::ServerStatus + "Joining Island!" + Colors::End);
 
         mc::protocol::packets::out::ChatPacket packet("/is");
         Objects::m_Connection->SendPacket(&packet);
@@ -35,7 +35,7 @@ void JoinSkyblock::SendSkyblock() {
     std::this_thread::sleep_for(std::chrono::seconds(10));
 
     if (connected) {
-        std::cout << ColorConfig::ServerStatus << "Joining Skyblock!" << Colors::End;
+        Logger::log(ColorConfig::ServerStatus + "Joining Skyblock!" + Colors::End);
 
         mc::protocol::packets::out::ChatPacket packet("/skyblock");
         Objects::m_Connection->SendPacket(&packet);
@@ -47,7 +47,7 @@ void JoinSkyblock::SendSkyblock() {
 void JoinSkyblock::HandlePacket(mc::protocol::packets::in::LoginSuccessPacket* packet) {
     connected = true;
 
-    std::cout << ColorConfig::ServerStatus << "Joined Server!" << Colors::End;
+    Logger::log(ColorConfig::ServerStatus + "Joined Server!" + Colors::End);
 
     std::thread(&JoinSkyblock::SendSkyblock).detach();
 }
@@ -55,7 +55,7 @@ void JoinSkyblock::HandlePacket(mc::protocol::packets::in::LoginSuccessPacket* p
 void JoinSkyblock::HandlePacket(mc::protocol::packets::in::PlayerPositionAndLookPacket* packet) {
     connected = true;
 
-    //std::cout << "Teleported!" << Colors::End;
+    //Logger::log("Teleported!" + Colors::End);
 }
 
 void JoinSkyblock::HandlePacket(mc::protocol::packets::in::DisconnectPacket* packet) {

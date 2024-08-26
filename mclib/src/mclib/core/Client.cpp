@@ -68,7 +68,7 @@ void Client::UpdateThread() {
         std::this_thread::sleep_for(std::chrono::milliseconds(1));
     }
 
-    std::cout << "No Longer Connected?" << Colors::End;
+    Logger::log("No Longer Connected?" + Colors::End);
 }
 
 bool Client::Login(const std::string& host, unsigned short port,

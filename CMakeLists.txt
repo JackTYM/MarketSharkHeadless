@@ -134,6 +134,17 @@ add_executable(client
 		client/util/Logger.h
 )
 
+add_executable(service
+		service/main.cpp
+)
+
+add_executable(cli
+		cli/main.cpp
+)
+
+target_link_libraries(service PRIVATE)
+target_link_libraries(cli PRIVATE)
+
 # Link the static mclib library with the client executable
 target_link_libraries(client PRIVATE mclib ixwebsocket uuid)
 

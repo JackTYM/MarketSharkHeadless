@@ -35,7 +35,7 @@ void Stats::HandlePacket(mc::protocol::packets::in::TeamsPacket *packet) {
             } else if (std::stoi(packet->GetTeamName().substr(5))-1 == 8) {
                 Stats::island = Colors::stripColorCodes(Stats::scoreboard[8]);
             }
-            //std::cout << std::stoi(packet->GetTeamName().substr(5))-1 << ":" << converter.to_bytes(packet->GetTeamPrefix() + packet->GetTeamSuffix()) << std::endl;
+            //Logger::log(std::stoi(packet->GetTeamName().substr(5))-1 + ":" + converter.to_bytes(packet->GetTeamPrefix() + packet->GetTeamSuffix()) + std::endl);
         }
     }
 }

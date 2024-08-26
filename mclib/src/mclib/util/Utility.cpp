@@ -378,27 +378,27 @@ void PlayerController::SetMoveSpeed(double speed) { m_MoveSpeed = speed; }
 
 void PlayerController::OnClientSpawn(core::PlayerPtr player) {
     return;
-    std::cout << "Client Spawn1" << Colors::End;
+    Logger::log("Client Spawn1" + Colors::End);
     m_Yaw = player->GetEntity()->GetYaw();
-    std::cout << "Client Spawn2" << Colors::End;
+    Logger::log("Client Spawn2" + Colors::End);
     m_Pitch = player->GetEntity()->GetPitch();
-    std::cout << "Client Spawn3" << Colors::End;
+    Logger::log("Client Spawn3" + Colors::End);
     m_Position = player->GetEntity()->GetPosition();
-    std::cout << "Client Spawn4" << Colors::End;
+    Logger::log("Client Spawn4" + Colors::End);
     m_LoadedIn = true;
-    std::cout << "Client Spawn5" << Colors::End;
+    Logger::log("Client Spawn5" + Colors::End);
     m_TargetPos = m_Position;
-    std::cout << "Client Spawn6" << Colors::End;
+    Logger::log("Client Spawn6" + Colors::End);
     auto entity = player->GetEntity();
-    std::cout << "Client Spawn7" << Colors::End;
+    Logger::log("Client Spawn7" + Colors::End);
     if (entity) {
         EntityId eid = entity->GetEntityId();
-        std::cout << "Client Spawn8" << Colors::End;
+        Logger::log("Client Spawn8" + Colors::End);
 
         m_EntityId = eid;
-        std::cout << "Client Spawn9" << Colors::End;
+        Logger::log("Client Spawn9" + Colors::End);
     }
-    std::cout << "Client Spawn10" << Colors::End;
+    Logger::log("Client Spawn10" + Colors::End);
 }
 
 void PlayerController::Dig(Vector3d target) {
@@ -876,7 +876,7 @@ public:
     }
 
     void HandlePacket(protocol::packets::in::PluginMessagePacket* packet) {
-        std::cout << "Handle packet?" << Colors::End;
+        Logger::log("Handle packet?" + Colors::End);
         console << "Plugin message received on channel " << packet->GetChannel();
         auto value = packet->GetData();
         console << " Value: " << std::wstring(value.begin(), value.end()) << Colors::End;

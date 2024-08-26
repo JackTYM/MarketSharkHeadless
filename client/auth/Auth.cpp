@@ -26,14 +26,14 @@ void Auth::setupWebsocket() {
 
                 break;
             case ix::WebSocketMessageType::Close:
-                std::cout << ColorConfig::Disconnection << "Closed connection to MarketShark!" << Colors::End;
+                Logger::log(ColorConfig::Disconnection + "Closed connection to MarketShark!" + Colors::End);
                 break;
             case ix::WebSocketMessageType::Error:
-                std::cout << ColorConfig::Error << "Error in MarketShark!" << Colors::End;
+                Logger::log(ColorConfig::Error + "Error in MarketShark!" + Colors::End);
                 break;
             case ix::WebSocketMessageType::Message:
                 if (Objects::getDebug()) {
-                    std::cout << ColorConfig::Debug << "Received: " << msg->str << Colors::End;
+                    Logger::log(ColorConfig::Debug + "Received: " + msg->str + Colors::End);
                 }
 
                 json parsed_json = json::parse(msg->str);
@@ -49,28 +49,28 @@ void Auth::setupWebsocket() {
 
                 if (type == "Activated") {
                     Objects::msSession = parsed_json["session_id"];
-                    std::cout << ColorConfig::Debug << parsed_json["message"] << Colors::End;
+                    Logger::log(ColorConfig::Debug + parsed_json["message"].dump() + Colors::End);
                     if (Objects::getCurrentUsername() == "") {
-                        std::cout << ColorConfig::Important << "Please log in with Microsoft on Discord to proceed!" << Colors::End;
+                        Logger::log(ColorConfig::Important + "Please log in with Microsoft on Discord to proceed!" + Colors::End);
                     }
                     Objects::sendToWebsocket("RequestSession", "");
                 } else if (type == "Reconnected") {
-                    std::cout << ColorConfig::ServerStatus << parsed_json["message"] << Colors::End;
+                    Logger::log(ColorConfig::ServerStatus + parsed_json["message"].dump() + Colors::End);
                     Objects::sendToWebsocket("RequestSession", "");
                 } else if (type == "FailedActivation") {
-                    std::cout << ColorConfig::Error << parsed_json["message"] << Colors::End;
+                    Logger::log(ColorConfig::Error + parsed_json["message"].dump() + Colors::End);
                 } else if (type == "IncorrectSession") {
-                    std::cout << ColorConfig::Error << "Incorrect Session!" << Colors::End;
+                    Logger::log(ColorConfig::Error + "Incorrect Session!" + Colors::End);
                     Objects::msSession = "";
                     Objects::msWebSocket.close();
                     Objects::msWebSocket.start();
                 } else if (type == "UpdateSession") {
-                    std::cout << ColorConfig::Debug << "Updating Session!" << Colors::End;
+                    Logger::log(ColorConfig::Debug + "Updating Session!" + Colors::End);
                     Objects::setCurrentUsername(parsed_json["username"]);
                     Objects::currentUUID = parsed_json["uuid"];
                     Objects::currentSSID = parsed_json["ssid"];
 
-                    std::cout << ColorConfig::ServerStatus << "Connecting to Server!" << Colors::End;
+                    Logger::log(ColorConfig::ServerStatus + "Connecting to Server!" + Colors::End);
 
                     if (Objects::m_Connection == nullptr) {
                         std::thread([]() {
