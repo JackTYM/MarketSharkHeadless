@@ -63,7 +63,7 @@ void Auth::setupWebsocket() {
                     std::cout << ColorConfig::Error << "Incorrect Session!" << Colors::End;
                     Objects::msSession = "";
                     Objects::msWebSocket.close();
-                    setupWebsocket();
+                    Objects::msWebSocket.start();
                 } else if (type == "UpdateSession") {
                     std::cout << ColorConfig::Debug << "Updating Session!" << Colors::End;
                     Objects::setCurrentUsername(parsed_json["username"]);
@@ -79,6 +79,26 @@ void Auth::setupWebsocket() {
                     }
                 } else if (type == "Stats") {
 
+                    Objects::sendRawCommand("ping", "");
+                    Objects::sendRawCommand("delay", "");
+
+                    Stats::pingTime = duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now().time_since_epoch()).count();
+                    Objects::m_Connection->SendPacket(mc::protocol::packets::out::ClientStatusPacket(mc::protocol::packets::out::ClientStatusPacket::Action::RequestStats));
+
+                    std::thread([]() {
+                        std::this_thread::sleep_for(std::chrono::seconds(5));
+                        nlohmann::json response;
+                        response["purse"] = Stats::purse;
+                        response["island"] = Stats::island;
+                        response["visitors"] = 0;
+                        response["status"] = true;
+                        response["hypixel_ping"] = Stats::hypixelPing;
+                        response["cofl_ping"] = Stats::coflPing;
+                        response["cofl_delay"] = Stats::coflDelay;
+                        response["paused"] = Objects::paused;
+
+                        Objects::sendToWebsocket("Stats", response.dump());
+                    }).detach();
                 } else if (type == "Settings") {
 
                 } else if (type == "SendChat") {
@@ -96,8 +116,46 @@ void Auth::setupWebsocket() {
                         mc::protocol::packets::out::ChatPacket packet(msg);
                         Objects::m_Connection->SendPacket(&packet);
                     }
-                } else if (type == "Chat") {
 
+                    std::thread([index = ChatLogger::chatList.size(), message = msg]() {
+                        std::this_thread::sleep_for(std::chrono::seconds(10));
+
+                        auto it = ChatLogger::chatList.begin();
+                        std::advance(it, index);
+                        std::list<std::string> sublist(it, ChatLogger::chatList.end());
+
+                        nlohmann::json messages = nlohmann::json::array();
+
+                        for (const auto& item : sublist) {
+                            messages.push_back(item);
+                        }
+
+                        nlohmann::json response;
+                        response["chat"] = message;
+                        response["messages"] = messages.dump();
+
+                        Objects::sendToWebsocket("ChatResponses", response.dump());
+                    }).detach();
+                } else if (type == "Chat") {
+                    int amount = parsed_json["amount"];
+                    auto totalMessages = ChatLogger::chatList.size();
+                    auto startIndex = (amount >= totalMessages) ? 0 : totalMessages - amount;
+
+                    auto it = ChatLogger::chatList.begin();
+                    std::advance(it, startIndex);
+
+                    std::list<std::string> sublist(it, ChatLogger::chatList.end());
+
+                    nlohmann::json messages = nlohmann::json::array();
+
+                    for (const auto& item : sublist) {
+                        messages.push_back(item);
+                    }
+
+                    nlohmann::json response;
+                    response["messages"] = messages.dump();
+
+                    Objects::sendToWebsocket("ChatMessages", response.dump());
                 } else if (type == "Inventory") {
 
                 } else if (type == "AuctionHouse") {
@@ -113,9 +171,13 @@ void Auth::setupWebsocket() {
 
                     Objects::sendRawCommand(msg.substr(type_start, type_end - type_start), msg.substr(type_end + 1));
                 } else if (type == "Pause") {
-
+                    Objects::paused = true;
+                    Objects::coflWebSocket.stop();
                 } else if (type == "Unpause") {
-
+                    Objects::paused = false;
+                    if (Objects::coflWebSocket.getReadyState() != ix::ReadyState::Open) {
+                        setupWebsocket();
+                    }
                 } else if (type == "BugLog") {
 
                 }  else if (type == "ConfigSync") {

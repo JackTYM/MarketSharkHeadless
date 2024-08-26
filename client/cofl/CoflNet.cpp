@@ -56,15 +56,20 @@ void CoflNet::setupWebsocket() {
                         if (text.contains("Click to get a letter captcha to prove you are not.") &&
                             !text.contains("You are currently delayed for likely being afk")) {
                             Objects::sendRawCommand("captcha", "vertical");
-                        }
-                        if (text.contains("Thanks for confirming that you are a real user")) {
+                        } else if (text.contains("Thanks for confirming that you are a real user")) {
                             Objects::sendToWebsocket("CaptchaSuccess", "");
-                        }
-                        if (text.contains("You solved the captcha, but you failed too many previously")) {
+                        } else if (text.contains("You solved the captcha, but you failed too many previously")) {
                             Objects::sendToWebsocket("CaptchaCorrect", "");
-                        }
-                        if (text.contains("Your answer was not correct")) {
+                        } else if (text.contains("Your answer was not correct")) {
                             Objects::sendToWebsocket("CaptchaIncorrect", "");
+                        }
+
+                        // Stats
+
+                        if (text.contains("You are currently delayed by ")) {
+                            Stats::coflDelay = Colors::stripColorCodes(text).substr(40).substr(0,Colors::stripColorCodes(text).substr(40).find(' '));
+                        } else if (text.contains("You are currently not delayed at all")) {
+                            Stats::coflDelay = "No Delay";
                         }
                     }
                         break;
@@ -90,39 +95,37 @@ void CoflNet::setupWebsocket() {
                     case CommandType::ChatMessage: {
                         if (Objects::getDebug()) {
                             std::cout << ColorConfig::Debug;
-                            for (const ChatMessageData &wcmd: cmd.GetAs<std::vector<ChatMessageData>>().getData()) {
-                                std::cout << Colors::stripColorCodes(wcmd.Text);
+                        } else {
+                            std::cout << ColorConfig::CoflMessage;
+                        }
+
+                        for (const ChatMessageData &wcmd: cmd.GetAs<std::vector<ChatMessageData>>().getData()) {
+                            std::cout << Colors::stripColorCodes(wcmd.Text);
+
+                            if (Objects::getDebug()) {
                                 if (!wcmd.OnClick.empty()) {
                                     std::cout << " onClick: " << wcmd.OnClick;
                                 }
                                 if (!wcmd.Hover.empty()) {
                                     std::cout << " hover: " << wcmd.Hover;
                                 }
-                                if (wcmd.Text.find("What do you want to do?") != std::string::npos) {
-                                    Objects::sendRawCommand("flip", "true");
-                                } else if (wcmd.Text.contains(
-                                        "Your settings could not be loaded, please relink again")) {
-                                    Objects::sendRawCommand("logout", "");
-
-                                    Objects::sendRawCommand("start", "");
-                                }
                             }
-                            std::cout << Colors::End;
-                        } else {
-                            std::cout << ColorConfig::CoflMessage;
-                            for (const ChatMessageData &wcmd: cmd.GetAs<std::vector<ChatMessageData>>().getData()) {
-                                std::cout << Colors::stripColorCodes(wcmd.Text);
 
-                                if (wcmd.Text.find("What do you want to do?") != std::string::npos) {
-                                    Objects::sendRawCommand("flip", "true");
-                                } else if (wcmd.Text.contains("so we can load your settings")) {
-                                    if (!wcmd.OnClick.empty()) {
-                                        std::cout << " onClick: " << wcmd.OnClick;
-                                    }
+                            if (wcmd.Text.find("What do you want to do?") != std::string::npos) {
+                                Objects::sendRawCommand("flip", "true");
+                            } else if (wcmd.Text.contains("so we can load your settings")) {
+                                if (!wcmd.OnClick.empty()) {
+                                    std::cout << " onClick: " << wcmd.OnClick;
                                 }
+                            } else if (wcmd.Text.contains("Your settings could not be loaded, please relink again")) {
+                                Objects::sendRawCommand("logout", "");
+
+                                Objects::sendRawCommand("start", "");
+                            } else if (wcmd.Text.contains("Your Ping to execute SkyCofl commands is: ")) {
+                                Stats::coflPing = Colors::stripColorCodes(wcmd.Text).substr(42);
                             }
-                            std::cout << Colors::End;
                         }
+                        std::cout << Colors::End;
 
                         // Captcha
                         std::string strippedData = data.substr(1, data.length() - 2);
@@ -262,7 +265,8 @@ void CoflNet::setupWebsocket() {
                         }
 
                         if (Objects::getDebug()) {
-                            std::cout << ColorConfig::FlipInfo << "New Flip! Item Name - " << item.strippedDisplayName << " Target - " << flip.Target << Colors::End;
+                            std::cout << ColorConfig::FlipInfo << "New Flip! Item Name - " << item.strippedDisplayName
+                                      << " Target - " << flip.Target << Colors::End;
                         }
                         AutoOpen::OpenAuction(item);
                         break;

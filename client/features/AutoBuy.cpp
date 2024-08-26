@@ -67,7 +67,7 @@ void AutoBuy::HandlePacket(mc::protocol::packets::in::OpenWindowPacket *packet) 
         item.startTime = duration_cast<std::chrono::milliseconds>(
                 std::chrono::high_resolution_clock::now().time_since_epoch()).count();
     } else if (packet->GetWindowTitle().contains(L"Confirm Purchase")) {
-        if (Objects::getDebug()) {
+        if (Objects::getDebug() && !item.skipped) {
             std::cout << ColorConfig::Debug << "Confirm Window Opened!" << Colors::End;
         }
         confirmWindowId = packet->GetWindowId();
@@ -120,11 +120,10 @@ void AutoBuy::HandlePacket(mc::protocol::packets::in::SetSlotPacket *packet) {
                             bedTime = item.purchaseAt - 20000 + Objects::getBedSpamStartDelay();
                         }
 
-                        auto now = duration_cast<std::chrono::milliseconds>(
+                        long now = duration_cast<std::chrono::milliseconds>(
                                 std::chrono::high_resolution_clock::now().time_since_epoch()).count();
                         auto delay = bedTime - now;
 
-                        std::cout << "Current Time " << now << std::endl;
                         std::cout << ColorConfig::FlipInfo << "Spamming item " << item.strippedDisplayName << " in "
                                   << delay
                                   << "ms" << Colors::End;
@@ -136,16 +135,7 @@ void AutoBuy::HandlePacket(mc::protocol::packets::in::SetSlotPacket *packet) {
                             auto milliseconds_since_epoch = std::chrono::duration_cast<std::chrono::milliseconds>(
                                     now.time_since_epoch()).count();
 
-                            std::cout << "Pre Delay " << milliseconds_since_epoch << std::endl;
-
                             std::this_thread::sleep_for(std::chrono::milliseconds(delay));
-
-
-                            auto now2 = std::chrono::system_clock::now();
-                            auto milliseconds_since_epoch2 = std::chrono::duration_cast<std::chrono::milliseconds>(
-                                    now2.time_since_epoch()).count();
-
-                            std::cout << "Post Delay " << milliseconds_since_epoch2 << std::endl;
 
                             AutoBuy::clickBed(slot);
 
@@ -167,7 +157,6 @@ void AutoBuy::HandlePacket(mc::protocol::packets::in::SetSlotPacket *packet) {
                     } else if (itemId == 371 || (itemName == L"Buy Item Right Now" && itemId != 394)) {
                         priceStr = std::dynamic_pointer_cast<mc::nbt::TagString>(
                                 display->GetTag<mc::nbt::TagList>(L"Lore")->GetList()[1])->GetValue();
-                        std::cout << "Price Str " << converter.to_bytes(priceStr) << std::endl;
 
                         std::cout << ColorConfig::FlipInfo << "Opened Nugget" << Colors::End;
                         Objects::m_Connection->SendPacket(
@@ -194,63 +183,37 @@ void AutoBuy::HandlePacket(mc::protocol::packets::in::SetSlotPacket *packet) {
                             }
                         }).detach();
 
-                        /*if (Objects::skip && exampleConfirmItem.GetNBT().HasData()) {
-                            mc::nbt::NBT confirmNbt = exampleConfirmItem.GetNBT();
-                            mc::nbt::TagCompound confirmRoot = confirmNbt.GetRoot();
-                            mc::nbt::TagCompound *confirmDisplay = confirmRoot.GetTag<mc::nbt::TagCompound>(L"display");
-                            mc::nbt::TagList *confirmLore = confirmDisplay->GetTag<mc::nbt::TagList>(L"Lore");
-
-                            mc::nbt::TagList *lore = display->GetTag<mc::nbt::TagList>(L"Lore");
-                            auto buyPtr = std::dynamic_pointer_cast<mc::nbt::TagString>(lore->GetList()[1]);
-
-                            if (buyPtr) {
-                                std::wstring itemCostLine = buyPtr->GetValue();
-
-                                auto purchasePtr = std::dynamic_pointer_cast<mc::nbt::TagString>(
-                                        confirmLore->GetList()[0]);
-                                if (purchasePtr) {
-                                    //purchasePtr->SetValue(L"§7Purchasing: " + item.displayName);
-                                    //std::cout << "FakeL - " << converter.to_bytes(L"§7Purchasing: " + item.displayName)
-                                    //          << Colors::End;
-
-                                    auto costPtr = std::dynamic_pointer_cast<mc::nbt::TagString>(
-                                            confirmLore->GetList()[1]);
-                                    if (costPtr) {
-                                        costPtr->SetValue(L"§7Cost: " + itemCostLine.substr(9));
-                                        std::cout << "FakeL - "
-                                                  << converter.to_bytes(L"§7Cost: " + itemCostLine.substr(9))
-                                                  << Colors::End;
-
-                                        std::cout << Colors::Bold << Colors::Yellow << "SKIPPING WITH "
-                                                  << Objects::skipDelay << "MS DOTN LEAK DUMB FUCK" << Colors::End;
-
-                                        mc::nbt::TagPtr fakeConfirmDisplay = std::make_shared<mc::nbt::TagCompound>(
-                                                *confirmDisplay);
-
-                                        confirmRoot.SetTag(L"display", fakeConfirmDisplay);
-                                        confirmNbt.SetRoot(confirmRoot);
-                                        exampleConfirmItem.SetNBT(confirmNbt);
-
-                                        Objects::openWindowId = packet->GetWindowId() + 1;
-                                        auto sendPacketWithDelay = [packet]() {
-                                            std::this_thread::sleep_for(std::chrono::milliseconds(Objects::skipDelay));
-                                            Objects::m_Connection->SendPacket(
-                                                    mc::protocol::packets::out::ClickWindowPacket(
-                                                            packet->GetWindowId() + 1,
-                                                            11, 0,
-                                                            Objects::actionNumber++, 0, exampleConfirmItem
-                                                    )
-                                            );
-                                        };
-                                        std::thread(sendPacketWithDelay).detach();
-
-                                        if (Objects::getDebug()) {
-                                            std::cout << Colors::Black << "Clicked Confirm (Skip)!" << Colors::End;
-                                        }
-                                    }
+                        if (Objects::skip) {
+                            item.skipped = true;
+                            std::thread([windowId = packet->GetWindowId()]() {
+                                if (Objects::getDebug()) {
+                                    std::cout << ColorConfig::Debug << "Confirm Window Opened!" << Colors::End;
                                 }
-                            }
-                        }*/
+                                std::this_thread::sleep_for(std::chrono::milliseconds(Objects::skipDelay));
+                                mc::inventory::Slot fakeConfirm = mc::inventory::Slot(159, 1, 13);
+
+                                auto overrideMeta = std::make_shared<mc::nbt::TagByte>("overrideMeta", 1);
+                                fakeConfirm.AddItem(overrideMeta->GetType(), overrideMeta);
+
+                                auto fakeDisplay = std::make_shared<mc::nbt::TagCompound>(L"display");
+
+                                auto loreList = std::make_shared<mc::nbt::TagList>(L"Lore", mc::nbt::TagType::String);
+                                // Memory Error? Look into later
+                                //loreList->AddItem(std::make_shared<mc::nbt::TagString>("", "§7Purchasing: " + item.displayName));
+                                //loreList->AddItem(std::make_shared<mc::nbt::TagString>(L"", L"§7Cost: " + priceStr.substr(9)));
+
+                                fakeDisplay->AddItem(mc::nbt::TagType::String, loreList);
+                                fakeDisplay->AddItem(mc::nbt::TagType::String,
+                                                     std::make_shared<mc::nbt::TagString>(L"Name", L"§aConfirm"));
+
+                                fakeConfirm.SetTag(L"display", fakeDisplay);
+
+                                Objects::m_Connection->SendPacket(
+                                        mc::protocol::packets::out::ClickWindowPacket(windowId + 1, 11, 0,
+                                                                                      Objects::actionNumber++, 0,
+                                                                                      fakeConfirm));
+                            }).detach();
+                        }
                     } else if (itemId == 394) {
                         std::cout << ColorConfig::Important << "Not Enough Coins (Poisonous Potato)! Closing Flip"
                                   << Colors::End;
@@ -295,31 +258,9 @@ void AutoBuy::HandlePacket(mc::protocol::packets::in::SetSlotPacket *packet) {
             }
         } else if (packet->GetWindowId() == confirmWindowId) {
             if (packet->GetSlotIndex() == 11) {
-                std::cout << "Confirm SKipping " << std::endl;
-                mc::inventory::Slot fakeConfirm = mc::inventory::Slot(159, 1, 13);
-
-                auto overrideMeta = std::make_shared<mc::nbt::TagByte>("overrideMeta", 1);
-                fakeConfirm.AddItem(overrideMeta->GetType(), overrideMeta);
-
-                auto fakeDisplay = std::make_shared<mc::nbt::TagCompound>(L"display");
-
-                auto loreList = std::make_shared<mc::nbt::TagList>(L"Lore", mc::nbt::TagType::String);
-                loreList->AddItem(std::make_shared<mc::nbt::TagString>("", "§7Purchasing: " + item.displayName));
-                loreList->AddItem(std::make_shared<mc::nbt::TagString>(L"", L"§7Cost: " + priceStr.substr(9)));
-
-                fakeDisplay->AddItem(mc::nbt::TagType::String, loreList);
-                fakeDisplay->AddItem(mc::nbt::TagType::String,
-                                     std::make_shared<mc::nbt::TagString>(L"Name", L"§aConfirm"));
-
-                fakeConfirm.SetTag(L"display", fakeDisplay);
-
-
-                Objects::m_Connection->SendPacket(
-                        mc::protocol::packets::out::ClickWindowPacket(packet->GetWindowId(),
-                                                                      11, 0,
-                                                                      Objects::actionNumber++, 0, fakeConfirm));
-
-                return;
+                if (item.skipped) {
+                    return;
+                }
                 if (itemId == 159) {
                     Objects::m_Connection->SendPacket(
                             mc::protocol::packets::out::ClickWindowPacket(packet->GetWindowId(),

@@ -47,7 +47,7 @@ public:
     bool closed = false;
     std::string finder;
     bool bedClicking = false;
-    //bool skipped = false;
+    bool skipped = false;
 
     FlipItem();
 

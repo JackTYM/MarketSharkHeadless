@@ -4,6 +4,7 @@
 #include "mclib/core/Client.h"
 #include "mclib/protocol/packets/PacketHandler.h"
 #include <Colors.h>
+#include <list>
 
 namespace example {
 

@@ -21,6 +21,7 @@
 #include <mclib/core/Connection.h>
 
 #include "../features/AutoOpen.h"
+#include "../features/Stats.h"
 #include "../Server.h"
 #include "../util/FlipItem.h"
 #include "../util/Objects.h"

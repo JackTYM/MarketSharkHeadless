@@ -5,6 +5,7 @@
 #include <mclib/protocol/packets/PacketHandler.h>
 
 #include <iostream>
+#include <utility>
 
 namespace {
 
@@ -2614,7 +2615,7 @@ DataBuffer EnchantItemPacket::Serialize() const {
 }
 
 ClickWindowPacket::ClickWindowPacket(u8 windowId, u16 slotIndex, u8 button, u16 action, s32 mode, inventory::Slot clickedItem) 
-    : m_WindowId(windowId), m_SlotIndex(slotIndex), m_Button(button), m_Action(action), m_Mode(mode), m_ClickedItem(clickedItem)
+    : m_WindowId(windowId), m_SlotIndex(slotIndex), m_Button(button), m_Action(action), m_Mode(mode), m_ClickedItem(std::move(clickedItem))
 {
     
 }

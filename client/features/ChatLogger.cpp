@@ -6,6 +6,8 @@
 #include "ChatLogger.h"
 #include <ColorConfig.h>
 
+std::list<std::string> ChatLogger::chatList;
+
 ChatLogger::ChatLogger(mc::protocol::packets::PacketDispatcher *dispatcher)
         : mc::protocol::packets::PacketHandler(dispatcher) {
 
@@ -24,6 +26,8 @@ void ChatLogger::HandlePacket(mc::protocol::packets::in::ChatPacket *packet) {
         const nlohmann::json &root = packet->GetChatData();
 
         std::string message = mc::util::ParseChatNode(root);
+
+        chatList.push_back(Colors::stripColorCodes(message));
 
         // Array of strings that should preserve color codes
         std::vector<std::string> preserveStrings = {"You purchased ", "Putting coins in escrow",

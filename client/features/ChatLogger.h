@@ -20,6 +20,8 @@ public:
 
     MCLIB_API void HandlePacket(mc::protocol::packets::in::ChatPacket* packet);
     MCLIB_API void HandlePacket(mc::protocol::packets::in::DisconnectPacket* packet);
+
+    static std::list<std::string> chatList;
 };
 
 

@@ -3,11 +3,11 @@ cmake_minimum_required(VERSION 3.10)
 project(mclib)
 
 set(CMAKE_CXX_STANDARD 23)
-set(CMAKE_BUILD_TYPE Debug)
-set(CMAKE_CXX_FLAGS_DEBUG "-g")
+set(CMAKE_BUILD_TYPE Release)
+#set(CMAKE_CXX_FLAGS_DEBUG "-g")
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O0")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0")
+#set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O0")
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0")
 
 # Build the library as a static library instead of a shared library
 add_library(mclib STATIC
@@ -127,6 +127,10 @@ add_executable(client
 		client/util/Colors.cpp
 		client/util/ColorConfig.h
 		client/util/ColorConfig.cpp
+		client/features/Stats.cpp
+		client/features/Stats.h
+		client/features/Stats.h
+		client/features/Stats.cpp
 )
 
 # Link the static mclib library with the client executable

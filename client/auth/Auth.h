@@ -8,6 +8,8 @@
 
 #include "../util/Objects.h"
 #include <Colors.h>
+#include "../features/ChatLogger.h"
+#include "../features/Stats.h"
 
 
 class Auth {

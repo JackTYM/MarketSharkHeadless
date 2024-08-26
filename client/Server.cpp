@@ -20,6 +20,7 @@
 #include "features/ChatLogger.h"
 #include "features/AutoBuy.h"
 #include "features/Failsafes.h"
+#include "features/Stats.h"
 
 #include <ColorConfig.h>
 
@@ -47,6 +48,7 @@ void Server::connectToServer() {
     ChatLogger chatLogger(&versionFetcher.GetDispatcher());
     AutoBuy autoBuy(&versionFetcher.GetDispatcher());
     Failsafes failsafes(&versionFetcher.GetDispatcher());
+    Stats stats(&versionFetcher.GetDispatcher());
 
     example::Logger logger(&client, &versionFetcher.GetDispatcher());
 

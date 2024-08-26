@@ -16,10 +16,15 @@ std::string Objects::currentSSID;
 std::string Objects::serverAddress = "mc.hypixel.net";
 u16 Objects::port = 25565;
 
+bool Objects::skip = true;
+int Objects::skipDelay = 30;
+
 int Objects::openWindowId = 0;
 int Objects::actionNumber = 1;
 
-std::string Objects::msSession = "";
+bool Objects::paused = false;
+
+std::string Objects::msSession;
 
 std::string Objects::configFilePath = "config.json";
 

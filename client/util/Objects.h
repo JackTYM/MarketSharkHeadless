@@ -20,9 +20,13 @@ public:
     static std::string currentSSID;
     static std::string serverAddress;
     static u16 port;
+    static bool skip;
+    static int skipDelay;
     static int openWindowId;
     static int actionNumber;
     static std::string msSession;
+
+    static bool paused;
 
     static void loadConfig();
     static void saveConfig();
