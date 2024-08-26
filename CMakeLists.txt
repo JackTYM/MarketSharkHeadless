@@ -99,8 +99,7 @@ endif ()
 # Build the client executable
 add_executable(client
 		client/main.cpp
-		client/util/Logger.cpp
-		client/Server.cpp
+        client/Server.cpp
 
 		client/auth/Auth.cpp
 
@@ -131,6 +130,8 @@ add_executable(client
 		client/features/Stats.h
 		client/features/Stats.h
 		client/features/Stats.cpp
+		client/util/Logger.cpp
+		client/util/Logger.h
 )
 
 # Link the static mclib library with the client executable

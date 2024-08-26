@@ -14,7 +14,6 @@
 #include <thread>
 
 #include "Server.h"
-#include "util/Logger.h"
 
 #include "features/JoinSkyblock.h"
 #include "features/ChatLogger.h"

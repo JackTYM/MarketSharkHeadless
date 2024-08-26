@@ -1,30 +1,51 @@
-#ifndef CLIENT_LOGGER_H_
-#define CLIENT_LOGGER_H_
+//
+// Created by jack on 8/26/24.
+//
 
-#include "mclib/core/Client.h"
-#include "mclib/protocol/packets/PacketHandler.h"
-#include <Colors.h>
-#include <list>
+#ifndef MCLIB_LOGGER_H
+#define MCLIB_LOGGER_H
 
-namespace example {
 
-class Logger : public mc::protocol::packets::PacketHandler, public mc::core::ClientListener {
-private:
-    mc::core::Client* m_Client;
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <ctime>
 
+class Logger {
 public:
-    Logger(mc::core::Client* client, mc::protocol::packets::PacketDispatcher* dispatcher);
-    ~Logger();
+    ~Logger() {
+        if (log_file.is_open()) {
+            log_file.close();
+        }
+    }
 
-    void HandlePacket(mc::protocol::packets::in::ChatPacket* packet) override;
-    void HandlePacket(mc::protocol::packets::in::EntityLookAndRelativeMovePacket* packet) override;
-    void HandlePacket(mc::protocol::packets::in::BlockChangePacket* packet) override;
-    void HandlePacket(mc::protocol::packets::in::MultiBlockChangePacket* packet) override;
-    void HandlePacket(mc::protocol::packets::in::DisconnectPacket* packet) override;
+    static void initialize() {
+        log_file.open("log.txt", std::ios::out | std::ios::app);
+        if (!log_file.is_open()) {
+            std::cerr << "Failed to open log file: " << "log.txt" << std::endl;
+        }
 
-    void OnTick() override;
+        log_file << "\n\n" << std::endl;
+    }
+
+    static void log(const std::string &message) {
+        std::string timestamped_message = addTimestamp(message);
+        std::cout << timestamped_message << std::endl;
+        if (log_file.is_open()) {
+            log_file << timestamped_message << std::endl;
+        }
+    }
+
+private:
+    static std::ofstream log_file;
+
+    static std::string addTimestamp(const std::string &message) {
+        std::time_t now = std::time(nullptr);
+        char buf[100];
+        std::strftime(buf, sizeof(buf), "[%Y-%m-%d %H:%M:%S] ", std::localtime(&now));
+        return std::string(buf) + message;
+    }
 };
 
-} // ns example
 
-#endif
+#endif //MCLIB_LOGGER_H
