@@ -1,21 +1,31 @@
 #include <iostream>
 #include <string>
 #include <sys/socket.h>
+#include <sys/stat.h>
+#include <sys/types.h>
 #include <sys/un.h>
 #include <unistd.h>
 #include <fstream>
 #include <chrono>
 #include <iomanip>
+#include <filesystem>
+#include <thread>
+#include <cstdlib>
+#include <sys/wait.h>
 #include "../mclib/include/mclib/common/internal/json.hpp"
 
 long running = 0;
+pid_t msPid = 0;
 std::string homeDir = std::getenv("HOME");
 
 int main() {
+
+    // Ensure marketshark directory exists
+    mkdir((homeDir + "/.marketshark/").c_str(), 0755);
+
     int server_fd, client_socket;
     struct sockaddr_un address;
     int addr_len = sizeof(address);
-    char buffer[1024] = {0};
 
     server_fd = socket(AF_UNIX, SOCK_STREAM, 0);
     if (server_fd == 0) {
@@ -32,6 +42,7 @@ int main() {
 
     while (true) {
         client_socket = accept(server_fd, (struct sockaddr *) &address, (socklen_t *) &addr_len);
+        char buffer[1024] = {0};
         read(client_socket, buffer, 1024);
         std::cout << "Command received: " << buffer << std::endl;
 
@@ -44,13 +55,6 @@ int main() {
             std::string line;
 
             if (inputFile.is_open()) {
-                while (getline(inputFile, line)) {
-                    std::cout << line << std::endl;
-                }
-                inputFile.close();
-
-                std::cout << line << std::endl;
-
                 response = "MarketShark Status: ";
                 if (running != 0) {
                     response += "Running for ";
@@ -83,8 +87,7 @@ int main() {
             } else {
                 response = "Not logged in. Please run ms login";
             }
-        } else if (command.rfind("login", 0) == 0) {
-            std::cout << homeDir + "/.marketshark/key" << std::endl;
+        } else if (command.starts_with("login")) {
             std::ofstream outputFile(homeDir + "/.marketshark/key");
             if (outputFile.is_open()) {
                 outputFile << command.substr(6);
@@ -95,30 +98,71 @@ int main() {
                 response = "Failed to log in. Are files setup correctly?";
             }
         } else if (command == "logout") {
-            response = "Logout command executed";
+            remove((homeDir + "/.marketshark/key").c_str());
+
+            response = "Successfully logged out.";
         } else if (command == "accounts") {
-            response = "Accounts command executed";
+            response = "Not implemented yet sorry";
         } else if (command == "addaccount") {
-            response = "Add account command executed";
-        } else if (command.rfind("delaccount", 0) == 0) { // Checks if command starts with "delaccount"
-            response = "Delete account command executed for user: " + command.substr(11);
+            response = "Use discord for now, sorry";
+        } else if (command.starts_with("delaccount")) {
+            response = "Not implemented yet, sorry";
         } else if (command == "start") {
-            if (running == 0) {
-                response = "Started MarketShark!";
+            std::string path = (homeDir + "/.marketshark/marketshark");
+            std::filesystem::path executable{path};
+
+            if (std::filesystem::exists(executable)) {
+                bool success = true;
+                if (msPid != 0) {
+                    if (kill(msPid, SIGKILL) == -1) {
+                        response = "Failed to stop MarketShark executable. Report this!";
+                        success = false;
+                    } else {
+                        waitpid(msPid, NULL, 0);
+                        running = 0;
+                    }
+                }
+                if (success) {
+                    pid_t pid = fork();
+
+                    if (pid == -1) {
+                        response = "Failed to start executable. Report this! (Failed to fork: pid = -1)";
+                    } else if (pid > 0) {
+                        if (msPid == 0) {
+                            response = "Started MarketShark!";
+                        } else {
+                            response = "Restarted MarketShark!";
+                        }
+                        msPid = pid;
+                        running = std::chrono::duration_cast<std::chrono::milliseconds>(
+                                std::chrono::system_clock::now().time_since_epoch()).count();
+                    } else {
+                        execlp(path.c_str(), path.c_str(), (char *) NULL);
+                    }
+                }
             } else {
-                response = "Restarted MarketShark!";
+                response = "Executable not downloaded. Please run ms update";
             }
-            running = std::chrono::duration_cast<std::chrono::milliseconds>(
-                    std::chrono::system_clock::now().time_since_epoch()).count();
         } else if (command == "stop") {
-            response = "Stop command executed";
+            if (msPid == 0) {
+                response = "MarketShark not running!";
+            } else {
+                if (kill(msPid, SIGKILL) == -1) {
+                    response = "Failed to stop MarketShark executable. Report this!";
+                } else {
+                    waitpid(msPid, NULL, 0);
+                    response = "Stopped MarketShark!";
+                    msPid = 0;
+                    running = 0;
+                }
+            }
         } else if (command == "logs") {
             response = "Logs command executed";
         } else if (command == "update") {
             response = "Update command executed";
-        } else if (command.rfind("autoupdate", 0) == 0) { // Checks if command starts with "autoupdate"
+        } else if (command.starts_with("autoupdate")) {
             response = "Autoupdate command executed with option: " + command.substr(11);
-        } else if (command.rfind("timer", 0) == 0) { // Checks if command starts with "timer"
+        } else if (command.starts_with("timer")) {
             response = "Timer command executed for hours: " + command.substr(6);
         } else {
             response = "Unknown command received";
