@@ -256,6 +256,7 @@ void CoflNet::setupWebsocket() {
                         item.purchaseAt = flip.PurchaseAt;
                         item.displayName = flip.ItemName;
                         item.strippedDisplayName = Colors::stripColorCodes(flip.ItemName);
+                        item.buyPrice = flip.StartingBid;
 
                         try {
                             //item.auctionStart = std::chrono::milliseconds(std::stoll(flip.AuctionStart.count()));

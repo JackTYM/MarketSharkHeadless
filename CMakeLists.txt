@@ -138,11 +138,13 @@ add_executable(service
 		service/main.cpp
 )
 
+target_include_directories(service PRIVATE mclib/include)
+
 add_executable(cli
 		cli/main.cpp
 )
 
-target_link_libraries(service PRIVATE)
+target_link_libraries(service PRIVATE ixwebsocket)
 target_link_libraries(cli PRIVATE)
 
 # Link the static mclib library with the client executable

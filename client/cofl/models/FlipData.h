@@ -27,15 +27,16 @@ public:
     std::string ItemName;
     int64_t AuctionStart;
     int64_t PurchaseAt;
+    int64_t StartingBid;
 
     FlipData() {}
 
     FlipData(const std::vector<ChatMessageData>& messages, const std::string& id, int worth, int target, const SoundData& sound,
              const std::string& render, const std::string& finder, const std::string& uuid, const std::string& sellerUuid,
              const std::string& skyblockId, std::string itemName, const int64_t& auctionStart,
-             const int64_t& purchaseAt)
+             const int64_t& purchaseAt, int32_t startindBid)
             : Messages(messages), Id(id), Worth(worth), Target(target), Sound(sound), Render(render), Finder(finder),
-              Uuid(uuid), SellerUuid(sellerUuid), SkyblockId(skyblockId), ItemName(itemName), AuctionStart(auctionStart), PurchaseAt(purchaseAt) {}
+              Uuid(uuid), SellerUuid(sellerUuid), SkyblockId(skyblockId), ItemName(itemName), AuctionStart(auctionStart), PurchaseAt(purchaseAt), StartingBid(startindBid) {}
 
     friend void from_json(const json& j, FlipData& f) {
         if (j.find("messages") != j.end() && !j.at("messages").is_null()) {
@@ -98,6 +99,12 @@ public:
             j.at("itemName").get_to(f.ItemName);
         } else {
             f.ItemName = "";
+        }
+
+        if (j.find("auction") != j.end() && j.at("auction").find("startingBid") != j.at("auction").end() && !j.at("auction").at("startingBid").is_null()) {
+            j.at("auction").at("startingBid").get_to(f.StartingBid);
+        } else {
+            f.StartingBid = 0;
         }
 
         if (j.find("auction") != j.end() && j.at("auction").find("start") != j.at("auction").end() && !j.at("auction").at("start").is_null()) {

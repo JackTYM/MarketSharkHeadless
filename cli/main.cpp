@@ -83,7 +83,8 @@ int main(int argc, char** argv) {
     } else if (cmd == "stop") {
         fullCommand = "stop";
     } else if (cmd == "logs") {
-        fullCommand = "logs";
+        system(("tail -f " + std::string(std::getenv("HOME")) + "/.marketshark/color_log.txt").c_str());
+        return 0;
     } else if (cmd == "update") {
         fullCommand = "update";
     } else if (cmd == "autoupdate") {

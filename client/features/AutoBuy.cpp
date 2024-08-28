@@ -281,28 +281,7 @@ void AutoBuy::HandlePacket(mc::protocol::packets::in::SetSlotPacket *packet) {
                             QueueManager::endCurrentTask("AutoBuy");
                         }
                     }).detach();
-
-                    if (slot.GetNBT().HasData()) {
-                        mc::nbt::TagList *lore = slot.GetNBT().GetRoot().GetTag<mc::nbt::TagCompound>(
-                                L"display")->GetTag<mc::nbt::TagList>(L"Lore");
-
-                        auto costPtr = std::dynamic_pointer_cast<mc::nbt::TagString>(
-                                lore->GetList()[1]);
-
-                        if (costPtr) {
-                            std::string costLine = converter.to_bytes(costPtr->GetValue()).substr(12);
-
-                            costLine.erase(std::remove(costLine.begin(), costLine.end(), ','), costLine.end());
-                            costLine.erase(costLine.length() - 5);
-
-                            item.buyPrice = std::stol(costLine);
-                        }
-                    }
-
-                    exampleConfirmItem = slot;
                 }
-
-                //mc::nbt::TagString purchasing = lore->GetList()[0];
             }
         }
     }

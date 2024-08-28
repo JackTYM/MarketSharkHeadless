@@ -13,7 +13,7 @@
 using json = nlohmann::json;
 
 void Auth::setupWebsocket() {
-    Objects::msWebSocket.setUrl("wss://cofl.jacktym.dev");
+    Objects::msWebSocket.setUrl("wss://wss.marketshark.net");
 
     Objects::msWebSocket.setOnMessageCallback([](const ix::WebSocketMessagePtr &msg) {
         switch (msg->type) {

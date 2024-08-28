@@ -14,11 +14,23 @@
 #include <sys/wait.h>
 #include "../mclib/include/mclib/common/internal/json.hpp"
 
+#include <ixwebsocket/IXNetSystem.h>
+#include <ixwebsocket/IXWebSocket.h>
+#include <ixwebsocket/IXUserAgent.h>
+
+#include "mclib/common/Json.h"
+
 long running = 0;
 pid_t msPid = 0;
 std::string homeDir = std::getenv("HOME");
+bool loggedIn = false;
+
+void loginWebsocket() {
+
+}
 
 int main() {
+
 
     // Ensure marketshark directory exists
     mkdir((homeDir + "/.marketshark/").c_str(), 0755);
@@ -156,10 +168,8 @@ int main() {
                     running = 0;
                 }
             }
-        } else if (command == "logs") {
-            response = "Logs command executed";
         } else if (command == "update") {
-            response = "Update command executed";
+
         } else if (command.starts_with("autoupdate")) {
             response = "Autoupdate command executed with option: " + command.substr(11);
         } else if (command.starts_with("timer")) {

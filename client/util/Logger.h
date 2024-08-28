@@ -14,6 +14,7 @@ public:
 
 private:
     static std::ofstream log_file;
+    static std::ofstream color_log_file;
     static std::string addTimestamp(const std::string &message);
 };
 
