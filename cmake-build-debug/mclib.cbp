@@ -1,0 +1,575 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="mclib"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="mclib">
+				<Option output="/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/libmclib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMCLIB_EXPORTS"/>
+					<Add option="-DCURL_STATICLIB"/>
+					<Add directory="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/include"/>
+					<Add directory="/home/jack/Coding/CPP/MarketSharkMcLib/client/util"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 mclib"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="mclib/fast">
+				<Option output="/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/libmclib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMCLIB_EXPORTS"/>
+					<Add option="-DCURL_STATICLIB"/>
+					<Add directory="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/include"/>
+					<Add directory="/home/jack/Coding/CPP/MarketSharkMcLib/client/util"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 mclib/fast"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="client">
+				<Option output="/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/client" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMCLIB_EXPORTS"/>
+					<Add option="-DCURL_STATICLIB"/>
+					<Add directory="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/include"/>
+					<Add directory="/home/jack/Coding/CPP/MarketSharkMcLib/client/util"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 client"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="client/fast">
+				<Option output="/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/client" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMCLIB_EXPORTS"/>
+					<Add option="-DCURL_STATICLIB"/>
+					<Add directory="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/include"/>
+					<Add directory="/home/jack/Coding/CPP/MarketSharkMcLib/client/util"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 client/fast"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="service">
+				<Option output="/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/service" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMCLIB_EXPORTS"/>
+					<Add option="-DCURL_STATICLIB"/>
+					<Add directory="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 service"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="service/fast">
+				<Option output="/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/service" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMCLIB_EXPORTS"/>
+					<Add option="-DCURL_STATICLIB"/>
+					<Add directory="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 service/fast"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="cli">
+				<Option output="/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/cli" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMCLIB_EXPORTS"/>
+					<Add option="-DCURL_STATICLIB"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 cli"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="cli/fast">
+				<Option output="/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/cli" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DMCLIB_EXPORTS"/>
+					<Add option="-DCURL_STATICLIB"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 cli/fast"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="list_install_components">
+				<Option working_dir="/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 list_install_components"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install">
+				<Option working_dir="/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 install"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install/local">
+				<Option working_dir="/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 install/local"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install/strip">
+				<Option working_dir="/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 install/strip"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/cli/main.cpp">
+			<Option target="cli"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/client/Server.cpp">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/client/Server.h">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/client/auth/Auth.cpp">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/client/auth/Auth.h">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/client/cofl/CoflNet.cpp">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/client/cofl/CoflNet.h">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/client/cofl/CoflSessionManager.cpp">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/client/cofl/CoflSessionManager.h">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/client/features/AutoBuy.cpp">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/client/features/AutoBuy.h">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/client/features/AutoOpen.cpp">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/client/features/AutoOpen.h">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/client/features/ChatLogger.cpp">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/client/features/ChatLogger.h">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/client/features/Failsafes.cpp">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/client/features/Failsafes.h">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/client/features/JoinSkyblock.cpp">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/client/features/JoinSkyblock.h">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/client/features/QueueManager.cpp">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/client/features/QueueManager.h">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/client/features/Stats.cpp">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/client/features/Stats.h">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/client/main.cpp">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/client/util/ColorConfig.cpp">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/client/util/ColorConfig.h">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/client/util/Colors.cpp">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/client/util/Colors.h">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/client/util/FlipItem.cpp">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/client/util/FlipItem.h">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/client/util/Logger.cpp">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/client/util/Logger.h">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/client/util/Objects.cpp">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/client/util/Objects.h">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/block/Banner.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/block/Beacon.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/block/Bed.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/block/Block.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/block/BlockEntity.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/block/BrewingStand.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/block/Chest.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/block/Dispenser.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/block/Dropper.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/block/EnchantmentTable.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/block/EndGateway.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/block/FlowerPot.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/block/Furnace.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/block/Hopper.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/block/InventoryBlock.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/block/Jukebox.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/block/MonsterSpawner.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/block/NoteBlock.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/block/Piston.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/block/RedstoneComparator.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/block/ShulkerBox.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/block/Sign.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/block/Skull.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/common/DataBuffer.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/common/DyeColor.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/common/MCString.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/common/Position.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/common/UUID.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/common/VarInt.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/core/AuthToken.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/core/Client.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/core/ClientSettings.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/core/Compression.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/core/Connection.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/core/Encryption.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/core/PlayerManager.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/entity/EntityManager.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/entity/Metadata.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/inventory/Hotbar.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/inventory/Inventory.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/inventory/Slot.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/nbt/NBT.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/nbt/Tag.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/network/IPAddress.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/network/Network.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/network/Socket.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/network/TCPSocket.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/network/UDPSocket.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/protocol/Protocol.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/protocol/packets/Packet.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/protocol/packets/PacketDispatcher.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/protocol/packets/PacketFactory.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/protocol/packets/PacketHandler.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/util/Forge.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/util/HTTPClient.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/util/Hash.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/util/Utility.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/util/VersionFetcher.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/util/Yggdrasil.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/world/Chunk.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/mclib/src/mclib/world/World.cpp">
+			<Option target="mclib"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/service/main.cpp">
+			<Option target="service"/>
+		</Unit>
+		<Unit filename="/home/jack/Coding/CPP/MarketSharkMcLib/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

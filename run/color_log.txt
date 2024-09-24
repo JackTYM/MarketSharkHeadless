@@ -1,0 +1,4 @@
+[30mSending: {"message":"","type":"Activating"}[0m
+[30mReceived: {"type":"Activated","message":"Successfully activated with Discord under the account jacktym!","session_id":"5e2a08be-35e2-4548-a94c-9149a7fc395f"}[0m
+[30m"Successfully activated with Discord under the account jacktym!"[0m
+[30mSending: {"message":"","type":"RequestSession"}[0m

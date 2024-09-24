@@ -1,0 +1,13 @@
+{
+    "BuySpeed": "Green",
+    "ChatMessage": "Gray",
+    "CoflMessage": "WhiteBackground",
+    "Coins": "Magenta",
+    "Debug": "Black",
+    "Disconnection": "Red",
+    "Error": "Red",
+    "FlipInfo": "Cyan",
+    "Important": "YellowBackground",
+    "ServerStatus": "Green",
+    "Won": "Yellow"
+}

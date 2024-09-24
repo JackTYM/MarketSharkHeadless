@@ -1,4 +1,13 @@
-/root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/root/.cache/JetBrains/RemoteDev/dist/c8b0187f3cad2_CLion-2024.1.4/bin/ninja/linux/x64/ninja -G Ninja -S /root/MarketSharkMCLib -B /root/MarketSharkMCLib/cmake-build-debug
--- Configuring done (0.1s)
+/home/jack/.cache/JetBrains/RemoteDev/dist/0cd704f641a40_CLion-2024.1.5/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" -S /home/jack/Coding/CPP/MarketSharkMcLib -B /home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug
+CMake Deprecation Warning:
+  Support for "Extra Generators" like
+
+    CodeBlocks
+
+  is deprecated and will be removed from a future version of CMake.  IDEs may
+  use the cmake-file-api(7) to view CMake-generated project build trees.
+
+
+-- Configuring done (2.6s)
 -- Generating done (0.0s)
--- Build files have been written to: /root/MarketSharkMCLib/cmake-build-debug
+-- Build files have been written to: /home/jack/Coding/CPP/MarketSharkMcLib/cmake-build-debug

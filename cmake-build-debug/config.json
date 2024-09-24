@@ -1,0 +1,9 @@
+{
+    "bafSocket": true,
+    "bedSpamDelay": 50,
+    "bedSpamStartDelay": 19900,
+    "currentUsername": "",
+    "debug": false,
+    "key": "",
+    "usSocket": true
+}

@@ -1,0 +1,43 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/client.dir/client/Server.cpp.o"
+  "CMakeFiles/client.dir/client/Server.cpp.o.d"
+  "CMakeFiles/client.dir/client/auth/Auth.cpp.o"
+  "CMakeFiles/client.dir/client/auth/Auth.cpp.o.d"
+  "CMakeFiles/client.dir/client/cofl/CoflNet.cpp.o"
+  "CMakeFiles/client.dir/client/cofl/CoflNet.cpp.o.d"
+  "CMakeFiles/client.dir/client/cofl/CoflSessionManager.cpp.o"
+  "CMakeFiles/client.dir/client/cofl/CoflSessionManager.cpp.o.d"
+  "CMakeFiles/client.dir/client/features/AutoBuy.cpp.o"
+  "CMakeFiles/client.dir/client/features/AutoBuy.cpp.o.d"
+  "CMakeFiles/client.dir/client/features/AutoOpen.cpp.o"
+  "CMakeFiles/client.dir/client/features/AutoOpen.cpp.o.d"
+  "CMakeFiles/client.dir/client/features/ChatLogger.cpp.o"
+  "CMakeFiles/client.dir/client/features/ChatLogger.cpp.o.d"
+  "CMakeFiles/client.dir/client/features/Failsafes.cpp.o"
+  "CMakeFiles/client.dir/client/features/Failsafes.cpp.o.d"
+  "CMakeFiles/client.dir/client/features/JoinSkyblock.cpp.o"
+  "CMakeFiles/client.dir/client/features/JoinSkyblock.cpp.o.d"
+  "CMakeFiles/client.dir/client/features/QueueManager.cpp.o"
+  "CMakeFiles/client.dir/client/features/QueueManager.cpp.o.d"
+  "CMakeFiles/client.dir/client/features/Stats.cpp.o"
+  "CMakeFiles/client.dir/client/features/Stats.cpp.o.d"
+  "CMakeFiles/client.dir/client/main.cpp.o"
+  "CMakeFiles/client.dir/client/main.cpp.o.d"
+  "CMakeFiles/client.dir/client/util/ColorConfig.cpp.o"
+  "CMakeFiles/client.dir/client/util/ColorConfig.cpp.o.d"
+  "CMakeFiles/client.dir/client/util/Colors.cpp.o"
+  "CMakeFiles/client.dir/client/util/Colors.cpp.o.d"
+  "CMakeFiles/client.dir/client/util/FlipItem.cpp.o"
+  "CMakeFiles/client.dir/client/util/FlipItem.cpp.o.d"
+  "CMakeFiles/client.dir/client/util/Logger.cpp.o"
+  "CMakeFiles/client.dir/client/util/Logger.cpp.o.d"
+  "CMakeFiles/client.dir/client/util/Objects.cpp.o"
+  "CMakeFiles/client.dir/client/util/Objects.cpp.o.d"
+  "client"
+  "client.pdb"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang CXX)
+  include(CMakeFiles/client.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()
