@@ -23,12 +23,6 @@ jobs:
         mkdir build && cd build
         cmake .. && make
         sudo make install
-          
-    - name: Create build directory
-      run: |
-        mkdir build
-        cd build
-        cmake ..
 
     - name: Build MarketSharkHeadless
       run: |
