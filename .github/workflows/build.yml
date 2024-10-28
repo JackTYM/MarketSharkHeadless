@@ -4,30 +4,43 @@ on:
   - pull_request
 
 jobs:
-  build_and_upload:
+  build:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up CMake
-      uses: lukka/get-cmake@v1
+    - name: Install Dependencies
+      run: |
+        sudo apt update
+        sudo apt install -y cmake build-essential libcurl4-openssl-dev libssl-dev zlib1g-dev libncurses5-dev libncursesw5-dev uuid-dev git
 
+    - name: Build IXWebsocket
+      run: |
+        git clone https://github.com/machinezone/IXWebSocket
+        cd IXWebSocket/
+        mkdir build && cd build
+        cmake .. && make
+        sudo make install
+          
     - name: Create build directory
       run: |
         mkdir build
         cd build
         cmake ..
 
-    - name: Build project
+    - name: Build MarketSharkHeadless
       run: |
-        cd build
-        cmake --build .
+        mkdir build && cd build
+        cmake .. && cmake --build .
 
-    - name: Rename and send to Discord webhook
-      env:
-        DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-      run: |
-        cp build/client build/marketshark
-        curl -F "payload_json={\"content\":\"\"}" -F "file=@build/marketshark" $DISCORD_WEBHOOK_URL
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: MarketShark-Binaries
+        path: |
+          build/service
+          build/cli
+          build/client
+        if-no-files-found: error # 'warn' or 'ignore' options are also available
