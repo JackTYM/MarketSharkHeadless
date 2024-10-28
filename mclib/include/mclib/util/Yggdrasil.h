@@ -111,7 +111,7 @@ public:
      * @param clientToken This should match the clientToken used to obtain the accessToken originally.
      * @return A pair containing the access token and the username.
      */
-    std::pair<std::string, std::string> MCLIB_API Refresh(const std::string& accessToken, const std::string& clientToken = 0);
+    std::pair<std::string, std::string> MCLIB_API Refresh(const std::string& accessToken, const std::string& clientToken = "");
 
     /**
      * Checks if an access token is usable for authentication. The token should be refreshed if it isn't valid.
@@ -119,7 +119,7 @@ public:
      * @param clientToken This should match the clientToken used to obtain the accessToken originally.
      * @return True if the token is usable for authentication, false otherwise.
      */
-    bool MCLIB_API Validate(const std::string& accessToken, const std::string& clientToken = 0);
+    bool MCLIB_API Validate(const std::string& accessToken, const std::string& clientToken = "");
 
     /**
      * Invalidates the last used accessToken for an account using login credentials.
@@ -135,7 +135,7 @@ public:
      * @param accessToken The access token to invalidate.
      * @param clientToken This should match the clientToken used to obtain the accessToken originally.
      */
-    void MCLIB_API Invalidate(const std::string& accessToken, const std::string& clientToken = 0);
+    void MCLIB_API Invalidate(const std::string& accessToken, const std::string& clientToken = "");
 
     UUID MCLIB_API GetPlayerUUID(const std::string& name);
     json MCLIB_API GetPlayerProfile(UUID& uuid);

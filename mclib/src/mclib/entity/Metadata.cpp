@@ -112,7 +112,7 @@ DataBuffer& operator<<(DataBuffer& out, const EntityMetadata& md) {
         case EntityMetadata::DataType::Byte:
             out << *((EntityMetadata::ByteType*)value);
             break;
-        case EntityMetadata::DataType::VarInt:
+        case EntityMetadata::DataType::VarIntTyp:
         case EntityMetadata::DataType::Direction:
         case EntityMetadata::DataType::OptBlockID:
             out << *((EntityMetadata::VarIntType*)value);
@@ -142,7 +142,7 @@ DataBuffer& operator<<(DataBuffer& out, const EntityMetadata& md) {
         case EntityMetadata::DataType::Rotation:
             out << *((EntityMetadata::RotationType*)value);
             break;
-        case EntityMetadata::DataType::Position:
+        case EntityMetadata::DataType::PositionTyp:
             out << *((EntityMetadata::PositionType*)value);
             break;
         case EntityMetadata::DataType::OptPosition:
@@ -194,7 +194,7 @@ DataBuffer& operator>>(DataBuffer& in, EntityMetadata& md) {
                 md.m_Metadata[index].first = std::move(value);
             }
             break;
-            case EntityMetadata::DataType::VarInt:
+            case EntityMetadata::DataType::VarIntTyp:
             case EntityMetadata::DataType::Direction:
             case EntityMetadata::DataType::OptBlockID:
             {
@@ -249,7 +249,7 @@ DataBuffer& operator>>(DataBuffer& in, EntityMetadata& md) {
                 md.m_Metadata[index].first = std::move(value);
             }
             break;
-            case EntityMetadata::DataType::Position:
+            case EntityMetadata::DataType::PositionTyp:
             {
                 std::unique_ptr<EntityMetadata::PositionType> value = std::make_unique<EntityMetadata::PositionType>();
                 in >> *value;
@@ -304,7 +304,7 @@ void EntityMetadata::CopyOther(const EntityMetadata& other) {
                 break;
             case DataType::Direction:
             case DataType::OptBlockID:
-            case DataType::VarInt:
+            case DataType::VarIntTyp:
                 m_Metadata[i].first = std::make_unique<VarIntType>(dynamic_cast<VarIntType*>(other.m_Metadata[i].first.get())->value);
                 break;
             case DataType::Float:
@@ -326,7 +326,7 @@ void EntityMetadata::CopyOther(const EntityMetadata& other) {
                 m_Metadata[i].first = std::make_unique<RotationType>(dynamic_cast<RotationType*>(other.m_Metadata[i].first.get())->value);
                 break;
             case DataType::OptPosition:
-            case DataType::Position:
+            case DataType::PositionTyp:
                 m_Metadata[i].first = std::make_unique<PositionType>(dynamic_cast<PositionType*>(other.m_Metadata[i].first.get())->exists, 
                                                                      dynamic_cast<PositionType*>(other.m_Metadata[i].first.get())->value);
                 break;

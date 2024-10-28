@@ -181,13 +181,13 @@ void AutoBuy::HandlePacket(mc::protocol::packets::in::SetSlotPacket *packet) {
                             }
                         }).detach();
 
-                        if (Objects::skip) {
+                        if (Objects::getSkip()) {
                             item.skipped = true;
                             std::thread([windowId = packet->GetWindowId()]() {
                                 if (Objects::getDebug()) {
                                     Logger::log(ColorConfig::Debug + "Confirm Window Opened!" + Colors::End);
                                 }
-                                std::this_thread::sleep_for(std::chrono::milliseconds(Objects::skipDelay));
+                                std::this_thread::sleep_for(std::chrono::milliseconds(Objects::getSkipDelay()));
                                 mc::inventory::Slot fakeConfirm = mc::inventory::Slot(159, 1, 13);
 
                                 auto overrideMeta = std::make_shared<mc::nbt::TagByte>("overrideMeta", 1);

@@ -100,7 +100,7 @@ public:
     };
 
 private:
-    enum DataType { Byte, VarInt, Float, String, Chat, OptChat, Slot, Boolean, Rotation, Position, OptPosition, Direction, OptUUID, OptBlockID, NBT, Particle, None };
+    enum DataType { Byte, VarIntTyp, Float, String, Chat, OptChat, Slot, Boolean, Rotation, PositionTyp, OptPosition, Direction, OptUUID, OptBlockID, NBT, Particle, None };
 
     enum { MetadataCount = 0xFE };
     std::array<std::pair<std::unique_ptr<Type>, DataType>, MetadataCount> m_Metadata;

@@ -16,9 +16,6 @@ std::string Objects::currentSSID;
 std::string Objects::serverAddress = "mc.hypixel.net";
 u16 Objects::port = 25565;
 
-bool Objects::skip = true;
-int Objects::skipDelay = 30;
-
 int Objects::openWindowId = 0;
 int Objects::actionNumber = 1;
 
@@ -46,12 +43,14 @@ void Objects::saveJson(const nlohmann::json& json) {
 
 // Default Values
 bool Objects::debug = false;
-std::string Objects::key = "";
-std::string Objects::currentUsername = "";
+std::string Objects::key;
+std::string Objects::currentUsername;
 int Objects::bedSpamStartDelay = 19900;
 int Objects::bedSpamDelay = 50;
 bool Objects::usSocket = true;
 bool Objects::bafSocket = true;
+bool Objects::skip = true;
+int Objects::skipDelay = 30;
 
 void Objects::loadConfig() {
     nlohmann::json jsonConfig = loadJson();
@@ -63,6 +62,8 @@ void Objects::loadConfig() {
         Objects::bedSpamDelay = jsonConfig.value("bedSpamDelay", bedSpamDelay);
         Objects::usSocket = jsonConfig.value("usSocket", usSocket);
         Objects::bafSocket = jsonConfig.value("bafSocket", bafSocket);
+        Objects::skip = jsonConfig.value("skip", skip);
+        Objects::skipDelay = jsonConfig.value("skipDelay", skipDelay);
     } else {
         saveConfig();
         loadConfig();
@@ -78,6 +79,8 @@ void Objects::saveConfig() {
     jsonConfig["bedSpamDelay"] = Objects::bedSpamDelay;
     jsonConfig["usSocket"] = Objects::usSocket;
     jsonConfig["bafSocket"] = Objects::bafSocket;
+    jsonConfig["skip"] = Objects::skip;
+    jsonConfig["skipDelay"] = Objects::skipDelay;
     saveJson(jsonConfig);
 }
 
@@ -117,6 +120,16 @@ bool Objects::getBafSocket() {
     return bafSocket;
 }
 
+bool Objects::getSkip() {
+    loadConfig();
+    return skip;
+}
+
+int Objects::getSkipDelay() {
+    loadConfig();
+    return skipDelay;
+}
+
 // Setters
 void Objects::setDebug(bool value) {
     debug = value;
@@ -150,6 +163,16 @@ void Objects::setUsSocket(bool value) {
 
 void Objects::setBafSocket(bool value) {
     bafSocket = value;
+    saveConfig();
+}
+
+void Objects::setSkip(bool value) {
+    skip = value;
+    saveConfig();
+}
+
+void Objects::setSkipDelay(int value) {
+    skipDelay = value;
     saveConfig();
 }
 

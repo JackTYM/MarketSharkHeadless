@@ -39,6 +39,8 @@ public:
     static int getBedSpamDelay();
     static bool getUsSocket();
     static bool getBafSocket();
+    static bool getSkip();
+    static int getSkipDelay();
 
     // Setters
     static void setDebug(bool value);
@@ -48,6 +50,8 @@ public:
     static void setBedSpamDelay(int delay);
     static void setUsSocket(bool value);
     static void setBafSocket(bool value);
+    static void setSkip(bool value);
+    static void setSkipDelay(int value);
 
     // Functions
     static void sendToWebsocket(const std::string& type, const std::string message);
