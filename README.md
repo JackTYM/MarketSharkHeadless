@@ -1,6 +1,6 @@
 # MarketSharkHeadless
 
-MarketSharkHeadless is a headless C++ Minecraft client designed to connect to Hypixel and automatically buy items specified by the CoflNet websocket. The client is built to connect to a backend server, enabling reporting and control via a Discord bot. It includes a CLI for configuration and a Linux service to maintain continuous operation.
+MarketSharkHeadless is a headless C++ Minecraft client designed to connect to Hypixel Skyblock's Auction House and automatically buy items specified by the CoflNet websocket. The client is built to connect to a backend server, enabling reporting and control via a Discord bot. It includes a CLI for configuration and a Linux service to maintain continuous operation.
 
 ## Credits
 
@@ -23,7 +23,7 @@ We extend our thanks to plushmonkey for the foundation provided by `mclib`.
 ## Features
 
 - 1.8 Protocol Support
-- Automated item purchasing via CoflNet websocket on Hypixel
+- Automated item purchasing via CoflNet websocket on Hypixel Skyblock
 - Integration with a backend server for reporting and control
 - Discord bot integration for remote monitoring and commands
 - CLI tool for easy configuration
