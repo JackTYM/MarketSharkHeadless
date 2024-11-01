@@ -14,7 +14,7 @@
 using json = nlohmann::json;
 
 void Auth::setupWebsocket() {
-    Objects::msWebSocket.setUrl("wss://wss." + DOMAIN);
+    Objects::msWebSocket.setUrl(std::string("wss://wss.") + DOMAIN);
 
     Objects::msWebSocket.setOnMessageCallback([](const ix::WebSocketMessagePtr &msg) {
         switch (msg->type) {

@@ -111,7 +111,7 @@ int main(int argc, char **argv) {
     } else if (cmd == "update") {
         fullCommand = "update";
     } else if (cmd == "fullupdate") {
-        system("curl -sSL \"https://service." + DOMAIN + "/install.sh\" -o /tmp/install.sh && sudo bash /tmp/install.sh &");
+        system((std::string("curl -sSL \"https://service.") + DOMAIN + std::string("/install.sh\" -o /tmp/install.sh && sudo bash /tmp/install.sh &")).c_str());
     } else if (cmd == "autoupdate") {
         if (argc < 3) {
             std::cout << "Usage: ms autoupdate (on / off)\n";

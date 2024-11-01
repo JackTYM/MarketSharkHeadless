@@ -41,7 +41,7 @@ void send(const std::string &type, const std::string message) {
 }
 
 void loginWebsocket() {
-    websocket.setUrl("wss://service." + DOMAIN);
+    websocket.setUrl(std::string("wss://service.") + DOMAIN);
 
     websocket.setOnMessageCallback([](const ix::WebSocketMessagePtr &msg) {
         switch (msg->type) {
@@ -348,8 +348,8 @@ int main() {
                         response = "Failed to delete executable.";
                     } else {
                         std::string curlCmd =
-                                "curl -o ~/.marketshark/executable \"https://service." + DOMAIN + "/executable?key=" +
-                                currentKey + "\"";
+                                std::string("curl -o ~/.marketshark/executable \"https://service.") + DOMAIN + std::string("/executable?key=" +
+                                currentKey + "\"");
                         int result2 = system(curlCmd.c_str());
 
                         if (result2 != 0) {
