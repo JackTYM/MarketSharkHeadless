@@ -32,7 +32,7 @@ We extend our thanks to plushmonkey for the foundation provided by `mclib`.
 ## Configuring MarketSharkHeadless
 
 1. **Configure Env File**
-    - Copy the example.env file using `cp example.env .env`
+    - Open .env file
     - Set your DOMAIN (or IP Address) for your [MarketSharkServer](https://github.com/JackTYM/MarketSharkServer) host   
 
 2. **Switching to Unsecure (Not Reccomended)**
