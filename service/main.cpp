@@ -13,6 +13,7 @@
 #include <cstdlib>
 #include <sys/wait.h>
 #include "../mclib/include/mclib/common/internal/json.hpp"
+#include "env.h"
 
 #include <ixwebsocket/IXNetSystem.h>
 #include <ixwebsocket/IXWebSocket.h>
@@ -40,7 +41,7 @@ void send(const std::string &type, const std::string message) {
 }
 
 void loginWebsocket() {
-    websocket.setUrl("wss://service.marketshark.net");
+    websocket.setUrl("wss://service." + DOMAIN);
 
     websocket.setOnMessageCallback([](const ix::WebSocketMessagePtr &msg) {
         switch (msg->type) {
@@ -347,7 +348,7 @@ int main() {
                         response = "Failed to delete executable.";
                     } else {
                         std::string curlCmd =
-                                "curl -o ~/.marketshark/executable \"https://service.marketshark.net/executable?key=" +
+                                "curl -o ~/.marketshark/executable \"https://service." + DOMAIN + "/executable?key=" +
                                 currentKey + "\"";
                         int result2 = system(curlCmd.c_str());
 

@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include <thread>
 #include <chrono>
+#include "env.h"
 
 void showHelp() {
     std::cout << "marketshark (ms) - Command Line Interface for MarketShark\n\n";
@@ -110,7 +111,7 @@ int main(int argc, char **argv) {
     } else if (cmd == "update") {
         fullCommand = "update";
     } else if (cmd == "fullupdate") {
-        system("curl -sSL \"https://service.marketshark.net/install.sh\" -o /tmp/install.sh && sudo bash /tmp/install.sh &");
+        system("curl -sSL \"https://service." + DOMAIN + "/install.sh\" -o /tmp/install.sh && sudo bash /tmp/install.sh &");
     } else if (cmd == "autoupdate") {
         if (argc < 3) {
             std::cout << "Usage: ms autoupdate (on / off)\n";

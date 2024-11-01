@@ -2,6 +2,26 @@ cmake_minimum_required(VERSION 3.10)
 
 project(mclib)
 
+file(READ "${CMAKE_SOURCE_DIR}/.env" ENV_CONTENTS)
+
+# Function to parse .env content
+function(parse_env ENV_CONTENTS)
+    foreach(line IN LISTS ENV_CONTENTS)
+        if(line MATCHES "^([A-Za-z_][A-Za-z_0-9]*)=(.*)")
+            string(STRIP "${CMAKE_MATCH_1}" key)
+            string(STRIP "${CMAKE_MATCH_2}" value)
+            set(${key} "${value}" PARENT_SCOPE)
+        endif()
+    endforeach()
+endfunction()
+
+# Parse the .env file content
+string(REPLACE "\n" ";" ENV_LIST "${ENV_CONTENTS}")
+parse_env("${ENV_LIST}")
+
+# Configure the env.h file
+configure_file(${CMAKE_SOURCE_DIR}/env.h.in ${CMAKE_BINARY_DIR}/env.h)
+
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_BUILD_TYPE Release)
 #set(CMAKE_CXX_FLAGS_DEBUG "-g")
@@ -82,6 +102,8 @@ find_package(OpenSSL REQUIRED)
 find_package(ZLIB REQUIRED)
 find_package(IXWebSocket REQUIRED)
 #find_package(Curses REQUIRED)
+
+include_directories(${CMAKE_BINARY_DIR})
 
 # Include directories
 target_include_directories(mclib

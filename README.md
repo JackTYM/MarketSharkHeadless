@@ -29,6 +29,17 @@ We extend our thanks to plushmonkey for the foundation provided by `mclib`.
 - CLI tool for easy configuration
 - Linux service for sustained operation
 
+## Configuring MarketSharkHeadless
+
+1. **Configure Env File**
+    - Copy the example.env file using `cp example.env .env`
+    - Set your DOMAIN (or IP Address) for your [MarketSharkServer](https://github.com/JackTYM/MarketSharkServer) host   
+
+2. **Switching to Unsecure (Not Reccomended)**
+    - Only required if using an IP or Domain that has no SSL Certifciates Served
+    - Replace all "https" strings related to DOMAIN with "http"
+    - Replace all "wss" strings related to DOMAIN with "ws"
+
 ## Building MarketSharkHeadless
 
 ### Installing Required Dependencies

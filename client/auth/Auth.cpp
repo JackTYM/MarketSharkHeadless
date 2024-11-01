@@ -9,11 +9,12 @@
 #include <mclib/common/Json.h>
 
 #include <ColorConfig.h>
+#include "env.h"
 
 using json = nlohmann::json;
 
 void Auth::setupWebsocket() {
-    Objects::msWebSocket.setUrl("wss://wss.marketshark.net");
+    Objects::msWebSocket.setUrl("wss://wss." + DOMAIN);
 
     Objects::msWebSocket.setOnMessageCallback([](const ix::WebSocketMessagePtr &msg) {
         switch (msg->type) {
